@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="code_styles/vs2015.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+</head>
+
+<body>
+    <div id="sbarback" onclick="toggleSidebar(true)">
+    </div>
+
+    <div id="app">
+        <v-app>
+            <v-main>
+
+                <!--Title-->
+                <v-toolbar dark style="height: 64px;position: fixed;width: 100%; z-index: 4;" class="noprint black">
+                    <v-app-bar-nav-icon onclick='toggleSidebar()' id="menuicon"></v-app-bar-nav-icon>
+
+                    <v-toolbar-title>Cool Language</v-toolbar-title>
+
+                    <v-spacer></v-spacer>
+
+                    <v-btn icon onclick="window.location.href = 'http://www.google.com'">
+                        <v-icon>mdi-export</v-icon>
+                    </v-btn>
+                </v-toolbar>
+
+                <!--Drawer-->
+                <v-navigation-drawer class="no-printme" absolute bottom permanent dark id="sbar" style='background-color: #1976d2 !important;position: fixed;'>
+                    <div class="pa-3 d-flex blue darken-3" style="padding: 12px;">
+                        <button type="button" class="v-btn v-btn--depressed theme--dark v-size--default blue darken-2" aria-label="Home" style="min-width: 0px;" onclick="
+                            window.location.href = 'start_main.html'
+                        "><span class="v-btn__content"><i aria-hidden="true"
+                                    class="v-icon notranslate mdi mdi-home theme--dark"
+                                    style="font-size: 20px;"></i></span></button><button type="button" class="ml-3 v-btn v-btn--depressed theme--dark v-size--default blue darken-2" style="flex: 1 1 100%;overflow: hidden;">
+                            <div class="text-none"
+                                style="float: left; height: 100%; background-color: dodgerblue; margin-left: -16px; width: 46px; line-height: 36px;">
+                                v1.0
+                            </div>
+                            <span class="v-btn__content">
+                                <div class="body-2 text-none">Change</div>
+                            </span>
+                        </button>
+                    </div>
+
+                    <v-list nav dense>
+                        <v-list-item-group active-class="deep-white--text text--accent-4" style="margin: -8px !important; width: calc(100% + 16px) !important; max-width: 5000px !important;">
+                            <v-list-item v-for="(item, i) in navigation" :key="i" v-if="!item.isheader" :pathref="item.href" onclick="window.location.href = $(this).attr('pathref') + '.html'">
+                                <v-list-item-icon>
+                                    <v-icon>{{item.icon}}</v-icon>
+                                </v-list-item-icon>
+
+                                <v-list-item-content>
+                                    <v-list-item-title>{{item.text}}
+                                    </v-list-item-title>
+                                </v-list-item-content>
+                            </v-list-item>
+                            <template v-else>
+                                <v-divider inset></v-divider>
+                                <v-subheader style="margin-left: +8px !important;">{{item.text}}</v-subheader>
+                            </template>
+                        </v-list-item-group>
+                    </v-list>
+                </v-navigation-drawer>
+
+                <!--content-->
+                <div class="page_content" style="margin-top: 64px;">
+                    <v-toolbar class="v-toolbar--dense v-toolbar--flat grey lighten-3" style="height: 50px">
+                        <div>
+                            <v-breadcrumbs :items="cur_path" style="transform: translate(-4px,-6px);">
+                                <template v-slot:item="{ item }">
+                                    <v-breadcrumbs-item :href="item.href" :disabled="item.disabled">
+                                        <v-btn v-if="item.normal" text small style="text-transform: none">
+                                            {{ item.text }}
+                                        </v-btn>
+                                        <v-btn v-else small icon>
+                                            <v-icon small>mdi-{{ item.text }}</v-icon>
+                                        </v-btn>
+                                    </v-breadcrumbs-item>
+                                </template>
+                            </v-breadcrumbs>
+                        </div>
+
+                    </v-toolbar>
+                    <v-divider></v-divider>
+                    <div class="container grey pa-0 container--fluid lighten-4" style="padding: 16px !important;">
+                        <div class="page_title">
+                            <div class="headline grey--text text--darken-3">{{cur_title}}</div>
+                            <div class="caption grey--text text--darken-1">{{cur_subtitle}}</div>
+                        </div>
+                    </div>
+                    <v-divider></v-divider>
+                    <div class="container grey pa-0 container--fluid lighten-4" style="padding: 4px !important;">
+                        <div class="page_title">
+                            <v-chip class="ma-2" :color="item.color" dark pill v-for="(item, i) in cur_tags" :key="i" v-if="i < 1">
+                                <v-icon left>
+                                    mdi-tag-text
+                                </v-icon>
+                                {{item.text}}
+                            </v-chip>
+
+                            <v-chip class="ma-2" color="orange" label style="float: right" dark>
+                                <b>v1.12</b>
+                            </v-chip>
+                        </div>
+                    </div>
+                    <v-divider></v-divider>
+                    <!--Content-->
+                    <div class="container pl-5 pt-4 container--fluid grid-list-xl">
+                        <div class="layout row">
+                            <div flex page-col-sd lg3 style=" position: sticky !important; overflow-y: scroll; max-height: calc(100vh - 64px); top: 64px !important; margin-top: -140px; width: 25% !important; padding: 12px; padding-top: 16px;" id="second_sidebar">
+                                <div class="mb-5 v-card v-sheet theme--light">
+                                    <div class="overline cpadding pb-0 light-green--text">Sections
+                                    </div>
+                                    <v-list nav dense>
+                                        <v-list-item-group>
+                                            <v-list-item v-for="(item, i) in cur_sections" :key="i" :target="item.target" onclick="
+                                            scrollToElement($(this).attr('target'))">
+                                                <v-list-item-icon class="secarrows" :style="'margin-left: ' + (item.level) * 15 + 'px !important'">
+                                                    <v-icon small>mdi-chevron-right</v-icon>
+                                                </v-list-item-icon>
+
+                                                <v-list-item-content>
+                                                    <v-list-item-title :style="'color: ' + item.color + ' !important'">
+                                                        {{item.text}}
+                                                    </v-list-item-title>
+                                                </v-list-item-content>
+                                            </v-list-item>
+
+                                        </v-list-item-group>
+                                    </v-list>
+                                </div>
+                                <div class="mb-5 v-card v-sheet theme--light">
+                                    <div class="cpadding">
+                                        <div class="overline pb-0 teal--text">Tags
+                                        </div>
+                                        <v-chip small class="ma-2" :color="item.color" dark label v-for="(item, i) in cur_tags" :key="i">
+                                            <v-icon small left>
+                                                mdi-tag-text
+                                            </v-icon>
+                                            {{item.text}}
+                                        </v-chip>
+                                    </div>
+                                </div>
+                                <div class="mb-5 v-card v-sheet theme--light">
+                                    <div class="cpadding">
+                                        <div class="overline indigo--text d-flex"><span>Last edited by</span>
+                                            <div class="spacer"></div>
+                                        </div>
+                                        <div class="body-2 grey--text text--darken-3">{{cur_last_change.author}}</div>
+                                        <div class="caption grey--text text--darken-1">{{cur_last_change.date}}</div>
+                                        <div class="overline indigo--text d-flex"><span>Created by</span>
+                                            <div class="spacer"></div>
+                                        </div>
+                                        <div class="body-2 grey--text text--darken-3">{{cur_creation.author}}</div>
+                                        <div class="caption grey--text text--darken-1">{{cur_creation.date}}</div>
+                                        <div class="spacer"></div>
+                                    </div>
+                                </div>
+
+                                <!--Main actions-->
+                                <v-card outlined class="grey lighten-2" style="padding: 4px;">
+                                    <div class="text-center">
+                                        <v-btn icon color="gray">
+                                            <v-icon dark onclick="openSource()">
+                                                mdi-code-tags
+                                            </v-icon>
+                                        </v-btn>
+                                        <v-btn icon color="gray" onclick="window.print()">
+                                            <v-icon dark>
+                                                mdi-printer
+                                            </v-icon>
+                                        </v-btn>
+                                    </div>
+                                </v-card>
+                            </div>
+
+                            <v-row justify="center">
+                                <v-dialog v-model="sourcedialog" fullscreen hide-overlay persistent>
+                                    <v-card>
+                                        <v-toolbar dark color="primary">
+                                            <v-btn icon dark onclick="vue.sourcedialog = false; $('body').removeClass('hideScroll')">
+                                                <v-icon>mdi-close</v-icon>
+                                            </v-btn>
+                                            <v-toolbar-title>Source: {{cur_title}}</v-toolbar-title>
+                                        </v-toolbar>
+                                        <v-card-text id="source_card" style="padding: 0px">
+                                            <div class="hljs" class="markdown">
+                                                <code id="source_card_code" class="markdown" style="font-size: 18px; background-color: transparent;">
+                                                </code>
+                                            </div>
+                                        </v-card-text>
+                                    </v-card>
+                                </v-dialog>
+                            </v-row>
+
+                            <div class="flex page-col-content lg9">
+                                <h1 id="title">Title</h1>
+<p>Hi 123</p>
+                                <v-footer padless class="grey lighten-2" light style="border-radius: 4px;">
+                                    <v-col class="text-center" cols="12" style="padding: 11px;">
+                                        {{ new Date().getFullYear() }} — <strong>Cool Language Project</strong> —
+                                        <b class="caption">Based on Wiki.js , created using Vuetify</b>
+                                    </v-col>
+                                </v-footer>
+                                <div style="height: 8px;">
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </v-main>
+        </v-app>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/highlight.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.6.0/dist/highlightjs-line-numbers.min.js"></script>
+    <script>
+        let vue = new Vue({
+            el: '#app',
+            vuetify: new Vuetify(),
+            data: {
+                sourcedialog: true,
+                //Current page info
+                cur_path: [{"text":"code-braces","disabled":true,"normal":false,"href":"breadcrumbs_dashboard"},{"text":"start","disabled":true,"normal":true,"href":""},{"text":"second","disabled":true,"normal":true,"href":""}],
+                cur_sections: [{"text":"Title","level":0,"color":"black","target":"title"}],
+                cur_tags: [{"text":"another tag","color":"green"}],
+                cur_last_change: {"author":"Admin","date":"10/12/2020"},
+                cur_creation: {"author":"Admin","date":"09/12/2020"},
+
+                cur_title: "Teste 2",
+                cur_subtitle: "A second page",
+
+                //Cross info
+                navigation: [{"text":"Getting Started","isheader":true},{"text":"Main","icon":"mdi-alien-outline","isheader":false,"href":"start_main"},{"text":"Teste 2","icon":"mdi-numeric-2","isheader":false,"href":"start_second"}]
+            }
+        })
+
+        function openSource() {
+            vue.sourcedialog = true;
+            $("body").addClass("hideScroll");
+        }
+
+        function toggleSidebar(v) {
+            let element = document.getElementById("sbar");
+            let has = ((" " + element.className + " ").replace(/[\n\t]/g, " ").indexOf(" open ") > -1);
+
+            if (has) {
+                element.classList.remove("open");
+                document.getElementById("sbarback").classList.remove("open");
+            } else if (!v) {
+                document.getElementById("sbarback").classList.add("open");
+                element.classList.add("open");
+            }
+        }
+
+        window.onload = function() {
+            document.getElementsByClassName("v-navigation-drawer__content")[0].addEventListener("mouseenter", function() {
+                document.getElementsByClassName("v-navigation-drawer__content")[0].classList.add("show");
+            });
+
+            document.getElementsByClassName("v-navigation-drawer__content")[0].addEventListener("mouseleave", function() {
+                document.getElementsByClassName("v-navigation-drawer__content")[0].classList.remove("show");
+            });
+
+            //Parse source code
+            $("#source_card_code").text(stDecomp("# Title\r\nćHi 123"));
+            hljs.highlightBlock(document.getElementById("source_card_code"));
+            hljs.lineNumbersBlock(document.getElementById("source_card_code"));
+            vue.sourcedialog = false;
+
+            //Generate code lines
+            $('.hljscontent').each(function(i, block) {
+                hljs.lineNumbersBlock(block);
+            });
+
+            $("body").fadeIn(500);
+
+            //Alert Icon color
+            $('.v-alert__icon').attr('style', 'color: rgba(255,255,255,0.75) !important');
+        };
+
+        function stDecomp(b) {
+            var a, e = {},
+                d = b.split(""),
+                c = f = d[0],
+                g = [c],
+                h = o = 256;
+            for (b = 1; b < d.length; b++) a = d[b].charCodeAt(0), a = h > a ? d[b] : e[a] ? e[a] : f + c, g.push(a), c = a.charAt(0), e[o] = f + c, o++, f = a;
+            return g.join("")
+        }
+
+        function scrollToElement(id) {
+            let yOffset = -80;
+            let element = document.getElementById(id);
+            let y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+
+            window.scrollTo({
+                top: y,
+                behavior: 'smooth'
+            });
+        }
+    </script>
+</body>
+
+</html>
