@@ -2,12 +2,12 @@
 <html>
 
 <head>
-    <title>v2.0 - Main</title>
-    <link href="../css/style.css" rel="stylesheet">
+    <title>v1.0 - Main</title>
+    <link href="../../../css/style.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../code_styles/agate.css">
+    <link rel="stylesheet" href="../../../code_styles/agate.css">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
 </head>
 
@@ -24,7 +24,7 @@
                     <v-app-bar-nav-icon onclick='toggleSidebar()' id="menuicon"></v-app-bar-nav-icon>
 
                     <v-avatar size="36px" style="border-radius: 0px !important;">
-                        <img alt="Avatar" src="../media/logo.png" style="border-radius: 0px !important;">
+                        <img alt="Avatar" src="../../../media/logo.png" style="border-radius: 0px !important;">
 
                     </v-avatar>
                     <v-toolbar-title style="padding-left: 12px;">Cool Language</v-toolbar-title>
@@ -40,14 +40,14 @@
                 <v-navigation-drawer class="no-printme" absolute bottom permanent dark id="sbar" style='background-color: #1976d2 !important;position: fixed;'>
                     <div class="pa-3 d-flex blue darken-3" style="padding: 12px;">
                         <button type="button" class="v-btn v-btn--depressed theme--dark v-size--default blue darken-2" aria-label="Home" style="min-width: 0px;" onclick="
-                            window.location.href = '2_0_another_brick.html'
+                            window.location.href = '../start/main.html'
                         "><span class="v-btn__content"><i aria-hidden="true"
                                     class="v-icon notranslate mdi mdi-home theme--dark"
                                     style="font-size: 20px;"></i></span></button>
                         <button onclick="showVersions()" id="versionbtn" type="button" class="ml-3 v-btn v-btn--depressed theme--dark v-size--default blue darken-2" style="flex: 1 1 100%;overflow: hidden;">
                             <div class="text-none"
                                 style="float: left; height: 100%; background-color: dodgerblue; margin-left: -16px; width: 46px; line-height: 36px;">
-                                v2.0
+                                v1.0
                             </div>
                             <span class="v-btn__content">
                                 <div class="body-2 text-none">Change</div>
@@ -116,7 +116,7 @@
                             </v-chip>
 
                             <v-chip class="ma-2" color="orange" label style="float: right" dark>
-                                <b>2.0</b>
+                                <b>1.0</b>
                             </v-chip>
                         </div>
                     </div>
@@ -222,7 +222,7 @@
 
                             <!--Content-->
                             <div class="flex maincontent page-col-content lg9">
-                                <h1 id="title">Title</h1>
+                                <v-alert dense type="error" text>This documentation is for <b>version 1.0 (Outdated)</b>. We recomend to upgrade to <b>version 2.0</b> (latest)</b></v-alert><h1 id="title">Title</h1>
 <p>Hi 123</p>
                                 <v-fab-transition>
                                     <v-btn class="primary" dark fixed bottom right fab @click.stop="langdialog = true">
@@ -254,7 +254,7 @@
                                             <v-list-item-group v-model="langselected" color="primary">
                                                 <v-list-item v-for="(item, i) in langitems" :key="i" :ithref="item.href" onclick="
                                                     let sp = window.location.href.split('/');
-                                                    sp[sp.length - 2] = $(this).attr('ithref');
+                                                    sp[sp.length - 4] = $(this).attr('ithref');
                                                     window.location.href = sp.join('/');
                                                     ">
                                                     <v-list-item-icon>
@@ -303,19 +303,19 @@
                 versionmenu_y: 0,
 
                 //Current page info
-                cur_path: [{"text":"2.0","disabled":true,"normal":true,"href":""},{"text":"another","disabled":true,"normal":true,"href":""},{"text":"brick","disabled":true,"normal":true,"href":""}],
+                cur_path: [{"text":"1.0","disabled":true,"normal":true,"href":""},{"text":"start","disabled":true,"normal":true,"href":""},{"text":"main","disabled":true,"normal":true,"href":""}],
                 cur_sections: [{"text":"Title","level":0,"color":"black","target":"title"}],
-                cur_tags: [{"text":"main tag","color":"blue"},{"text":"another tag","color":"yellow"}],
+                cur_tags: [{"text":"main tag","color":"red"},{"text":"another tag","color":"green"}],
                 cur_last_change: {"author":"Admin","date":"10/12/2020"},
                 cur_creation: {"author":"Admin","date":"09/12/2020"},
                 cur_title: "Main",
-                cur_subtitle: "Hi Dude",
+                cur_subtitle: "Test Description",
 
                 //Cross-page info
-                navigation: [{"text":"Another Section","isheader":true},{"text":"Main","icon":"mdi-table","isheader":false,"href":"2_0_another_brick"}],
+                navigation: [{"text":"Start","isheader":true},{"text":"Main","icon":"mdi-alien-outline","isheader":false,"href":"../start/main"},{"text":"Second","icon":"mdi-numeric-2","isheader":false,"href":"../start/second"}],
                 langselected: 0,
                 langitems: [{"text":"English","href":"en-us"},{"text":"Português","href":"pt-br"}],
-                versionmenu_items: [{"title":"1.0","home":"1_0_start_main"},{"title":"2.0","home":"2_0_another_brick"}]
+                versionmenu_items: [{"title":"1.0","home":"../../1.0/start/main"},{"title":"2.0","home":"../../2.0/another/brick"}]
             }
         })
 

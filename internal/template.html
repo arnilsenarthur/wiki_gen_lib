@@ -3,11 +3,11 @@
 
 <head>
     <title>$$navtitle$$</title>
-    <link href="../css/style.css" rel="stylesheet">
+    <link href="../../../css/style.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../code_styles/agate.css">
+    <link rel="stylesheet" href="../../../code_styles/agate.css">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
 </head>
 
@@ -24,7 +24,7 @@
                     <v-app-bar-nav-icon onclick='toggleSidebar()' id="menuicon"></v-app-bar-nav-icon>
 
                     <v-avatar size="36px" style="border-radius: 0px !important;">
-                        <img alt="Avatar" src="../media/logo.png" style="border-radius: 0px !important;">
+                        <img alt="Avatar" src="../../../media/logo.png" style="border-radius: 0px !important;">
 
                     </v-avatar>
                     <v-toolbar-title style="padding-left: 12px;">$$header$$</v-toolbar-title>
@@ -253,7 +253,7 @@
                                             <v-list-item-group v-model="langselected" color="primary">
                                                 <v-list-item v-for="(item, i) in langitems" :key="i" :ithref="item.href" onclick="
                                                     let sp = window.location.href.split('/');
-                                                    sp[sp.length - 2] = $(this).attr('ithref');
+                                                    sp[sp.length - 4] = $(this).attr('ithref');
                                                     window.location.href = sp.join('/');
                                                     ">
                                                     <v-list-item-icon>

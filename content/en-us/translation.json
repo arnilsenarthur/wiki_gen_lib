@@ -1,0 +1,21 @@
+{
+    "header": "Cool Language",
+    "footer": "Cool Language Project",
+    "labels": {
+        "version_change": "Change",
+        "sections": "Sections",
+        "tags": "Tags",
+        "last_edited": "Last Edited By",
+        "created_by": "Created By",
+        "footer": "Based on Wiki.js , created using Vuetify",
+        "outdated": "This documentation is for <b>version %% (Outdated)</b>. We recomend to upgrade to <b>version %%</b> (latest)</b>",
+        "language_title": "Language",
+        "language_text": "Choose your language",
+        "language_close": "Close"
+    },
+    "1.0": {
+        "start": "Start",
+        "start/main": ["Main", "Test Description"],
+        "start/second": ["Second", "Second Description :D"]
+    }
+}

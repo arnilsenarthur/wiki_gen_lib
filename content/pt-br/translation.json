@@ -1,0 +1,16 @@
+{
+    "header": "Cool Language",
+    "footer": "Cool Language Project",
+    "labels": {
+        "version_change": "Mudar",
+        "sections": "Seções",
+        "tags": "Etiquetas",
+        "last_edited": "Editado por",
+        "created_by": "Criado por",
+        "footer": "Baseado em Wiki.js , criado usando Vuetify",
+        "outdated": "Esta documentação é para a <b>versão %% (Ultrapassada)</b>. Nos recomendamos atualizar para a <b>versão %%</b> (Mais Recente)</b>",
+        "language_title": "Idioma",
+        "language_text": "Escolha um idioma abaixo",
+        "language_close": "Fechar"
+    }
+}

@@ -2,12 +2,12 @@
 <html>
 
 <head>
-    <title>v1.0 - Teste 2</title>
-    <link href="../css/style.css" rel="stylesheet">
+    <title>v1.0 - start/second</title>
+    <link href="../../../css/style.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../code_styles/agate.css">
+    <link rel="stylesheet" href="../../../code_styles/agate.css">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
 </head>
 
@@ -24,7 +24,7 @@
                     <v-app-bar-nav-icon onclick='toggleSidebar()' id="menuicon"></v-app-bar-nav-icon>
 
                     <v-avatar size="36px" style="border-radius: 0px !important;">
-                        <img alt="Avatar" src="../media/logo.png" style="border-radius: 0px !important;">
+                        <img alt="Avatar" src="../../../media/logo.png" style="border-radius: 0px !important;">
 
                     </v-avatar>
                     <v-toolbar-title style="padding-left: 12px;">Cool Language</v-toolbar-title>
@@ -40,7 +40,7 @@
                 <v-navigation-drawer class="no-printme" absolute bottom permanent dark id="sbar" style='background-color: #1976d2 !important;position: fixed;'>
                     <div class="pa-3 d-flex blue darken-3" style="padding: 12px;">
                         <button type="button" class="v-btn v-btn--depressed theme--dark v-size--default blue darken-2" aria-label="Home" style="min-width: 0px;" onclick="
-                            window.location.href = '1_0_start_main.html'
+                            window.location.href = '../start/main.html'
                         "><span class="v-btn__content"><i aria-hidden="true"
                                     class="v-icon notranslate mdi mdi-home theme--dark"
                                     style="font-size: 20px;"></i></span></button>
@@ -50,7 +50,7 @@
                                 v1.0
                             </div>
                             <span class="v-btn__content">
-                                <div class="body-2 text-none">Change</div>
+                                <div class="body-2 text-none">Mudar</div>
                             </span>
                         </button>
                     </div>
@@ -95,7 +95,7 @@
                         </div>
                         <!--Language display-->
                         <v-chip class="ma-2" color="red" @click.stop="langdialog = true" label style="position: absolute; right: 0px; transform: translate(0px,-6px)" dark>
-                            <b>en-us</b>
+                            <b>pt-br</b>
                         </v-chip>
                     </v-toolbar>
                     <v-divider></v-divider>
@@ -126,7 +126,7 @@
                         <div class="layout row">
                             <div flex page-col-sd lg3 style=" position: sticky !important; overflow-y: scroll; max-height: calc(100vh - 64px); top: 64px !important; margin-top: -140px; width: 25% !important; padding: 12px; padding-top: 16px;" id="second_sidebar">
                                 <div class="mb-5 v-card v-sheet theme--light">
-                                    <div class="overline cpadding pb-0 light-green--text">Sections
+                                    <div class="overline cpadding pb-0 light-green--text">Seções
                                     </div>
                                     <v-list nav dense>
                                         <v-list-item-group>
@@ -148,7 +148,7 @@
                                 </div>
                                 <div class="mb-5 v-card v-sheet theme--light">
                                     <div class="cpadding">
-                                        <div class="overline pb-0 teal--text">Tags
+                                        <div class="overline pb-0 teal--text">Etiquetas
                                         </div>
                                         <v-chip small class="ma-2" :color="item.color" dark label v-for="(item, i) in cur_tags" :key="i">
                                             <v-icon small left>
@@ -160,12 +160,12 @@
                                 </div>
                                 <div class="mb-5 v-card v-sheet theme--light">
                                     <div class="cpadding">
-                                        <div class="overline indigo--text d-flex"><span>Created By</span>
+                                        <div class="overline indigo--text d-flex"><span>Criado por</span>
                                             <div class="spacer"></div>
                                         </div>
                                         <div class="body-2 grey--text text--darken-3">{{cur_last_change.author}}</div>
                                         <div class="caption grey--text text--darken-1">{{cur_last_change.date}}</div>
-                                        <div class="overline indigo--text d-flex"><span>Last Edited By</span>
+                                        <div class="overline indigo--text d-flex"><span>Editado por</span>
                                             <div class="spacer"></div>
                                         </div>
                                         <div class="body-2 grey--text text--darken-3">{{cur_creation.author}}</div>
@@ -222,7 +222,7 @@
 
                             <!--Content-->
                             <div class="flex maincontent page-col-content lg9">
-                                <v-alert dense type="error" text>This documentation is for <b>version 1.0 (Outdated)</b>. We recomend to upgrade to <b>version 2.0</b> (latest)</b></v-alert><h1 id="testingsections">Testing Sections</h1>
+                                <v-alert dense type="error" text>Esta documentação é para a <b>versão 1.0 (Ultrapassada)</b>. Nos recomendamos atualizar para a <b>versão 2.0</b> (Mais Recente)</b></v-alert><h1 id="testingsections">Testing Sections</h1>
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ullamcorper vulputate neque, in maximus risus finibus a. Nam condimentum leo ut urna ultricies, non congue turpis sollicitudin. Maecenas id porttitor lectus, vel gravida quam. Morbi turpis nisi, commodo at vehicula lacinia, tincidunt et metus. Fusce eget rhoncus est. Praesent accumsan, eros vel porta varius, dui neque lacinia nisl, auctor interdum eros magna at lectus. Donec vel efficitur tortor. Pellentesque non nibh eget ligula pulvinar blandit. Nam suscipit rutrum placerat. Duis sodales non ante eget pretium. Pellentesque semper, leo ac hendrerit tempor, risus magna porta risus, ac pharetra quam sem tempus leo. In auctor turpis enim, eget cursus urna ultrices non. Nullam et tellus ut nisi imperdiet accumsan eget a arcu. Integer &#x1F604; rhoncus in mauris ac auctor.</p>
 <h2 id="andsubsections">And Subsections</h2>
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ullamcorper vulputate neque, in maximus risus finibus a. Nam condimentum leo ut urna ultricies, non congue turpis sollicitudin. Maecenas id porttitor lectus, vel gravida quam. Morbi turpis nisi, commodo at vehicula lacinia, tincidunt et metus. Fusce eget rhoncus est. Praesent accumsan, eros vel porta varius, dui neque lacinia nisl, auctor interdum eros magna at lectus. Donec vel efficitur tortor. Pellentesque non nibh eget ligula pulvinar blandit. Nam suscipit rutrum placerat. Duis sodales non ante eget pretium. Pellentesque semper, leo ac hendrerit tempor, risus magna porta risus, ac pharetra quam sem tempus leo. In auctor turpis enim, eget cursus urna ultrices non. Nullam et tellus ut nisi imperdiet accumsan eget a arcu. Integer rhoncus in mauris ac auctor. <strong>bold</strong> hehe <strong>bold</strong></p>
@@ -321,7 +321,7 @@
                                 <v-footer padless class="grey lighten-2" light style="border-radius: 4px;">
                                     <v-col class="text-center" cols="12" style="padding: 11px;">
                                         {{ new Date().getFullYear() }} — <strong>Cool Language Project</strong> —
-                                        <b class="caption">Based on Wiki.js , created using Vuetify</b>
+                                        <b class="caption">Baseado em Wiki.js , criado usando Vuetify</b>
                                     </v-col>
                                 </v-footer>
                                 <div style="height: 8px;">
@@ -332,17 +332,17 @@
                             <v-dialog v-model="langdialog" max-width="290">
                                 <v-card>
                                     <v-card-title class="headline">
-                                        Language
+                                        Idioma
                                     </v-card-title>
 
                                     <v-card-text>
-                                        Choose your language
+                                        Escolha um idioma abaixo
 
                                         <v-list dense>
                                             <v-list-item-group v-model="langselected" color="primary">
                                                 <v-list-item v-for="(item, i) in langitems" :key="i" :ithref="item.href" onclick="
                                                     let sp = window.location.href.split('/');
-                                                    sp[sp.length - 2] = $(this).attr('ithref');
+                                                    sp[sp.length - 4] = $(this).attr('ithref');
                                                     window.location.href = sp.join('/');
                                                     ">
                                                     <v-list-item-icon>
@@ -360,7 +360,7 @@
                                         <v-spacer></v-spacer>
 
                                         <v-btn color="green darken-1" text @click="langdialog = false">
-                                            Close
+                                            Fechar
                                         </v-btn>
                                     </v-card-actions>
                                 </v-card>
@@ -396,14 +396,14 @@
                 cur_tags: [{"text":"another tag","color":"green"}],
                 cur_last_change: {"author":"Admin","date":"10/12/2020"},
                 cur_creation: {"author":"Admin","date":"09/12/2020"},
-                cur_title: "Teste 2",
-                cur_subtitle: "A second page",
+                cur_title: "start/second",
+                cur_subtitle: "",
 
                 //Cross-page info
-                navigation: [{"text":"Getting Started","isheader":true},{"text":"Main","icon":"mdi-alien-outline","isheader":false,"href":"1_0_start_main"},{"text":"Teste 2","icon":"mdi-numeric-2","isheader":false,"href":"1_0_start_second"}],
-                langselected: 0,
+                navigation: [{"text":"start","isheader":true},{"text":"start/main","icon":"mdi-alien-outline","isheader":false,"href":"../start/main"},{"text":"start/second","icon":"mdi-numeric-2","isheader":false,"href":"../start/second"}],
+                langselected: 1,
                 langitems: [{"text":"English","href":"en-us"},{"text":"Português","href":"pt-br"}],
-                versionmenu_items: [{"title":"1.0","home":"1_0_start_main"},{"title":"2.0","home":"2_0_another_brick"}]
+                versionmenu_items: [{"title":"1.0","home":"../../1.0/start/main"},{"title":"2.0","home":"../../2.0/another/brick"}]
             }
         })
 
