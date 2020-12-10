@@ -1,5 +1,5 @@
 # Wiki Gen Lib
-### Generate wiki static website from markdown files
+### Generate static wiki website from markdown files
 ### Based on Wiki.js (https://wiki.js.org/)
 ## Features
 - Multi Language Support
