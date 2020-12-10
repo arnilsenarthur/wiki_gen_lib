@@ -8,7 +8,7 @@
 - Responsive (Mobile Friendly)
 - Automatic syntax highlighting (Using highlight.js)
 - Automatic code line count (Using highlightjs-line-numbers)
-- Jquery Integrated
+- JQuery Integrated
 - Vue.js Integrated
 
 ## How to use
