@@ -3,11 +3,11 @@
 
 <head>
     <title>$$navtitle$$</title>
-    <link href="style.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="code_styles/agate.css">
+    <link rel="stylesheet" href="../code_styles/agate.css">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
 </head>
 
@@ -24,7 +24,7 @@
                     <v-app-bar-nav-icon onclick='toggleSidebar()' id="menuicon"></v-app-bar-nav-icon>
 
                     <v-avatar size="36px" style="border-radius: 0px !important;">
-                        <img alt="Avatar" src="media/logo.png" style="border-radius: 0px !important;">
+                        <img alt="Avatar" src="../media/logo.png" style="border-radius: 0px !important;">
 
                     </v-avatar>
                     <v-toolbar-title style="padding-left: 12px;">$$header$$</v-toolbar-title>
@@ -50,7 +50,7 @@
                                 v$$version$$
                             </div>
                             <span class="v-btn__content">
-                                <div class="body-2 text-none">Change</div>
+                                <div class="body-2 text-none">$$lang_change$$</div>
                             </span>
                         </button>
                     </div>
@@ -122,7 +122,7 @@
                         <div class="layout row">
                             <div flex page-col-sd lg3 style=" position: sticky !important; overflow-y: scroll; max-height: calc(100vh - 64px); top: 64px !important; margin-top: -140px; width: 25% !important; padding: 12px; padding-top: 16px;" id="second_sidebar">
                                 <div class="mb-5 v-card v-sheet theme--light">
-                                    <div class="overline cpadding pb-0 light-green--text">Sections
+                                    <div class="overline cpadding pb-0 light-green--text">$$lang_sections$$
                                     </div>
                                     <v-list nav dense>
                                         <v-list-item-group>
@@ -144,7 +144,7 @@
                                 </div>
                                 <div class="mb-5 v-card v-sheet theme--light">
                                     <div class="cpadding">
-                                        <div class="overline pb-0 teal--text">Tags
+                                        <div class="overline pb-0 teal--text">$$lang_tags$$
                                         </div>
                                         <v-chip small class="ma-2" :color="item.color" dark label v-for="(item, i) in cur_tags" :key="i">
                                             <v-icon small left>
@@ -156,12 +156,12 @@
                                 </div>
                                 <div class="mb-5 v-card v-sheet theme--light">
                                     <div class="cpadding">
-                                        <div class="overline indigo--text d-flex"><span>Last edited by</span>
+                                        <div class="overline indigo--text d-flex"><span>$$lang_edited$$</span>
                                             <div class="spacer"></div>
                                         </div>
                                         <div class="body-2 grey--text text--darken-3">{{cur_last_change.author}}</div>
                                         <div class="caption grey--text text--darken-1">{{cur_last_change.date}}</div>
-                                        <div class="overline indigo--text d-flex"><span>Created by</span>
+                                        <div class="overline indigo--text d-flex"><span>$$lang_created$$</span>
                                             <div class="spacer"></div>
                                         </div>
                                         <div class="body-2 grey--text text--darken-3">{{cur_creation.author}}</div>
@@ -216,15 +216,20 @@
 
                             <div class="flex maincontent page-col-content lg9">
                                 $$content$$
+                                <v-fab-transition>
+                                    <v-btn class="primary" dark fixed bottom right fab>
+                                        <v-icon>mdi-book-open-page-variant</v-icon>
+                                    </v-btn>
+                                </v-fab-transition>
+
                                 <v-footer padless class="grey lighten-2" light style="border-radius: 4px;">
                                     <v-col class="text-center" cols="12" style="padding: 11px;">
                                         {{ new Date().getFullYear() }} — <strong>$$footer$$</strong> —
-                                        <b class="caption">Based on Wiki.js , created using Vuetify</b>
+                                        <b class="caption">$$lang_footer$$</b>
                                     </v-col>
                                 </v-footer>
                                 <div style="height: 8px;">
                                 </div>
-
                             </div>
                         </div>
                     </div>

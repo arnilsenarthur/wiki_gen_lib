@@ -15,7 +15,7 @@ const converter = new showdown.Converter({
     ghMentions: true
 });
 
-function createPage(page, template, nav, home, header, footer, returnlink, versions, version) {
+function createPage(page, template, nav, home, header, footer, returnlink, versions, version, lang, labels) {
     //External Variables
     let title = page.title;
     let subtitle = page.subtitle;
@@ -68,7 +68,7 @@ function createPage(page, template, nav, home, header, footer, returnlink, versi
     let versionlabel = page.version;
 
     /////////////////////////////
-    let mds = fs.readFileSync("contents/" + page.source, { encoding: 'utf8', flag: 'r' });
+    let mds = fs.readFileSync("content/" + lang + "/" + page.source, { encoding: 'utf8', flag: 'r' });
     let content = converter.makeHtml(mds);
     let source = JSON.stringify(compressString(mds));
     const $ = cheerio.load(content);
@@ -157,10 +157,12 @@ function createPage(page, template, nav, home, header, footer, returnlink, versi
     }
 
 
+    let warnings = max > comp_version ? '<v-alert dense type="error" text>' + labels.outdated.replace("%%", version).replace("%%", max_st) + '</v-alert>' : '';
 
-    let warnings = max > comp_version ? '<v-alert dense type="error" text>This documentation is for <b>version ' + version + ' (Outdated)</b>. We recomend to upgrade to <b>version ' + max_st + '</b> (latest)</v-alert>' : '';
+    if (!fs.existsSync("output/" + lang))
+        fs.mkdirSync("output/" + lang);
 
-    fs.writeFileSync("output/" + page.path.replace("/", "_") + ".html",
+    fs.writeFileSync("output/" + lang + "/" + page.path.replace("/", "_") + ".html",
         template.replace("$$content$$", warnings += $("body").html())
         .replace("$$sections$$", JSON.stringify(sections))
         .replace("$$source$$", source)
@@ -179,6 +181,13 @@ function createPage(page, template, nav, home, header, footer, returnlink, versi
         .replace("$$return$$", returnlink)
         .replace("$$version$$", version)
         .replace("$$versions$$", JSON.stringify(versions))
+
+        .replace("$$lang_change$$", labels.version_change)
+        .replace("$$lang_sections$$", labels.sections)
+        .replace("$$lang_tags$$", labels.tags)
+        .replace("$$lang_created$$", labels.last_edited)
+        .replace("$$lang_edited$$", labels.created_by)
+        .replace("$$lang_footer$$", labels.footer)
     );
 }
 
@@ -248,127 +257,140 @@ if (process.argv.length < 3) {
 
         //Preparing
         {
+            var deleteFolderRecursive = function(path) {
+                if (fs.existsSync(path)) {
+                    fs.readdirSync(path).forEach(function(file, index) {
+                        var curPath = path + "/" + file;
+                        if (fs.lstatSync(curPath).isDirectory()) { // recurse
+                            deleteFolderRecursive(curPath);
+                        } else { // delete file
+                            fs.unlinkSync(curPath);
+                        }
+                    });
+                    fs.rmdirSync(path);
+                }
+            };
+
             //1 - Delete old files
-            console.log("1/7 deleting old files...");
+            console.log("Deleting old files...");
             let n = 0;
             fs.readdirSync("output").forEach(file => {
-                if (file != "code_styles" && file != "style.css" && file != "media") {
-                    fs.unlinkSync("output/" + file);
+                if (file != "code_styles" && file != "css" && file != "js" && file != "media") {
+                    if (!fs.lstatSync("output/" + file).isDirectory())
+                        fs.unlinkSync("output/" + file);
+                    else
+                        deleteFolderRecursive("output/" + file);
                     n++;
                 }
             });
-            console.log("2/7 deleted " + n + " old files...");
-            console.log("");
+            console.log("Deleted " + n + " old files!");
         }
 
-        let main;
+        let langs = JSON.parse(fs.readFileSync("languages.json", { encoding: 'utf8', flag: 'r' }));
 
-        //Main init
-        {
-            console.log("3/7 loading main.js");
-            //2 - Parse main.json
-            main = JSON.parse(fs.readFileSync("main.json", { encoding: 'utf8', flag: 'r' }));
-
-            console.log("");
-        }
-
-        //Tags
-
-        let structure = main.docs;
+        //Template
+        let template = fs.readFileSync("internal/template.html", { encoding: 'utf8', flag: 'r' });
         let pg_count = 0;
+        for (let langi in Object.keys(langs)) {
+            let lang = Object.keys(langs)[langi];
 
-        let versions = [];
-        let pages = [];
+            let main;
 
-        let navs = [];
-
-        for (let v in Object.keys(structure)) {
-            console.log("4/7 Loading version: " + Object.keys(structure)[v])
-            main.structure = structure[Object.keys(structure)[v]].structure;
-            versions.push({
-                title: Object.keys(structure)[v],
-                home: (Object.keys(structure)[v].replace(".", "_") + "_" + structure[Object.keys(structure)[v]].home).replace("/", "_")
-            });
-
-
-            let nav = [];
-            //Create Tree
+            //Main init
             {
-                console.log("5/7 creating navigation tree");
-                for (let i in Object.keys(main.structure)) {
-                    let k = Object.keys(main.structure)[i];
+                console.log("Loading lang '" + lang + "'");
+                //2 - Parse main.json
+                main = JSON.parse(fs.readFileSync("content/" + lang + "/main.json", { encoding: 'utf8', flag: 'r' }));
 
-                    //Header
-                    nav.push({
-                        text: k,
-                        isheader: true
-                    });
-
-                    let path = "";
-                    let path_simple = "";
-                    //Iterate pages
-                    for (let j in Object.keys(main.structure[k])) {
-                        let l = Object.keys(main.structure[k])[j];
-
-                        if (l == "path") {
-                            path = Object.keys(structure)[v].replace(".", "_") + "_" + main.structure[k][l];
-                            path_simple = main.structure[k][l];
-                        } else {
-                            //Page
-                            console.log("- Indexing page '" + k + " > " + l + "'");
-                            let pre = main.structure[k][l].path;
-                            main.structure[k][l].path = path + "/" + main.structure[k][l].path;
-                            main.structure[k][l].path_simple = path_simple + "/" + pre;
-                            main.structure[k][l].title = l;
-                            main.structure[k][l].home = Object.keys(structure)[v].replace(".", "_") + "_" + structure[Object.keys(structure)[v]].home;
-                            main.structure[k][l].version = Object.keys(structure)[v];
-
-                            let tags = [];
-
-
-                            for (let m = 0; m < main.structure[k][l].tags.length; m++)
-                                tags.push({
-                                    text: main.structure[k][l].tags[m],
-                                    color: structure[Object.keys(structure)[v]].tags[main.structure[k][l].tags[m]].color
-                                });
-
-                            main.structure[k][l].tags = tags;
-
-                            nav.push({
-                                text: l,
-                                icon: "mdi-" + main.structure[k][l].icon,
-                                isheader: false,
-                                href: main.structure[k][l].path.replace("/", "_")
-                            });
-
-                            pages.push(main.structure[k][l]);
-                            pg_count++;
-                        }
-                    }
-                }
                 console.log("");
             }
 
-            navs[Object.keys(structure)[v]] = nav;
-        }
+            let structure = main.docs;
 
-        //Generate files
-        {
-            console.log("6/7 generating HTML files");
 
-            console.log("7/7 loading template.html");
-            let template = fs.readFileSync("internal/template.html", { encoding: 'utf8', flag: 'r' });
+            let versions = [];
+            let pages = [];
 
-            for (let i = 0; i < pages.length; i++) {
-                console.log("- " + (i + 1) + "/" + pages.length + " " + pages[i].path);
-                //console.log(JSON.stringify(versions));
-                createPage(pages[i], template, navs[pages[i].version], pages[i].home, main.header, main.footer, main.return, versions, pages[i].version);
+            let navs = [];
+
+            for (let v in Object.keys(structure)) {
+                console.log("- Version: " + Object.keys(structure)[v])
+                main.structure = structure[Object.keys(structure)[v]].structure;
+                versions.push({
+                    title: Object.keys(structure)[v],
+                    home: (Object.keys(structure)[v].replace(".", "_") + "_" + structure[Object.keys(structure)[v]].home).replace("/", "_")
+                });
+
+
+                let nav = [];
+                //Create Tree
+                {
+                    console.log("  - Generating Tree");
+                    for (let i in Object.keys(main.structure)) {
+                        let k = Object.keys(main.structure)[i];
+
+                        //Header
+                        nav.push({
+                            text: k,
+                            isheader: true
+                        });
+
+                        let path = "";
+                        let path_simple = "";
+                        //Iterate pages
+                        for (let j in Object.keys(main.structure[k])) {
+                            let l = Object.keys(main.structure[k])[j];
+
+                            if (l == "path") {
+                                path = Object.keys(structure)[v].replace(".", "_") + "_" + main.structure[k][l];
+                                path_simple = main.structure[k][l];
+                            } else {
+                                //Page
+                                console.log("    - Indexing page '" + k + " > " + l + "'");
+                                let pre = main.structure[k][l].path;
+                                main.structure[k][l].path = path + "/" + main.structure[k][l].path;
+                                main.structure[k][l].path_simple = path_simple + "/" + pre;
+                                main.structure[k][l].title = l;
+                                main.structure[k][l].home = Object.keys(structure)[v].replace(".", "_") + "_" + structure[Object.keys(structure)[v]].home;
+                                main.structure[k][l].version = Object.keys(structure)[v];
+
+                                let tags = [];
+
+
+                                for (let m = 0; m < main.structure[k][l].tags.length; m++)
+                                    tags.push({
+                                        text: main.structure[k][l].tags[m],
+                                        color: structure[Object.keys(structure)[v]].tags[main.structure[k][l].tags[m]].color
+                                    });
+
+                                main.structure[k][l].tags = tags;
+
+                                nav.push({
+                                    text: l,
+                                    icon: "mdi-" + main.structure[k][l].icon,
+                                    isheader: false,
+                                    href: main.structure[k][l].path.replace("/", "_")
+                                });
+
+                                pages.push(main.structure[k][l]);
+                                pg_count++;
+                            }
+                        }
+                    }
+                    console.log("");
+                }
+
+                navs[Object.keys(structure)[v]] = nav;
             }
 
-            console.log("");
+            //Generate files for lang
+            {
+                for (let i = 0; i < pages.length; i++) {
+                    createPage(pages[i], template, navs[pages[i].version], pages[i].home, main.header, main.footer, main.return, versions, pages[i].version, lang, main.labels);
+                }
+            }
         }
-
-        console.log("END " + pg_count + " Pages generated at 'output'!");
+        console.log(">>> Generated " + pg_count + " pages!");
     } else {
         //Invalid comand and show valid command list    
     }
