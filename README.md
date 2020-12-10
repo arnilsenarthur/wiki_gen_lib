@@ -3,7 +3,7 @@
 ### Based on Wiki.js (https://wiki.js.org/)
 ## Features
 - Multi Language Support
-- Multi Version Support
+- Multi Version Support (Auto out-of-date version warning)
 - Nice Design (Made using Vuetify)
 - Responsive (Mobile Friendly)
 - Automatic syntax highlighting (Using highlight.js)
