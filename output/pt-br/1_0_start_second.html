@@ -91,8 +91,12 @@
                                     </v-breadcrumbs-item>
                                 </template>
                             </v-breadcrumbs>
-                        </div>
 
+                        </div>
+                        <!--Language display-->
+                        <v-chip class="ma-2" color="red" @click.stop="langdialog = true" label style="position: absolute; right: 0px; transform: translate(0px,-6px)" dark>
+                            <b>pt-br</b>
+                        </v-chip>
                     </v-toolbar>
                     <v-divider></v-divider>
                     <div class="container grey pa-0 container--fluid lighten-4" style="padding: 16px !important;">
@@ -187,6 +191,7 @@
                                 </v-card>
                             </div>
 
+                            <!--Source Dialog-->
                             <v-row justify="center">
                                 <v-dialog v-model="sourcedialog" fullscreen hide-overlay persistent>
                                     <v-card>
@@ -206,6 +211,7 @@
                                 </v-dialog>
                             </v-row>
 
+                            <!--Version Selector-->
                             <v-menu v-model="versionmenu_show" style="z-index: 1500;" :position-x="versionmenu_x" :position-y="versionmenu_y" absolute offset-y>
                                 <v-list>
                                     <v-list-item v-for="(item, index) in versionmenu_items" :key="index" link :path="item.home" onclick="window.location.href = $(this).attr('path') + '.html'">
@@ -214,6 +220,7 @@
                                 </v-list>
                             </v-menu>
 
+                            <!--Content-->
                             <div class="flex maincontent page-col-content lg9">
                                 <v-alert dense type="error" text>Esta documentação é para a <b>versão 1.0 (Ultrapassada)</b>. Nos recomendamos atualizar para a <b>versão 2.0</b> (Mais Recente)</b></v-alert><h1 id="testingsections">Testing Sections</h1>
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ullamcorper vulputate neque, in maximus risus finibus a. Nam condimentum leo ut urna ultricies, non congue turpis sollicitudin. Maecenas id porttitor lectus, vel gravida quam. Morbi turpis nisi, commodo at vehicula lacinia, tincidunt et metus. Fusce eget rhoncus est. Praesent accumsan, eros vel porta varius, dui neque lacinia nisl, auctor interdum eros magna at lectus. Donec vel efficitur tortor. Pellentesque non nibh eget ligula pulvinar blandit. Nam suscipit rutrum placerat. Duis sodales non ante eget pretium. Pellentesque semper, leo ac hendrerit tempor, risus magna porta risus, ac pharetra quam sem tempus leo. In auctor turpis enim, eget cursus urna ultrices non. Nullam et tellus ut nisi imperdiet accumsan eget a arcu. Integer &#x1F604; rhoncus in mauris ac auctor.</p>
@@ -306,7 +313,7 @@
 <p>&#x1F604; 
 &#x1F606;</p>
                                 <v-fab-transition>
-                                    <v-btn class="primary" dark fixed bottom right fab>
+                                    <v-btn class="primary" dark fixed bottom right fab @click.stop="langdialog = true">
                                         <v-icon>mdi-book-open-page-variant</v-icon>
                                     </v-btn>
                                 </v-fab-transition>
@@ -320,6 +327,44 @@
                                 <div style="height: 8px;">
                                 </div>
                             </div>
+
+                            <!--Language Dialog-->
+                            <v-dialog v-model="langdialog" max-width="290">
+                                <v-card>
+                                    <v-card-title class="headline">
+                                        Idioma
+                                    </v-card-title>
+
+                                    <v-card-text>
+                                        Escolha um idioma abaixo
+
+                                        <v-list dense>
+                                            <v-list-item-group v-model="langselected" color="primary">
+                                                <v-list-item v-for="(item, i) in langitems" :key="i" :ithref="item.href" onclick="
+                                                    let sp = window.location.href.split('/');
+                                                    sp[sp.length - 2] = $(this).attr('ithref');
+                                                    window.location.href = sp.join('/');
+                                                    ">
+                                                    <v-list-item-icon>
+                                                        <v-icon>mdi-book-open-page-variant</v-icon>
+                                                    </v-list-item-icon>
+                                                    <v-list-item-content>
+                                                        <v-list-item-title v-text="item.text"></v-list-item-title>
+                                                    </v-list-item-content>
+                                                </v-list-item>
+                                            </v-list-item-group>
+                                        </v-list>
+                                    </v-card-text>
+
+                                    <v-card-actions>
+                                        <v-spacer></v-spacer>
+
+                                        <v-btn color="green darken-1" text @click="langdialog = false">
+                                            Fechar
+                                        </v-btn>
+                                    </v-card-actions>
+                                </v-card>
+                            </v-dialog>
                         </div>
                     </div>
                 </div>
@@ -338,28 +383,29 @@
             el: '#app',
             vuetify: new Vuetify(),
             data: {
+                //Vue
                 sourcedialog: true,
+                langdialog: false,
+                versionmenu_show: false,
+                versionmenu_x: 0,
+                versionmenu_y: 0,
+
                 //Current page info
                 cur_path: [{"text":"1.0","disabled":true,"normal":true,"href":""},{"text":"start","disabled":true,"normal":true,"href":""},{"text":"second","disabled":true,"normal":true,"href":""}],
                 cur_sections: [{"text":"Testing Sections","level":0,"color":"black","target":"testingsections"},{"text":"And Subsections","level":1,"color":"gray","target":"andsubsections"},{"text":"Code highilight","level":0,"color":"black","target":"codehighilight"},{"text":"Blockquotes","level":0,"color":"black","target":"blockquotes"},{"text":"List of Links","level":0,"color":"black","target":"listoflinks"},{"text":"List","level":0,"color":"black","target":"list"},{"text":"Task List","level":0,"color":"black","target":"tasklist"},{"text":"Links","level":0,"color":"black","target":"links"},{"text":"Images","level":0,"color":"black","target":"images"},{"text":"Tables","level":0,"color":"black","target":"tables"},{"text":"Mentions","level":0,"color":"black","target":"mentions"},{"text":"Emojis 😄","level":0,"color":"black","target":"emojissmile"}],
                 cur_tags: [{"text":"another tag","color":"green"}],
                 cur_last_change: {"author":"Admin","date":"10/12/2020"},
                 cur_creation: {"author":"Admin","date":"09/12/2020"},
-
                 cur_title: "Teste 2",
                 cur_subtitle: "A second page",
 
-                //Cross info
+                //Cross-page info
                 navigation: [{"text":"Getting Started","isheader":true},{"text":"Main","icon":"mdi-alien-outline","isheader":false,"href":"1_0_start_main"},{"text":"Teste 2","icon":"mdi-numeric-2","isheader":false,"href":"1_0_start_second"}],
-
-                versionmenu_show: false,
-                versionmenu_x: 0,
-                versionmenu_y: 0,
+                langselected: 1,
+                langitems: [{"text":"English","href":"en-us"},{"text":"Português","href":"pt-br"}],
                 versionmenu_items: [{"title":"1.0","home":"1_0_start_main"},{"title":"2.0","home":"2_0_another_brick"}]
             }
         })
-
-        console.log(vue.versionmenu_items);
 
         function showVersions() {
             vue.versionmenu_show = false

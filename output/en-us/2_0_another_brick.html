@@ -91,8 +91,12 @@
                                     </v-breadcrumbs-item>
                                 </template>
                             </v-breadcrumbs>
-                        </div>
 
+                        </div>
+                        <!--Language display-->
+                        <v-chip class="ma-2" color="red" @click.stop="langdialog = true" label style="position: absolute; right: 0px; transform: translate(0px,-6px)" dark>
+                            <b>en-us</b>
+                        </v-chip>
                     </v-toolbar>
                     <v-divider></v-divider>
                     <div class="container grey pa-0 container--fluid lighten-4" style="padding: 16px !important;">
@@ -187,6 +191,7 @@
                                 </v-card>
                             </div>
 
+                            <!--Source Dialog-->
                             <v-row justify="center">
                                 <v-dialog v-model="sourcedialog" fullscreen hide-overlay persistent>
                                     <v-card>
@@ -206,6 +211,7 @@
                                 </v-dialog>
                             </v-row>
 
+                            <!--Version Selector-->
                             <v-menu v-model="versionmenu_show" style="z-index: 1500;" :position-x="versionmenu_x" :position-y="versionmenu_y" absolute offset-y>
                                 <v-list>
                                     <v-list-item v-for="(item, index) in versionmenu_items" :key="index" link :path="item.home" onclick="window.location.href = $(this).attr('path') + '.html'">
@@ -214,11 +220,12 @@
                                 </v-list>
                             </v-menu>
 
+                            <!--Content-->
                             <div class="flex maincontent page-col-content lg9">
                                 <h1 id="title">Title</h1>
 <p>Hi 123</p>
                                 <v-fab-transition>
-                                    <v-btn class="primary" dark fixed bottom right fab>
+                                    <v-btn class="primary" dark fixed bottom right fab @click.stop="langdialog = true">
                                         <v-icon>mdi-book-open-page-variant</v-icon>
                                     </v-btn>
                                 </v-fab-transition>
@@ -232,6 +239,44 @@
                                 <div style="height: 8px;">
                                 </div>
                             </div>
+
+                            <!--Language Dialog-->
+                            <v-dialog v-model="langdialog" max-width="290">
+                                <v-card>
+                                    <v-card-title class="headline">
+                                        Language
+                                    </v-card-title>
+
+                                    <v-card-text>
+                                        Choose your language
+
+                                        <v-list dense>
+                                            <v-list-item-group v-model="langselected" color="primary">
+                                                <v-list-item v-for="(item, i) in langitems" :key="i" :ithref="item.href" onclick="
+                                                    let sp = window.location.href.split('/');
+                                                    sp[sp.length - 2] = $(this).attr('ithref');
+                                                    window.location.href = sp.join('/');
+                                                    ">
+                                                    <v-list-item-icon>
+                                                        <v-icon>mdi-book-open-page-variant</v-icon>
+                                                    </v-list-item-icon>
+                                                    <v-list-item-content>
+                                                        <v-list-item-title v-text="item.text"></v-list-item-title>
+                                                    </v-list-item-content>
+                                                </v-list-item>
+                                            </v-list-item-group>
+                                        </v-list>
+                                    </v-card-text>
+
+                                    <v-card-actions>
+                                        <v-spacer></v-spacer>
+
+                                        <v-btn color="green darken-1" text @click="langdialog = false">
+                                            Close
+                                        </v-btn>
+                                    </v-card-actions>
+                                </v-card>
+                            </v-dialog>
                         </div>
                     </div>
                 </div>
@@ -250,28 +295,29 @@
             el: '#app',
             vuetify: new Vuetify(),
             data: {
+                //Vue
                 sourcedialog: true,
+                langdialog: false,
+                versionmenu_show: false,
+                versionmenu_x: 0,
+                versionmenu_y: 0,
+
                 //Current page info
                 cur_path: [{"text":"2.0","disabled":true,"normal":true,"href":""},{"text":"another","disabled":true,"normal":true,"href":""},{"text":"brick","disabled":true,"normal":true,"href":""}],
                 cur_sections: [{"text":"Title","level":0,"color":"black","target":"title"}],
                 cur_tags: [{"text":"main tag","color":"blue"},{"text":"another tag","color":"yellow"}],
                 cur_last_change: {"author":"Admin","date":"10/12/2020"},
                 cur_creation: {"author":"Admin","date":"09/12/2020"},
-
                 cur_title: "Main",
                 cur_subtitle: "Hi Dude",
 
-                //Cross info
+                //Cross-page info
                 navigation: [{"text":"Another Section","isheader":true},{"text":"Main","icon":"mdi-table","isheader":false,"href":"2_0_another_brick"}],
-
-                versionmenu_show: false,
-                versionmenu_x: 0,
-                versionmenu_y: 0,
+                langselected: 0,
+                langitems: [{"text":"English","href":"en-us"},{"text":"Português","href":"pt-br"}],
                 versionmenu_items: [{"title":"1.0","home":"1_0_start_main"},{"title":"2.0","home":"2_0_another_brick"}]
             }
         })
-
-        console.log(vue.versionmenu_items);
 
         function showVersions() {
             vue.versionmenu_show = false

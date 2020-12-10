@@ -15,7 +15,7 @@ const converter = new showdown.Converter({
     ghMentions: true
 });
 
-function createPage(page, template, nav, home, header, footer, returnlink, versions, version, lang, labels) {
+function createPage(page, template, nav, home, header, footer, returnlink, versions, version, lang, labels, languages, language_index) {
     //External Variables
     let title = page.title;
     let subtitle = page.subtitle;
@@ -188,6 +188,13 @@ function createPage(page, template, nav, home, header, footer, returnlink, versi
         .replace("$$lang_created$$", labels.last_edited)
         .replace("$$lang_edited$$", labels.created_by)
         .replace("$$lang_footer$$", labels.footer)
+        .replace("$$languages$$", JSON.stringify(languages))
+        .replace("$$currentlanguage$$", language_index)
+        .replace("$$curlang$$", lang)
+        .replace("$$languagetitle$$", labels.language_title)
+        .replace("$$languagetext$$", labels.language_text)
+        .replace("$$languageclose$$", labels.language_close)
+
     );
 }
 
@@ -291,6 +298,14 @@ if (process.argv.length < 3) {
         //Template
         let template = fs.readFileSync("internal/template.html", { encoding: 'utf8', flag: 'r' });
         let pg_count = 0;
+
+        let langselectors = [];
+
+        for (let langi in Object.keys(langs)) {
+            let lang = Object.keys(langs)[langi];
+            langselectors.push({ text: langs[lang], href: lang });
+        }
+
         for (let langi in Object.keys(langs)) {
             let lang = Object.keys(langs)[langi];
 
@@ -306,7 +321,6 @@ if (process.argv.length < 3) {
             }
 
             let structure = main.docs;
-
 
             let versions = [];
             let pages = [];
@@ -386,7 +400,7 @@ if (process.argv.length < 3) {
             //Generate files for lang
             {
                 for (let i = 0; i < pages.length; i++) {
-                    createPage(pages[i], template, navs[pages[i].version], pages[i].home, main.header, main.footer, main.return, versions, pages[i].version, lang, main.labels);
+                    createPage(pages[i], template, navs[pages[i].version], pages[i].home, main.header, main.footer, main.return, versions, pages[i].version, lang, main.labels, langselectors, langi);
                 }
             }
         }

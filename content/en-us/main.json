@@ -10,7 +10,10 @@
         "last_edited": "Last Edited By",
         "created_by": "Created By",
         "footer": "Based on Wiki.js , created using Vuetify",
-        "outdated": "This documentation is for <b>version %% (Outdated)</b>. We recomend to upgrade to <b>version %%</b> (latest)</b>"
+        "outdated": "This documentation is for <b>version %% (Outdated)</b>. We recomend to upgrade to <b>version %%</b> (latest)</b>",
+        "language_title": "Language",
+        "language_text": "Choose your language",
+        "language_close": "Close"
     },
 
     "docs": {
