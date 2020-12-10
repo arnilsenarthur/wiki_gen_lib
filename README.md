@@ -15,7 +15,7 @@
 ### 1 - Clone repository to a folder
 ### 2 - Open terminal
 ### 3 - Run 'node wikigen.js'
-(The .html will be generated in folder 'output'. You can copy the folder content and move to anywhere)
+(The .html will be generated in folder 'output'. You can copy the folder content and move to anywhere. The file path format is 'lang/version/section/file.html')
 
 ## Customization
 ### 1 - To edit the html structure, edit 'internal/template.html' file
