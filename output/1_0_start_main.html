@@ -2,6 +2,7 @@
 <html>
 
 <head>
+    <title>v1.0 - Main</title>
     <link href="style.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
@@ -22,7 +23,11 @@
                 <v-toolbar dark style="height: 64px;position: fixed;width: 100%; z-index: 4;" class="noprint black">
                     <v-app-bar-nav-icon onclick='toggleSidebar()' id="menuicon"></v-app-bar-nav-icon>
 
-                    <v-toolbar-title>Cool Language</v-toolbar-title>
+                    <v-avatar size="36px" style="border-radius: 0px !important;">
+                        <img alt="Avatar" src="media/logo.png" style="border-radius: 0px !important;">
+
+                    </v-avatar>
+                    <v-toolbar-title style="padding-left: 12px;">Cool Language</v-toolbar-title>
 
                     <v-spacer></v-spacer>
 
@@ -35,10 +40,11 @@
                 <v-navigation-drawer class="no-printme" absolute bottom permanent dark id="sbar" style='background-color: #1976d2 !important;position: fixed;'>
                     <div class="pa-3 d-flex blue darken-3" style="padding: 12px;">
                         <button type="button" class="v-btn v-btn--depressed theme--dark v-size--default blue darken-2" aria-label="Home" style="min-width: 0px;" onclick="
-                            window.location.href = 'start_main.html'
+                            window.location.href = '1_0_start_main.html'
                         "><span class="v-btn__content"><i aria-hidden="true"
                                     class="v-icon notranslate mdi mdi-home theme--dark"
-                                    style="font-size: 20px;"></i></span></button><button type="button" class="ml-3 v-btn v-btn--depressed theme--dark v-size--default blue darken-2" style="flex: 1 1 100%;overflow: hidden;">
+                                    style="font-size: 20px;"></i></span></button>
+                        <button onclick="showVersions()" id="versionbtn" type="button" class="ml-3 v-btn v-btn--depressed theme--dark v-size--default blue darken-2" style="flex: 1 1 100%;overflow: hidden;">
                             <div class="text-none"
                                 style="float: left; height: 100%; background-color: dodgerblue; margin-left: -16px; width: 46px; line-height: 36px;">
                                 v1.0
@@ -106,7 +112,7 @@
                             </v-chip>
 
                             <v-chip class="ma-2" color="orange" label style="float: right" dark>
-                                <b>v1.0</b>
+                                <b>1.0</b>
                             </v-chip>
                         </div>
                     </div>
@@ -200,8 +206,16 @@
                                 </v-dialog>
                             </v-row>
 
-                            <div class="flex page-col-content lg9">
-                                <h1 id="title">Title</h1>
+                            <v-menu v-model="versionmenu_show" style="z-index: 1500;" :position-x="versionmenu_x" :position-y="versionmenu_y" absolute offset-y>
+                                <v-list>
+                                    <v-list-item v-for="(item, index) in versionmenu_items" :key="index" link :path="item.home" onclick="window.location.href = $(this).attr('path') + '.html'">
+                                        <v-list-item-title>{{ item.title }}</v-list-item-title>
+                                    </v-list-item>
+                                </v-list>
+                            </v-menu>
+
+                            <div class="flex maincontent page-col-content lg9">
+                                <v-alert dense type="error" text>This documentation is for <b>version 1.0 (Outdated)</b>. We recomend to upgrade to <b>version 2.0</b> (latest)</v-alert><h1 id="title">Title</h1>
 <p>Hi 123</p>
                                 <v-footer padless class="grey lighten-2" light style="border-radius: 4px;">
                                     <v-col class="text-center" cols="12" style="padding: 11px;">
@@ -233,7 +247,7 @@
             data: {
                 sourcedialog: true,
                 //Current page info
-                cur_path: [{"text":"code-braces","disabled":true,"normal":false,"href":"breadcrumbs_dashboard"},{"text":"start","disabled":true,"normal":true,"href":""},{"text":"main","disabled":true,"normal":true,"href":""}],
+                cur_path: [{"text":"1.0","disabled":true,"normal":true,"href":""},{"text":"start","disabled":true,"normal":true,"href":""},{"text":"main","disabled":true,"normal":true,"href":""}],
                 cur_sections: [{"text":"Title","level":0,"color":"black","target":"title"}],
                 cur_tags: [{"text":"main tag","color":"red"},{"text":"another tag","color":"green"}],
                 cur_last_change: {"author":"Admin","date":"10/12/2020"},
@@ -243,9 +257,23 @@
                 cur_subtitle: "Just a fast description",
 
                 //Cross info
-                navigation: [{"text":"Getting Started","isheader":true},{"text":"Main","icon":"mdi-alien-outline","isheader":false,"href":"start_main"},{"text":"Teste 2","icon":"mdi-numeric-2","isheader":false,"href":"start_second"}]
+                navigation: [{"text":"Getting Started","isheader":true},{"text":"Main","icon":"mdi-alien-outline","isheader":false,"href":"1_0_start_main"},{"text":"Teste 2","icon":"mdi-numeric-2","isheader":false,"href":"1_0_start_second"}],
+
+                versionmenu_show: false,
+                versionmenu_x: 0,
+                versionmenu_y: 0,
+                versionmenu_items: [{"title":"1.0","home":"1_0_start_main"},{"title":"2.0","home":"2_0_another_brick"}]
             }
         })
+
+        console.log(vue.versionmenu_items);
+
+        function showVersions() {
+            vue.versionmenu_show = false
+            vue.versionmenu_x = $("#versionbtn").offset().left
+            vue.versionmenu_y = $("#versionbtn").offset().top + 40
+            vue.versionmenu_show = true
+        }
 
         function openSource() {
             vue.sourcedialog = true;
@@ -253,6 +281,7 @@
         }
 
         function toggleSidebar(v) {
+            vue.versionmenu_show = false;
             let element = document.getElementById("sbar");
             let has = ((" " + element.className + " ").replace(/[\n\t]/g, " ").indexOf(" open ") > -1);
 

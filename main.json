@@ -4,40 +4,70 @@
 
     "return": "http://www.google.com",
 
-    "home": "start/main",
+    "docs": {
+        "1.0": {
+            "home": "start/main",
+            "structure": {
+                "Getting Started": {
+                    "path": "start",
 
-    "structure": {
-        "Getting Started": {
-            "path": "start",
+                    "Main": {
+                        "path": "main",
+                        "subtitle": "Just a fast description",
+                        "source": "main.md",
+                        "icon": "alien-outline",
+                        "tags": ["main tag", "another tag"],
+                        "version": "v1.0",
+                        "created": ["Admin", "09/12/2020"],
+                        "last_modified": ["Admin", "10/12/2020"]
+                    },
+                    "Teste 2": {
+                        "path": "second",
+                        "subtitle": "A second page",
+                        "source": "test.md",
+                        "icon": "numeric-2",
+                        "tags": ["another tag"],
+                        "version": "v1.12",
+                        "created": ["Admin", "09/12/2020"],
+                        "last_modified": ["Admin", "10/12/2020"]
+                    }
+                }
 
-            "Main": {
-                "path": "main",
-                "subtitle": "Just a fast description",
-                "source": "main.md",
-                "icon": "alien-outline",
-                "tags": ["main tag", "another tag"],
-                "version": "v1.0",
-                "created": ["Admin", "09/12/2020"],
-                "last_modified": ["Admin", "10/12/2020"]
             },
-            "Teste 2": {
-                "path": "second",
-                "subtitle": "A second page",
-                "source": "main.md",
-                "icon": "numeric-2",
-                "tags": ["another tag"],
-                "version": "v1.12",
-                "created": ["Admin", "09/12/2020"],
-                "last_modified": ["Admin", "10/12/2020"]
+            "tags": {
+                "main tag": {
+                    "color": "red"
+                },
+                "another tag": {
+                    "color": "green"
+                }
             }
-        }
-    },
-    "tags": {
-        "main tag": {
-            "color": "red"
         },
-        "another tag": {
-            "color": "green"
+        "2.0": {
+            "home": "another/brick",
+            "structure": {
+                "Another Section": {
+                    "path": "another",
+                    "Main": {
+                        "path": "brick",
+                        "subtitle": "Hi Dude",
+                        "source": "main.md",
+                        "icon": "table",
+                        "tags": ["main tag", "another tag"],
+                        "version": "v1.0",
+                        "created": ["Admin", "09/12/2020"],
+                        "last_modified": ["Admin", "10/12/2020"]
+                    }
+                }
+            },
+            "tags": {
+                "main tag": {
+                    "color": "blue"
+                },
+                "another tag": {
+                    "color": "yellow"
+                }
+            }
         }
     }
 }

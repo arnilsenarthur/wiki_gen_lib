@@ -15,7 +15,7 @@ const converter = new showdown.Converter({
     ghMentions: true
 });
 
-function createPage(page, template, nav, home, header, footer, returnlink) {
+function createPage(page, template, nav, home, header, footer, returnlink, versions, version) {
     //External Variables
     let title = page.title;
     let subtitle = page.subtitle;
@@ -40,15 +40,23 @@ function createPage(page, template, nav, home, header, footer, returnlink) {
            }]*/
         page.tags;
 
-
+    /*
     let path = [{
         text: 'code-braces',
         disabled: true,
         normal: false,
         href: 'breadcrumbs_dashboard',
     }];
+    */
 
-    let sp = page.path.split("/");
+    let path = [{
+        text: version,
+        disabled: true,
+        normal: true,
+        href: '',
+    }];
+
+    let sp = page.path_simple.split("/");
     for (let i = 0; i < sp.length; i++)
         path.push({
             text: sp[i],
@@ -57,7 +65,7 @@ function createPage(page, template, nav, home, header, footer, returnlink) {
             href: ''
         });
 
-    let version = page.version;
+    let versionlabel = page.version;
 
     /////////////////////////////
     let mds = fs.readFileSync("contents/" + page.source, { encoding: 'utf8', flag: 'r' });
@@ -135,22 +143,42 @@ function createPage(page, template, nav, home, header, footer, returnlink) {
         $(elm).replaceWith("<v-simple-table><template v-slot:default>" + content + "</template></v-simple-table>")
     });
 
+    //Check if is the lastest version
+    let comp_version = parseFloat(version);
+    let max = 0;
+    let max_st = "";
+
+    for (let i = 0; i < versions.length; i++) {
+        let f = parseFloat(versions[i].title);
+        if (f > max) {
+            max = f;
+            max_st = versions[i].title;
+        }
+    }
+
+
+
+    let warnings = max > comp_version ? '<v-alert dense type="error" text>This documentation is for <b>version ' + version + ' (Outdated)</b>. We recomend to upgrade to <b>version ' + max_st + '</b> (latest)</v-alert>' : '';
+
     fs.writeFileSync("output/" + page.path.replace("/", "_") + ".html",
-        template.replace("$$content$$", $("body").html())
+        template.replace("$$content$$", warnings += $("body").html())
         .replace("$$sections$$", JSON.stringify(sections))
         .replace("$$source$$", source)
         .replace("$$title$$", title)
+        .replace("$$navtitle$$", "v" + version + " - " + title)
         .replace("$$subtitle$$", subtitle)
         .replace("$$last_change$$", JSON.stringify(last_change))
         .replace("$$creation$$", JSON.stringify(creation))
         .replace("$$tags$$", JSON.stringify(tags))
-        .replace("$$versionlabel$$", version)
+        .replace("$$versionlabel$$", versionlabel)
         .replace("$$navigation$$", JSON.stringify(nav))
         .replace("$$path$$", JSON.stringify(path))
         .replace("$$home$$", home.replace("/", "_"))
         .replace("$$header$$", header)
         .replace("$$footer$$", footer)
         .replace("$$return$$", returnlink)
+        .replace("$$version$$", version)
+        .replace("$$versions$$", JSON.stringify(versions))
     );
 }
 
@@ -224,7 +252,7 @@ if (process.argv.length < 3) {
             console.log("1/7 deleting old files...");
             let n = 0;
             fs.readdirSync("output").forEach(file => {
-                if (file != "code_styles" && file != "style.css") {
+                if (file != "code_styles" && file != "style.css" && file != "media") {
                     fs.unlinkSync("output/" + file);
                     n++;
                 }
@@ -245,60 +273,83 @@ if (process.argv.length < 3) {
         }
 
         //Tags
-        {
-            console.log("4/7 loading tags");
-            console.log("");
-        }
 
+        let structure = main.docs;
+        let pg_count = 0;
+
+        let versions = [];
         let pages = [];
-        let nav = [];
-        //Create Tree
-        {
-            console.log("5/7 creating navigation tree");
-            for (let i in Object.keys(main.structure)) {
-                let k = Object.keys(main.structure)[i];
 
-                //Header
-                nav.push({
-                    text: k,
-                    isheader: true
-                });
+        let navs = [];
 
-                let path = "";
-                //Iterate pages
-                for (let j in Object.keys(main.structure[k])) {
-                    let l = Object.keys(main.structure[k])[j];
+        for (let v in Object.keys(structure)) {
+            console.log("4/7 Loading version: " + Object.keys(structure)[v])
+            main.structure = structure[Object.keys(structure)[v]].structure;
+            versions.push({
+                title: Object.keys(structure)[v],
+                home: (Object.keys(structure)[v].replace(".", "_") + "_" + structure[Object.keys(structure)[v]].home).replace("/", "_")
+            });
 
-                    if (l == "path") {
-                        path = main.structure[k][l];
-                    } else {
-                        //Page
-                        console.log("- Indexing page '" + k + " > " + l + "'");
-                        main.structure[k][l].path = path + "/" + main.structure[k][l].path;
-                        main.structure[k][l].title = l;
 
-                        let tags = [];
+            let nav = [];
+            //Create Tree
+            {
+                console.log("5/7 creating navigation tree");
+                for (let i in Object.keys(main.structure)) {
+                    let k = Object.keys(main.structure)[i];
 
-                        for (let m = 0; m < main.structure[k][l].tags.length; m++)
-                            tags.push({
-                                text: main.structure[k][l].tags[m],
-                                color: main.tags[main.structure[k][l].tags[m]].color
+                    //Header
+                    nav.push({
+                        text: k,
+                        isheader: true
+                    });
+
+                    let path = "";
+                    let path_simple = "";
+                    //Iterate pages
+                    for (let j in Object.keys(main.structure[k])) {
+                        let l = Object.keys(main.structure[k])[j];
+
+                        if (l == "path") {
+                            path = Object.keys(structure)[v].replace(".", "_") + "_" + main.structure[k][l];
+                            path_simple = main.structure[k][l];
+                        } else {
+                            //Page
+                            console.log("- Indexing page '" + k + " > " + l + "'");
+                            let pre = main.structure[k][l].path;
+                            main.structure[k][l].path = path + "/" + main.structure[k][l].path;
+                            main.structure[k][l].path_simple = path_simple + "/" + pre;
+                            main.structure[k][l].title = l;
+                            main.structure[k][l].home = Object.keys(structure)[v].replace(".", "_") + "_" + structure[Object.keys(structure)[v]].home;
+                            main.structure[k][l].version = Object.keys(structure)[v];
+
+                            let tags = [];
+
+
+                            for (let m = 0; m < main.structure[k][l].tags.length; m++)
+                                tags.push({
+                                    text: main.structure[k][l].tags[m],
+                                    color: structure[Object.keys(structure)[v]].tags[main.structure[k][l].tags[m]].color
+                                });
+
+                            main.structure[k][l].tags = tags;
+
+                            nav.push({
+                                text: l,
+                                icon: "mdi-" + main.structure[k][l].icon,
+                                isheader: false,
+                                href: main.structure[k][l].path.replace("/", "_")
                             });
 
-                        main.structure[k][l].tags = tags;
-
-                        nav.push({
-                            text: l,
-                            icon: "mdi-" + main.structure[k][l].icon,
-                            isheader: false,
-                            href: main.structure[k][l].path.replace("/", "_")
-                        });
-
-                        pages.push(main.structure[k][l]);
+                            pages.push(main.structure[k][l]);
+                            pg_count++;
+                        }
                     }
                 }
+                console.log("");
             }
-            console.log("");
+
+            navs[Object.keys(structure)[v]] = nav;
         }
 
         //Generate files
@@ -310,13 +361,14 @@ if (process.argv.length < 3) {
 
             for (let i = 0; i < pages.length; i++) {
                 console.log("- " + (i + 1) + "/" + pages.length + " " + pages[i].path);
-                createPage(pages[i], template, nav, main.home, main.header, main.footer, main.return);
+                //console.log(JSON.stringify(versions));
+                createPage(pages[i], template, navs[pages[i].version], pages[i].home, main.header, main.footer, main.return, versions, pages[i].version);
             }
 
             console.log("");
         }
 
-        console.log("END " + pages.length + " Pages generated at 'output'!");
+        console.log("END " + pg_count + " Pages generated at 'output'!");
     } else {
         //Invalid comand and show valid command list    
     }

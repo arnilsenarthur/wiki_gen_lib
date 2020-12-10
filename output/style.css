@@ -119,9 +119,16 @@ code {
     margin-right: 0px !important;
 }
 
-@media only screen and (min-width: 768px) {
+.maincontent {
+    width: 100%;
+}
+
+@media only screen and (min-width: 980px) {
     .page_content {
         margin-left: 256px !important;
+    }
+    .maincontent {
+        width: 75%;
     }
     #sbar {
         top: 64px !important;
@@ -306,4 +313,8 @@ body.hideScroll::-webkit-scrollbar {
 
 body {
     display: none;
+}
+
+.v-menu__content {
+    width: 168px !important
 }

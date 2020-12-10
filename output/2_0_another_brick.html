@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>$$navtitle$$</title>
+    <title>v2.0 - Main</title>
     <link href="style.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
@@ -27,11 +27,11 @@
                         <img alt="Avatar" src="media/logo.png" style="border-radius: 0px !important;">
 
                     </v-avatar>
-                    <v-toolbar-title style="padding-left: 12px;">$$header$$</v-toolbar-title>
+                    <v-toolbar-title style="padding-left: 12px;">Cool Language</v-toolbar-title>
 
                     <v-spacer></v-spacer>
 
-                    <v-btn icon onclick="window.location.href = '$$return$$'">
+                    <v-btn icon onclick="window.location.href = 'http://www.google.com'">
                         <v-icon>mdi-export</v-icon>
                     </v-btn>
                 </v-toolbar>
@@ -40,14 +40,14 @@
                 <v-navigation-drawer class="no-printme" absolute bottom permanent dark id="sbar" style='background-color: #1976d2 !important;position: fixed;'>
                     <div class="pa-3 d-flex blue darken-3" style="padding: 12px;">
                         <button type="button" class="v-btn v-btn--depressed theme--dark v-size--default blue darken-2" aria-label="Home" style="min-width: 0px;" onclick="
-                            window.location.href = '$$home$$.html'
+                            window.location.href = '2_0_another_brick.html'
                         "><span class="v-btn__content"><i aria-hidden="true"
                                     class="v-icon notranslate mdi mdi-home theme--dark"
                                     style="font-size: 20px;"></i></span></button>
                         <button onclick="showVersions()" id="versionbtn" type="button" class="ml-3 v-btn v-btn--depressed theme--dark v-size--default blue darken-2" style="flex: 1 1 100%;overflow: hidden;">
                             <div class="text-none"
                                 style="float: left; height: 100%; background-color: dodgerblue; margin-left: -16px; width: 46px; line-height: 36px;">
-                                v$$version$$
+                                v2.0
                             </div>
                             <span class="v-btn__content">
                                 <div class="body-2 text-none">Change</div>
@@ -112,7 +112,7 @@
                             </v-chip>
 
                             <v-chip class="ma-2" color="orange" label style="float: right" dark>
-                                <b>$$versionlabel$$</b>
+                                <b>2.0</b>
                             </v-chip>
                         </div>
                     </div>
@@ -215,10 +215,11 @@
                             </v-menu>
 
                             <div class="flex maincontent page-col-content lg9">
-                                $$content$$
+                                <h1 id="title">Title</h1>
+<p>Hi 123</p>
                                 <v-footer padless class="grey lighten-2" light style="border-radius: 4px;">
                                     <v-col class="text-center" cols="12" style="padding: 11px;">
-                                        {{ new Date().getFullYear() }} — <strong>$$footer$$</strong> —
+                                        {{ new Date().getFullYear() }} — <strong>Cool Language Project</strong> —
                                         <b class="caption">Based on Wiki.js , created using Vuetify</b>
                                     </v-col>
                                 </v-footer>
@@ -246,22 +247,22 @@
             data: {
                 sourcedialog: true,
                 //Current page info
-                cur_path: $$path$$,
-                cur_sections: $$sections$$,
-                cur_tags: $$tags$$,
-                cur_last_change: $$last_change$$,
-                cur_creation: $$creation$$,
+                cur_path: [{"text":"2.0","disabled":true,"normal":true,"href":""},{"text":"another","disabled":true,"normal":true,"href":""},{"text":"brick","disabled":true,"normal":true,"href":""}],
+                cur_sections: [{"text":"Title","level":0,"color":"black","target":"title"}],
+                cur_tags: [{"text":"main tag","color":"blue"},{"text":"another tag","color":"yellow"}],
+                cur_last_change: {"author":"Admin","date":"10/12/2020"},
+                cur_creation: {"author":"Admin","date":"09/12/2020"},
 
-                cur_title: "$$title$$",
-                cur_subtitle: "$$subtitle$$",
+                cur_title: "Main",
+                cur_subtitle: "Hi Dude",
 
                 //Cross info
-                navigation: $$navigation$$,
+                navigation: [{"text":"Another Section","isheader":true},{"text":"Main","icon":"mdi-table","isheader":false,"href":"2_0_another_brick"}],
 
                 versionmenu_show: false,
                 versionmenu_x: 0,
                 versionmenu_y: 0,
-                versionmenu_items: $$versions$$
+                versionmenu_items: [{"title":"1.0","home":"1_0_start_main"},{"title":"2.0","home":"2_0_another_brick"}]
             }
         })
 
@@ -303,7 +304,7 @@
             });
 
             //Parse source code
-            $("#source_card_code").text(stDecomp($$source$$));
+            $("#source_card_code").text(stDecomp("# Title\r\nćHi 123"));
             hljs.highlightBlock(document.getElementById("source_card_code"));
             hljs.lineNumbersBlock(document.getElementById("source_card_code"));
             vue.sourcedialog = false;
