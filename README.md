@@ -10,6 +10,7 @@
 - Automatic code line count (Using highlightjs-line-numbers)
 - JQuery Integrated
 - Vue.js Integrated
+- Search (Auto search in title,subtitle,sections (with auto-scroll),tags and most frequent words)
 
 ## How to use
 ### 1 - Clone repository to a folder
