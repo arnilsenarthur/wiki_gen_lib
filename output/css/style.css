@@ -318,3 +318,64 @@ body {
 .v-menu__content {
     width: 168px !important
 }
+
+.v-overlay__content {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.searchscroll::-webkit-scrollbar {
+    width: 7px;
+}
+
+.searchscroll::-webkit-scrollbar-button {
+    height: 2px;
+}
+
+.searchscroll::-webkit-scrollbar-thumb {
+    border-radius: 6px;
+    background-color: rgb(25, 118, 210) !important;
+}
+
+.searchscroll::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 0px;
+    box-shadow: inset 7px 10px 12px #f0f0f000;
+}
+
+.search_item {
+    margin: 10px;
+    background-color: white;
+    border-radius: 5px;
+    color: black;
+    padding: 5px;
+    padding-left: 20px;
+    transition: opacity 0.25s;
+    cursor: pointer;
+}
+
+.search_item:hover {
+    opacity: 0.5;
+}
+
+.search_item_title {
+    font-size: 1.5rem;
+}
+
+.search_item_subtitle {
+    font-size: 1rem;
+}
+
+.search_item.none:hover {
+    opacity: 1;
+}
+
+.search_item.none {
+    background-color: gray;
+    padding-left: 5px;
+}
+
+.search_item_title.none {
+    text-align: center;
+    font-size: 1.2rem;
+}

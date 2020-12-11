@@ -11,11 +11,18 @@
         "outdated": "This documentation is for <b>version %% (Outdated)</b>. We recomend to upgrade to <b>version %%</b> (latest)</b>",
         "language_title": "Language",
         "language_text": "Choose your language",
-        "language_close": "Close"
+        "language_close": "Close",
+        "search": "Search",
+        "search_no_results": "No Results Found"
     },
     "1.0": {
         "start": "Start",
         "start/main": ["Main", "Test Description"],
         "start/second": ["Second", "Second Description :D"]
+    },
+    "2.0": {
+        "another": "Another",
+        "another/brick": ["Brick", "In the Wall"]
+
     }
 }

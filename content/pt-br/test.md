@@ -1,14 +1,14 @@
 
 
-# Testing Sections
+# Testando Seções
    
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ullamcorper vulputate neque, in maximus risus finibus a. Nam condimentum leo ut urna ultricies, non congue turpis sollicitudin. Maecenas id porttitor lectus, vel gravida quam. Morbi turpis nisi, commodo at vehicula lacinia, tincidunt et metus. Fusce eget rhoncus est. Praesent accumsan, eros vel porta varius, dui neque lacinia nisl, auctor interdum eros magna at lectus. Donec vel efficitur tortor. Pellentesque non nibh eget ligula pulvinar blandit. Nam suscipit rutrum placerat. Duis sodales non ante eget pretium. Pellentesque semper, leo ac hendrerit tempor, risus magna porta risus, ac pharetra quam sem tempus leo. In auctor turpis enim, eget cursus urna ultrices non. Nullam et tellus ut nisi imperdiet accumsan eget a arcu. Integer :smile: rhoncus in mauris ac auctor.
 
-## And Subsections
+## E Subseções
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ullamcorper vulputate neque, in maximus risus finibus a. Nam condimentum leo ut urna ultricies, non congue turpis sollicitudin. Maecenas id porttitor lectus, vel gravida quam. Morbi turpis nisi, commodo at vehicula lacinia, tincidunt et metus. Fusce eget rhoncus est. Praesent accumsan, eros vel porta varius, dui neque lacinia nisl, auctor interdum eros magna at lectus. Donec vel efficitur tortor. Pellentesque non nibh eget ligula pulvinar blandit. Nam suscipit rutrum placerat. Duis sodales non ante eget pretium. Pellentesque semper, leo ac hendrerit tempor, risus magna porta risus, ac pharetra quam sem tempus leo. In auctor turpis enim, eget cursus urna ultrices non. Nullam et tellus ut nisi imperdiet accumsan eget a arcu. Integer rhoncus in mauris ac auctor. **bold** hehe __bold__
 
-# Code highilight
+# Realçamento de Código
 ```
 console.log('Block code');
 while true
@@ -33,17 +33,17 @@ public abstract strictfp class L2Char extends L2Object {
 }
 ```
 
-# Blockquotes
-> I'm just a info block!
+# Seção de Texto (Alerta)
+> Sou apenas um bloco de informação
 
 <!-- -->
-> {success} And i'm a sucess!
+> {success} E eu sou um de sucesso
 
 <!-- -->
-> {error} I'm a error!
-> A multiline error
+> {error} E eu sou um erro
+> Um erro de varias linhas
 
-# List of Links
+# Lista de Links
 - [Docker](/install/docker)
 - [Heroku](/install/heroku)
 - [Kubernetes](/install/kubernetes)
@@ -51,33 +51,33 @@ public abstract strictfp class L2Char extends L2Object {
 - [macOS](/install/macos)
 - [Windows](/install/windows)
 
-# List
+# Lista
 - A
-- I'm just a random item
+- Sou um item aleatório
     - b
     - d
 - C
 
-# Task List
-- [ ] Unchecked
-- [x] Checked
-- [ ] Unchecked 2
+# Lista de tarefas
+- [ ] Desmarcado
+- [x] Marcado
+- [ ] Desmarcado 2
 
 # Links
-link to <http://www.google.com/>
+Link para <http://www.google.com/>
 
-# Images
+# Imagens
 ![showdown logo](https://octodex.github.com/images/yaktocat.png)
 
-# Tables
-| Tables        | Are           | Cool  |
-| ------------- |:-------------:| -----:|
-| **col 3 is**  | right-aligned | $1600 |
-| col 2 is      | *centered*    |   $12 |
-| zebra stripes | ~~are neat~~  |    $1 |
+# Tabela
+| Tabelas        | são            | legais |
+| ------------- |:--------------:| ------:|
+| **col 3**    | para-a-direita | $1600  |
+| col 2         | *centralizado* |   $12  |
+| cortado       | ~~u.U~~        |    $1  |
 
-# Mentions
-Link to @arnilsenarthur profile
+# Menções
+Link para o perfil @arnilsenarthur
 
 # Emojis :smile: 
 :smile: 

@@ -11,6 +11,17 @@
         "outdated": "Esta documentação é para a <b>versão %% (Ultrapassada)</b>. Nos recomendamos atualizar para a <b>versão %%</b> (Mais Recente)</b>",
         "language_title": "Idioma",
         "language_text": "Escolha um idioma abaixo",
-        "language_close": "Fechar"
+        "language_close": "Fechar",
+        "search": "Buscar",
+        "search_no_results": "Nenhum Resultado Encontrado"
+    },
+    "1.0": {
+        "start": "Start",
+        "start/main": ["Main", "Test Description"],
+        "start/second": ["Second", "Second Description :D"]
+    },
+    "2.0": {
+        "another": "Outro",
+        "another/brick": ["Tijolo", "Teste 2"]
     }
 }

@@ -8,6 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../../../code_styles/agate.css">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
 </head>
 
@@ -18,6 +19,24 @@
     <div id="app">
         <v-app>
             <v-main>
+                <!--Search Screen-->
+                <v-overlay absolute :value="search_overlay" style="z-index: 1504;" :opacity="0.9">
+                    <v-toolbar dark style="height: 64px;width: 100%; z-index: 4;" class="noprint black">
+                        <v-text-field solo color="primary" light label="Search" prepend-inner-icon="mdi-magnify" style="
+                        margin-left: 40px; margin-right: 10px; transform: translate(0px,15px); 
+                        border-radius: 50px;" @input="searchUpdate($event)"></v-text-field>
+                        <v-btn icon onclick="vue.search_overlay = false; $('body').removeClass('hideScroll')">
+                            <v-icon>mdi-close</v-icon>
+                        </v-btn>
+                    </v-toolbar>
+                    <div style="height: calc(100% - 64px); width: calc(100% - 2px); overflow: auto;" id="searchcontent" class="searchscroll">
+                        <div class="search_item none">
+                            <div class="search_item_title none">
+                                No Results Found
+                            </div>
+                        </div>
+                    </div>
+                </v-overlay>
 
                 <!--Title-->
                 <v-toolbar dark style="height: 64px;position: fixed;width: 100%; z-index: 4;" class="noprint black">
@@ -31,6 +50,9 @@
 
                     <v-spacer></v-spacer>
 
+                    <v-btn icon onclick="vue.search_overlay = true; $('body').addClass('hideScroll')">
+                        <v-icon>mdi-magnify</v-icon>
+                    </v-btn>
                     <v-btn icon onclick="window.location.href = 'http://www.google.com'">
                         <v-icon>mdi-export</v-icon>
                     </v-btn>
@@ -398,12 +420,18 @@
                 cur_creation: {"author":"Admin","date":"09/12/2020"},
                 cur_title: "Second",
                 cur_subtitle: "Second Description :D",
+                search_overlay: false,
 
                 //Cross-page info
                 navigation: [{"text":"Start","isheader":true},{"text":"Main","icon":"mdi-alien-outline","isheader":false,"href":"../start/main"},{"text":"Second","icon":"mdi-numeric-2","isheader":false,"href":"../start/second"}],
                 langselected: 0,
                 langitems: [{"text":"English","href":"en-us"},{"text":"Português","href":"pt-br"}],
                 versionmenu_items: [{"title":"1.0","home":"../../1.0/start/main"},{"title":"2.0","home":"../../2.0/another/brick"}]
+            },
+            methods: {
+                searchUpdate: function(e) {
+                    doSearch(e);
+                }
             }
         })
 
@@ -457,6 +485,10 @@
 
             //Alert Icon color
             $('.v-alert__icon').attr('style', 'color: rgba(255,255,255,0.75) !important');
+
+            var scrollelm = window.location.hash.substr(1);
+            if (scrollelm != null && ("" + scrollelm).length > 0)
+                scrollToElement(scrollelm);
         };
 
         function stDecomp(b) {
@@ -469,6 +501,104 @@
             return g.join("")
         }
 
+        var searchdata
+
+        function doSearch(query) {
+            if (searchdata != null) {
+                doSearchEnd(query);
+                return;
+            }
+            $.get("../../../search.json", function(data) {
+                searchdata = data["en-us"]["1.0"];
+                doSearchEnd(query);
+            });
+        }
+
+
+        async function doSearchEnd(query) {
+            let cut = 0.3; //min similarity
+
+            let results = [];
+
+            let pages = Object.keys(searchdata);
+            for (let i = 0; i < pages.length; i++) {
+                let page = pages[i];
+
+                let a = compareTwoStrings(query, searchdata[page].title);
+                let b = compareTwoStrings(query, searchdata[page].subtitle);
+
+                if (a > cut || b > cut) {
+                    results.push({
+                        similarity: Math.max(a, b),
+                        page: page + ".html",
+                        subtitle: searchdata[page].subtitle,
+                        title: searchdata[page].title,
+                        type: "header"
+                    });
+                } else {
+                    for (let t = 0; t < searchdata[page].tags.length; t++) {
+                        let s = compareTwoStrings(query, searchdata[page].tags[t]);
+                        if (s > cut) {
+                            results.push({
+                                similarity: s,
+                                type: "tag",
+                                page: page + ".html",
+                                subtitle: searchdata[page].subtitle,
+                                title: searchdata[page].title,
+                                tag: searchdata[page].tags[t]
+                            });
+                            break;
+                        }
+                    }
+
+                    if (results.length == 0) {
+                        for (let t = 0; t < searchdata[page].words.length; t++) {
+                            let s = compareTwoStrings(query, searchdata[page].words[t]);
+                            if (s > cut) {
+                                results.push({
+                                    similarity: Math.max(a, b),
+                                    page: page + ".html",
+                                    subtitle: searchdata[page].subtitle,
+                                    title: searchdata[page].title,
+                                    type: "header"
+                                });
+                                break;
+                            };
+                        }
+                    }
+                }
+
+                for (let t = 0; t < searchdata[page].sections.length; t++) {
+                    let s = Math.max(compareTwoStrings(query, searchdata[page].sections[t][0]), compareTwoStrings(query, searchdata[page].sections[t][1]));
+                    if (s > cut) {
+                        results.push({
+                            similarity: s,
+                            type: "section",
+                            page: page + ".html#" + searchdata[page].sections[t][1],
+                            title: searchdata[page].title,
+                            subtitle: searchdata[page].subtitle,
+                            section: searchdata[page].sections[t][0],
+                        });
+                    }
+                }
+            }
+
+
+            results.sort((a, b) => (a.similarity > b.similarity) ? -1 : 1);
+
+            //Display search results
+            let content = '';
+            for (let i = 0; i < results.length; i++) {
+                content += '<div class="search_item" onclick="window.location.href=\'../../' + results[i].page + '\'"><div class="search_item_title">' + results[i].title + (results[i].section != null ? "/" + results[i].section : "") + '</div><div class="search_item_subtitle">' + results[i].subtitle + '</div></div>'
+            }
+
+            if (content.length == 0) {
+                content += '<div class="search_item none"><div class="search_item_title none">No Results Found</div></div>';
+            }
+            $("#searchcontent").html(content);
+
+        }
+
         function scrollToElement(id) {
             let yOffset = -80;
             let element = document.getElementById(id);
@@ -478,6 +608,81 @@
                 top: y,
                 behavior: 'smooth'
             });
+        }
+
+        //Extract from: https://cdn.jsdelivr.net/npm/string-similarity@4.0.3/src/index.js
+        function compareTwoStrings(first, second) {
+            first = first.toLowerCase().replace(/\s+/g, '')
+            second = second.toLowerCase().replace(/\s+/g, '')
+
+            if (!first.length && !second.length) return 1; // if both are empty strings
+            if (!first.length || !second.length) return 0; // if only one is empty string
+            if (first === second) return 1; // identical
+            if (first.length === 1 && second.length === 1) return 0; // both are 1-letter strings
+            if (first.length < 2 || second.length < 2) return 0; // if either is a 1-letter string
+
+            let firstBigrams = new Map();
+            for (let i = 0; i < first.length - 1; i++) {
+                const bigram = first.substring(i, i + 2);
+                const count = firstBigrams.has(bigram) ?
+                    firstBigrams.get(bigram) + 1 :
+                    1;
+
+                firstBigrams.set(bigram, count);
+            };
+
+            let intersectionSize = 0;
+            for (let i = 0; i < second.length - 1; i++) {
+                const bigram = second.substring(i, i + 2);
+                const count = firstBigrams.has(bigram) ?
+                    firstBigrams.get(bigram) :
+                    0;
+
+                if (count > 0) {
+                    firstBigrams.set(bigram, count - 1);
+                    intersectionSize++;
+                }
+            }
+
+            return (2.0 * intersectionSize) / (first.length + second.length - 2);
+        }
+
+        function findBestMatch(mainString, targetStrings) {
+            if (!areArgsValid(mainString, targetStrings)) throw new Error('Bad arguments: First argument should be a string, second should be an array of strings');
+
+            const ratings = [];
+            let bestMatchIndex = 0;
+
+            for (let i = 0; i < targetStrings.length; i++) {
+                const currentTargetString = targetStrings[i];
+                const currentRating = compareTwoStrings(mainString, currentTargetString)
+                ratings.push({
+                    target: currentTargetString,
+                    rating: currentRating
+                })
+                if (currentRating > ratings[bestMatchIndex].rating) {
+                    bestMatchIndex = i
+                }
+            }
+
+
+            const bestMatch = ratings[bestMatchIndex]
+
+            return {
+                ratings: ratings,
+                bestMatch: bestMatch,
+                bestMatchIndex: bestMatchIndex
+            };
+        }
+
+        function areArgsValid(mainString, targetStrings) {
+            if (typeof mainString !== 'string') return false;
+            if (!Array.isArray(targetStrings)) return false;
+            if (!targetStrings.length) return false;
+            if (targetStrings.find(function(s) {
+                    return typeof s !== 'string'
+                })) return false;
+            return true;
         }
     </script>
 </body>

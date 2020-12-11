@@ -2,12 +2,13 @@
 <html>
 
 <head>
-    <title>v1.0 - start/second</title>
+    <title>v1.0 - Second</title>
     <link href="../../../css/style.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../../../code_styles/agate.css">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
 </head>
 
@@ -18,6 +19,24 @@
     <div id="app">
         <v-app>
             <v-main>
+                <!--Search Screen-->
+                <v-overlay absolute :value="search_overlay" style="z-index: 1504;" :opacity="0.9">
+                    <v-toolbar dark style="height: 64px;width: 100%; z-index: 4;" class="noprint black">
+                        <v-text-field solo color="primary" light label="Buscar" prepend-inner-icon="mdi-magnify" style="
+                        margin-left: 40px; margin-right: 10px; transform: translate(0px,15px); 
+                        border-radius: 50px;" @input="searchUpdate($event)"></v-text-field>
+                        <v-btn icon onclick="vue.search_overlay = false; $('body').removeClass('hideScroll')">
+                            <v-icon>mdi-close</v-icon>
+                        </v-btn>
+                    </v-toolbar>
+                    <div style="height: calc(100% - 64px); width: calc(100% - 2px); overflow: auto;" id="searchcontent" class="searchscroll">
+                        <div class="search_item none">
+                            <div class="search_item_title none">
+                                Nenhum Resultado Encontrado
+                            </div>
+                        </div>
+                    </div>
+                </v-overlay>
 
                 <!--Title-->
                 <v-toolbar dark style="height: 64px;position: fixed;width: 100%; z-index: 4;" class="noprint black">
@@ -31,6 +50,9 @@
 
                     <v-spacer></v-spacer>
 
+                    <v-btn icon onclick="vue.search_overlay = true; $('body').addClass('hideScroll')">
+                        <v-icon>mdi-magnify</v-icon>
+                    </v-btn>
                     <v-btn icon onclick="window.location.href = 'http://www.google.com'">
                         <v-icon>mdi-export</v-icon>
                     </v-btn>
@@ -222,11 +244,11 @@
 
                             <!--Content-->
                             <div class="flex maincontent page-col-content lg9">
-                                <v-alert dense type="error" text>Esta documentação é para a <b>versão 1.0 (Ultrapassada)</b>. Nos recomendamos atualizar para a <b>versão 2.0</b> (Mais Recente)</b></v-alert><h1 id="testingsections">Testing Sections</h1>
+                                <v-alert dense type="error" text>Esta documentação é para a <b>versão 1.0 (Ultrapassada)</b>. Nos recomendamos atualizar para a <b>versão 2.0</b> (Mais Recente)</b></v-alert><h1 id="testandosees">Testando Se&#xE7;&#xF5;es</h1>
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ullamcorper vulputate neque, in maximus risus finibus a. Nam condimentum leo ut urna ultricies, non congue turpis sollicitudin. Maecenas id porttitor lectus, vel gravida quam. Morbi turpis nisi, commodo at vehicula lacinia, tincidunt et metus. Fusce eget rhoncus est. Praesent accumsan, eros vel porta varius, dui neque lacinia nisl, auctor interdum eros magna at lectus. Donec vel efficitur tortor. Pellentesque non nibh eget ligula pulvinar blandit. Nam suscipit rutrum placerat. Duis sodales non ante eget pretium. Pellentesque semper, leo ac hendrerit tempor, risus magna porta risus, ac pharetra quam sem tempus leo. In auctor turpis enim, eget cursus urna ultrices non. Nullam et tellus ut nisi imperdiet accumsan eget a arcu. Integer &#x1F604; rhoncus in mauris ac auctor.</p>
-<h2 id="andsubsections">And Subsections</h2>
+<h2 id="esubsees">E Subse&#xE7;&#xF5;es</h2>
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ullamcorper vulputate neque, in maximus risus finibus a. Nam condimentum leo ut urna ultricies, non congue turpis sollicitudin. Maecenas id porttitor lectus, vel gravida quam. Morbi turpis nisi, commodo at vehicula lacinia, tincidunt et metus. Fusce eget rhoncus est. Praesent accumsan, eros vel porta varius, dui neque lacinia nisl, auctor interdum eros magna at lectus. Donec vel efficitur tortor. Pellentesque non nibh eget ligula pulvinar blandit. Nam suscipit rutrum placerat. Duis sodales non ante eget pretium. Pellentesque semper, leo ac hendrerit tempor, risus magna porta risus, ac pharetra quam sem tempus leo. In auctor turpis enim, eget cursus urna ultrices non. Nullam et tellus ut nisi imperdiet accumsan eget a arcu. Integer rhoncus in mauris ac auctor. <strong>bold</strong> hehe <strong>bold</strong></p>
-<h1 id="codehighilight">Code highilight</h1>
+<h1 id="realamentodecdigo">Real&#xE7;amento de C&#xF3;digo</h1>
 <pre class="hljs hljspre"><code class="hljs hljscontent" style="background-color: transparent;"><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;Block code&apos;</span>);
 <span class="hljs-keyword">while</span> <span class="hljs-literal">true</span>
 </code></pre>
@@ -247,13 +269,13 @@
   }
 }
 </code></pre>
-<h1 id="blockquotes">Blockquotes</h1>
-<v-alert dense type="info" text>I&apos;m just a info block!</v-alert>
+<h1 id="seodetextoalerta">Se&#xE7;&#xE3;o de Texto (Alerta)</h1>
+<v-alert dense type="info" text>Sou apenas um bloco de informa&#xE7;&#xE3;o</v-alert>
 <!-- -->
-<v-alert dense type="success" text> And i&apos;m a sucess!</v-alert>
+<v-alert dense type="success" text> E eu sou um de sucesso</v-alert>
 <!-- -->
-<v-alert dense type="error" text> I&apos;m a error!<br>  A multiline error</v-alert>
-<h1 id="listoflinks">List of Links</h1>
+<v-alert dense type="error" text> E eu sou um erro<br>  Um erro de varias linhas</v-alert>
+<h1 id="listadelinks">Lista de Links</h1>
 <ul>
 <div class="list_item linkholder" onclick="window.location.href = &apos;/install/docker&apos;"><b><a href="/install/docker">Docker</a></b></div>
 <div class="list_item linkholder" onclick="window.location.href = &apos;/install/heroku&apos;"><b><a href="/install/heroku">Heroku</a></b></div>
@@ -262,53 +284,53 @@
 <div class="list_item linkholder" onclick="window.location.href = &apos;/install/macos&apos;"><b><a href="/install/macos">macOS</a></b></div>
 <div class="list_item linkholder" onclick="window.location.href = &apos;/install/windows&apos;"><b><a href="/install/windows">Windows</a></b></div>
 </ul>
-<h1 id="list">List</h1>
+<h1 id="lista">Lista</h1>
 <ul>
 <li class="list_item">A</li>
-<li class="list_item">I&apos;m just a random item<ul>
+<li class="list_item">Sou um item aleat&#xF3;rio<ul>
 <li class="list_item">b</li>
 <li class="list_item">d</li></ul></li>
 <li class="list_item">C</li>
 </ul>
-<h1 id="tasklist">Task List</h1>
+<h1 id="listadetarefas">Lista de tarefas</h1>
 <ul>
-<div class="list_item tasks" style="height:30px"><v-checkbox value disabled style="transform: translate(0px,-4px); float: left;height: 20px;margin-top: 0px; margin-bottom: 0px"></v-checkbox> Unchecked<br></div>
-<div class="list_item tasks" style="height:30px"><v-checkbox input-value="true" value disabled style="transform: translate(0px,-4px); float: left;height: 20px;margin-top: 0px; margin-bottom: 0px"></v-checkbox> Checked<br></div>
-<div class="list_item tasks" style="height:30px"><v-checkbox value disabled style="transform: translate(0px,-4px); float: left;height: 20px;margin-top: 0px; margin-bottom: 0px"></v-checkbox> Unchecked 2<br></div>
+<div class="list_item tasks" style="height:30px"><v-checkbox value disabled style="transform: translate(0px,-4px); float: left;height: 20px;margin-top: 0px; margin-bottom: 0px"></v-checkbox> Desmarcado<br></div>
+<div class="list_item tasks" style="height:30px"><v-checkbox input-value="true" value disabled style="transform: translate(0px,-4px); float: left;height: 20px;margin-top: 0px; margin-bottom: 0px"></v-checkbox> Marcado<br></div>
+<div class="list_item tasks" style="height:30px"><v-checkbox value disabled style="transform: translate(0px,-4px); float: left;height: 20px;margin-top: 0px; margin-bottom: 0px"></v-checkbox> Desmarcado 2<br></div>
 </ul>
 <h1 id="links">Links</h1>
-<p>link to <a href="http://www.google.com/">http://www.google.com/</a></p>
-<h1 id="images">Images</h1>
+<p>Link para <a href="http://www.google.com/">http://www.google.com/</a></p>
+<h1 id="imagens">Imagens</h1>
 <p><img src="https://octodex.github.com/images/yaktocat.png" alt="showdown logo"></p>
-<h1 id="tables">Tables</h1>
+<h1 id="tabela">Tabela</h1>
 <v-simple-table><template v-slot:default>
 <thead>
 <tr>
-<th>Tables</th>
-<th style="text-align:center;">Are</th>
-<th style="text-align:right;">Cool</th>
+<th>Tabelas</th>
+<th style="text-align:center;">s&#xE3;o</th>
+<th style="text-align:right;">legais</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>col 3 is</strong></td>
-<td style="text-align:center;">right-aligned</td>
+<td><strong>col 3</strong></td>
+<td style="text-align:center;">para-a-direita</td>
 <td style="text-align:right;">$1600</td>
 </tr>
 <tr>
-<td>col 2 is</td>
-<td style="text-align:center;"><em>centered</em></td>
+<td>col 2</td>
+<td style="text-align:center;"><em>centralizado</em></td>
 <td style="text-align:right;">$12</td>
 </tr>
 <tr>
-<td>zebra stripes</td>
-<td style="text-align:center;"><del>are neat</del></td>
+<td>cortado</td>
+<td style="text-align:center;"><del>u.U</del></td>
 <td style="text-align:right;">$1</td>
 </tr>
 </tbody>
 </template></v-simple-table>
-<h1 id="mentions">Mentions</h1>
-<p>Link to <a href="https://github.com/arnilsenarthur">@arnilsenarthur</a> profile</p>
+<h1 id="menes">Men&#xE7;&#xF5;es</h1>
+<p>Link para o perfil <a href="https://github.com/arnilsenarthur">@arnilsenarthur</a></p>
 <h1 id="emojissmile">Emojis &#x1F604;</h1>
 <p>&#x1F604; 
 &#x1F606;</p>
@@ -392,18 +414,24 @@
 
                 //Current page info
                 cur_path: [{"text":"1.0","disabled":true,"normal":true,"href":""},{"text":"start","disabled":true,"normal":true,"href":""},{"text":"second","disabled":true,"normal":true,"href":""}],
-                cur_sections: [{"text":"Testing Sections","level":0,"color":"black","target":"testingsections"},{"text":"And Subsections","level":1,"color":"gray","target":"andsubsections"},{"text":"Code highilight","level":0,"color":"black","target":"codehighilight"},{"text":"Blockquotes","level":0,"color":"black","target":"blockquotes"},{"text":"List of Links","level":0,"color":"black","target":"listoflinks"},{"text":"List","level":0,"color":"black","target":"list"},{"text":"Task List","level":0,"color":"black","target":"tasklist"},{"text":"Links","level":0,"color":"black","target":"links"},{"text":"Images","level":0,"color":"black","target":"images"},{"text":"Tables","level":0,"color":"black","target":"tables"},{"text":"Mentions","level":0,"color":"black","target":"mentions"},{"text":"Emojis 😄","level":0,"color":"black","target":"emojissmile"}],
+                cur_sections: [{"text":"Testando Seções","level":0,"color":"black","target":"testandosees"},{"text":"E Subseções","level":1,"color":"gray","target":"esubsees"},{"text":"Realçamento de Código","level":0,"color":"black","target":"realamentodecdigo"},{"text":"Seção de Texto (Alerta)","level":0,"color":"black","target":"seodetextoalerta"},{"text":"Lista de Links","level":0,"color":"black","target":"listadelinks"},{"text":"Lista","level":0,"color":"black","target":"lista"},{"text":"Lista de tarefas","level":0,"color":"black","target":"listadetarefas"},{"text":"Links","level":0,"color":"black","target":"links"},{"text":"Imagens","level":0,"color":"black","target":"imagens"},{"text":"Tabela","level":0,"color":"black","target":"tabela"},{"text":"Menções","level":0,"color":"black","target":"menes"},{"text":"Emojis 😄","level":0,"color":"black","target":"emojissmile"}],
                 cur_tags: [{"text":"another tag","color":"green"}],
                 cur_last_change: {"author":"Admin","date":"10/12/2020"},
                 cur_creation: {"author":"Admin","date":"09/12/2020"},
-                cur_title: "start/second",
-                cur_subtitle: "",
+                cur_title: "Second",
+                cur_subtitle: "Second Description :D",
+                search_overlay: false,
 
                 //Cross-page info
-                navigation: [{"text":"start","isheader":true},{"text":"start/main","icon":"mdi-alien-outline","isheader":false,"href":"../start/main"},{"text":"start/second","icon":"mdi-numeric-2","isheader":false,"href":"../start/second"}],
+                navigation: [{"text":"Start","isheader":true},{"text":"Main","icon":"mdi-alien-outline","isheader":false,"href":"../start/main"},{"text":"Second","icon":"mdi-numeric-2","isheader":false,"href":"../start/second"}],
                 langselected: 1,
                 langitems: [{"text":"English","href":"en-us"},{"text":"Português","href":"pt-br"}],
                 versionmenu_items: [{"title":"1.0","home":"../../1.0/start/main"},{"title":"2.0","home":"../../2.0/another/brick"}]
+            },
+            methods: {
+                searchUpdate: function(e) {
+                    doSearch(e);
+                }
             }
         })
 
@@ -443,7 +471,7 @@
             });
 
             //Parse source code
-            $("#source_card_code").text(stDecomp("\r\nĀ# Testing SecĈonsĀ ĕĀLorem ipsuĜdolę sit amet, cđsĎtĮurīdĞiscĉċelĩ. Nunc ullĬĲrpeĹvŌputaĶ nequeİĉ maximus rĽŪ fĉibůaŅNĬıđĻĭntġ leoŋĪĸnaŋltŭĿĆİnđźĊŠ ſőĽħĤŃĿſĻnŅMaĎeƈūid pętĈtĦƂďŪİvł gravƨƉşĬơębiƖĸpƙnĽiİĲmmoģīĪƵhicŌƉŎĿǈaİĈŉƨňĪĮŤķsŅFŪce egǣrhđǖūĆtŅPƹĆƥĪacǖmsanİœoūƵlƪƬƉvaŭƳ duǃŝşǫǙŲƉǈslİauďĦĉĶrȒĜȅūťgƈǑƁĵŪŅDđĎ ȈǬfűƝĸƖƬęǷłƂžĆȖŜƒǈbhǬǮĪŃgǗƪŌƻƈĹbŎnĻǶņŹĠľļĪrŘɠĜpǙœŚȱȓūsǏaƂūƑnīɂɊǣpĚĈġȿōǻɃƕĴmŒrİƂƄǽ hƥdĚŭĪĶʀęİŭɜŤaȫƉƫrřŬŮsȞŊphȎĮƹ ƾĜɿƖěŗūʄŅIɱȟȡĹƗǆǴǈmȄɋıĸʓƇƉŌƌǕĆɅƠņŌŎȧʍɀůŘŜǉĝʀœĻǣǽǿȁɱǭ˔īrǖʮɂǮĹ:smiƂ:ŬǱŉůţťĸƙʆʱƯr.ĀĂăAɗČubĴďiĳ˵\nĘĚĜĞĠĢĤĦĨǼĭįƓ˽ĶƗĺļɝĊǬŃəŇŉƊˈŐʁȵŖŘŚǫȕŠŢɱťŧũūʒůűɇŵŷŹĲɗŨǻƀʄƅŋrȬˀƍiƏ˄ƓɎǫʴƙɫōǕĩuƟơƣǪƦĝƩʘƭĩưȯʝȵƶƸƺƼʥuƿ Mǁǃ͆ɯǉǋoǍǏʅǒeǔǖŎƁǽșǝĉĿȒžǬĪ̍Ȱ Ǩľǫ˙ɟ˩ǳǬćǷǹĴͺ˕ġ˗ȄrȆ͚ȉ͔ȌȎiȐȒȔŞƕȘǛˎȜȞȠ˲ĝɂȥƀȨʔʖȭƱſǦ ȲŝŊȶeȸ͊̒˲˲ɺɁĶsɄɰˎɈɴɌiɎͲŗlɒȎ ɕȂɘ̲ʧǩɞŬɡƀɤǽɦəDɩƚdɭ˃πȂś΃ƪɷΘmλɼξɾʪœʃƃīŊʈɗʋĩʩʏʂʛʓȪȬΕϺȐʆʠʢƌƽ͠ʧěϷʫȮo˞īΣĦͦǬʷʹǣǖrʽ̼ʿƋƍϠđŷˇŹǣĶōˌĪțǃŨʁ˓ǼǾΎȂσī˛˝ ʯĶˠ˨ǲ˫̨ȟʒϱЎʲŅ**bĤdтʇͯǫ__фldы́ăCǏǫǔgǔɍhtĀ`ѝĀ̴͈e.ĥg('Bĥckźde');Āwјͅɠeќўā\nѝ`jƺaĀ/тĔ* @ȟtǱĹJohɱSˤ҉ <jҍƠˣĩh@exĬɤѢǌ>Ā*/Āpǽkʕȗ2f.gĬǺrƵ˳ǎѭlѱѺŗɕǕī˼ЄďħˁďfpıŎsūL2CʡĹҜĶɗӉ2Objĵ {ĔɐһŊćŚҼ̯ɭČҊĪERROR = 0x0Ӱ1ҸӚҺƜȵoƨŤoƵTo(ȣ x̧Īyԃ z)ӘӚĕ_aǃӬnˇҸĕĕѤ(\"SǱŌƩƑĪbǫcɭƂd\"Ѱԋĝf (1 > 5ԉ{ // wtf!?ԧĕɷƇԓԔ}ӚՂ\nՄѼё ѨoѪşoνĀԮI'ĜjŪǼΥfƄɕՋk!́<!-- բҢ\nԮ{ĠǾĆs} ˸ƩiՓбժլ՞Ѻՠբդ-զըœΑrծՒĜƉտęշԮAŤˀ˥ĉ΂rրՈLĽĪoԩ֓nkē\nգ[ȲѪœ](/ĉӞō/ģ֠r)Ā֝Hȅku֢֤Ēř֧ʈΑֱ֬֜ [K˻œŝνֳֶ֥l/ֱԟ̼ĮĆֻ֝֘uxֵׄԢ/Ńԑx׎ֽťcOSדׇ֦לȆך[Wĉģwsנ׆/wרoתֻĂ ֓ć֭կ׸փ Օćбƹɗͪĝʎԧգb؅ȑ׸CՈTasѫ׶ћּ[ ] Uŉʈ֠d׸[ג ӌĎke؜ؙؓؕؗآؤ 2֒ĉ֚ĀחѫƯғњtp:ԴwػҮoogƂ.ǌ/զ״IȪĆĀ![sǱwשɱѤo֢ضğع/ՋƯѭxҮҙ˻ق֤ͪوs/yakƯԡǶpĊ׳\nă؍ɕى\n|ĄaٲūԔٺٵAĚٺٿĕٵѓĤځĀٵբڈډډ |:ڊڏբ:ڇډڒچ тĲȉ3ĝsчڌʛїt-ɭυŝƩٵ$16Ӱڌږڙجڜڀٵ*͐Ȥؤ҅Ԕٵĕک2ڭٴԇebʤćŭŒūٵ~~ʢŜeŚۉځٺکھ״Mǻ˿Ēėدȼ҆Ȏǈl΋Ȏ҉Ȼɶ֖˥ѷѺăEǎjƙˢˤ˦ Āۮۦ˧۲Ŏuїŀ:Ā"));
+            $("#source_card_code").text(stDecomp("\r\nĀ# Testando SeçõĆĀ ĔĀLorem ipsuěċlĘ sit amet, consectĬurĩdĝiscing elħ. Nunc ullĪİrpeĹvŎpuĈĶ nequeĮŀ maximus rĽū fŀibŰaŇNĪįıĻīntĠ leČŚōrnaōltŮĿĆĮnıŻŁš ƀœĽĥoŏiĿƀĻnŇMaĴeƉŬid pĘttħĤƃĵūĮvń gravƪƊŠĪƣĘbiƗĸpƚnĽiĮİmmoċĩĨƷhƞŎƊŐĿǊaĮưŋƪŊĨĬťķsŇFūceŃgǤrhıcŰĆtŇPƻĆƧĨacǳmsĉĮŕoŬƷlƬƮƊvaŮƵ duǅŞŠǬǚųƊǊslĮauĵĤŀĶrȑěȄŬŦgƉǓƂĴƀǧ DıĴ ȇŃfŲƟĸƗƮĘǷńƃſĆȕŝƓǊbhǭǤŅgǘƬŎƽƉĹbŐĊņňźğľļĨrŚɞěpǚŕaǶȱȒŬsǑaƃŬƒnĩɂɊĨpęưĠȿŏǻɃƖĳmŔrĮƃČǽ hƧdęŮĨĶɿĘĮŮɚťaȪƊƭrĈŭůsȝŌphȍĬƻ ǀěɾƗĚřŬʃŇIɰȞȠĹƘǈŬƧũȃǮĨǳrʒĸȫŎƍƞĆɅƢňŎŐȦʌɀŰƆȚǅũʀĻǤǽǿȁɰeʹĩĩrǳʭɂǮĹ:smiƃ:ŭǱŋŰŤŦĸƚʅʰtȾĀĂăEčubĳĐĒā\nėęěĝğġƜĤĦǼīĭƔĳĵķĹaĻʴǛłńɗŉŋƋˈŒʀȵŘŚɥǬȔšţɰŦŨŪŬʑŰŲɇŶŸźİɖžƀěʃōĨʾƊˀƎiƐ˄ƔɍǬʳƚɪƝȺơƣƥǫƨĜƫʗƯƱĹƳȯƶƸƺƼƾʤuǁ Mǃǅ̈́ɮǋǍoǏǑʄǔeǖǳŐƂǽȘǞŀĿȑſŃĨ̊ūǨǪǬ˘ǯ˩ǳʵćǷǹĳͶ˔Ġ˖ȃrȅȵƸ͐ȋȍiȏȑȓşƖȗǜŝĽȜĩȟ˲ĹȢŕȥŃΌȨʔȫɥȭƴȰȲŞŌȶeȸƞħȻΠΠɹɁĶsɄɯΛɈɳƂiɍͮřlɑȍ ɔĉĻɦŹʦǪɜŭɟƁɢǽɤɦDɨƛdɬ˃ξĉŜ;ɴɶΓmιɻμɽʩŕʂƄĩŌʇĊʊħʨʎʁʚʒȩȫΐϹȏʅʟʡƍƿ͜ʦĚ϶ʪȭo˞ΞʱǆƙʵǊmʸǤʻʽƈ̻ƌƎϟıŸˇźǤĶŏˌĨˎĜɿΣ̾ǼǾΉĉρƊȍ˝ ʮĶˠ˨ǲ˫̦ȞʑϰЍθ **bƜdсʆͫǬ__уldъ˴\năReɬçĪǻČdǬCóĻgoĀ`ѢĀ̲͆e.ģg('BģckŻњ');ĀwǖƃƗɞeѡѣ˾Ѣ`jƼaĀ/сē* @ȞtǱĹJohɰSˤҍ <jґƢˣħh@exĪɢѧǎ>Ā*/ĀpǽkʔȖ2f.gїĳrƷr.ǐњlѵ˾řɔƞĩ˺ЃĵĥˁĵfpįŐsŬL2CʠĹҠĶĊӎ2ObjȮ {ēɏӀŌćɥӁ̭ɬčҎĨERROR = 0x0ӵ1ҽӟҿŅΰoƪťoƷTo(Ȣ x̥ĨyԈ z)ӝӟĔ_aǅӱnˇҽĔĔѩ(\"SǱŎƫƒĨbǬcɬƃd\"ѴԐĜf (1 > 5Ԏ{ // wtf!?ԬĔɶʾԘԙ}ӟՇ\nՉҀѐăĎçãљǬąx˲ԯAƃʘa)ĀԳSouĩŔ͍ƁɔoİȐǬŀfĘŦՐѠ˾<!-- մҦ\nԳ{ğǾĆs} ˷eաɪաƁњĥȟվհĀղմն-ոպŕΌrրւքՠōȦrΌ՝ U֜ΌթȵΒaʫŀʠsՍ LĽʙֈ֮nk֫\nյ[Ȳѯŕ](/ŀӣŏ/ċֺr՜ֶ [HȄkuּ־ĲĈׁʇΌ׌׆ַK˹ŕŞλ׎ֿבl/׌ԤƈĬĆז׈ֲuxםאԧ/ŅԖxק[ŦcOS׬׀נ׵ȅ׳Wŀċws׹ן/w؀o؂׆Ăׇ֭֯҄AĀյ՟ֆ̂ʍĩƃɥóŮհԙնϊԬյdؒ C֮֬ӣ֤Ĉęf֧ؤ[ ]ȱĆŦ˜̑հַ׫͞бطدرسˣؼǒ2اŀִĖنƬȍƊ<hƯp:ԹwٓҲoogƃ.ǎ/ո،IȩƧֵ![sǱw؁ɰѩoּَtĞّ/է˲њxҲҝ˹ٚͦ־٠s/yak˲ԦǶpŁ؋ёĄaԤŐĀ|ډڋ֧؞؞ڎsՑڒڗ ڎƃҳƚ|ڍ֐մڡڢ֏|:ڣڧڡ:ڎڧڪڟсİȈ3цԙڎҫƻ-a-ĻęħƊڎ$16ӵĔڞ\nڎڰ 2ژۄр͌ЃŅzط҉ڎĔۀۊڙڟŒĈǒڗڎ~~u.U۟ۋ۔ەԱۘ˾ăMƧ˼ֲֵѰڶƊČʀŲȈҋƈ˥Άȍҍĸ֬Eǐjƚˢˤ˦ Ā܄˥e˧܈ŐugǖŁ:Ā"));
             hljs.highlightBlock(document.getElementById("source_card_code"));
             hljs.lineNumbersBlock(document.getElementById("source_card_code"));
             vue.sourcedialog = false;
@@ -457,6 +485,10 @@
 
             //Alert Icon color
             $('.v-alert__icon').attr('style', 'color: rgba(255,255,255,0.75) !important');
+
+            var scrollelm = window.location.hash.substr(1);
+            if (scrollelm != null && ("" + scrollelm).length > 0)
+                scrollToElement(scrollelm);
         };
 
         function stDecomp(b) {
@@ -469,6 +501,104 @@
             return g.join("")
         }
 
+        var searchdata
+
+        function doSearch(query) {
+            if (searchdata != null) {
+                doSearchEnd(query);
+                return;
+            }
+            $.get("../../../search.json", function(data) {
+                searchdata = data["pt-br"]["1.0"];
+                doSearchEnd(query);
+            });
+        }
+
+
+        async function doSearchEnd(query) {
+            let cut = 0.3; //min similarity
+
+            let results = [];
+
+            let pages = Object.keys(searchdata);
+            for (let i = 0; i < pages.length; i++) {
+                let page = pages[i];
+
+                let a = compareTwoStrings(query, searchdata[page].title);
+                let b = compareTwoStrings(query, searchdata[page].subtitle);
+
+                if (a > cut || b > cut) {
+                    results.push({
+                        similarity: Math.max(a, b),
+                        page: page + ".html",
+                        subtitle: searchdata[page].subtitle,
+                        title: searchdata[page].title,
+                        type: "header"
+                    });
+                } else {
+                    for (let t = 0; t < searchdata[page].tags.length; t++) {
+                        let s = compareTwoStrings(query, searchdata[page].tags[t]);
+                        if (s > cut) {
+                            results.push({
+                                similarity: s,
+                                type: "tag",
+                                page: page + ".html",
+                                subtitle: searchdata[page].subtitle,
+                                title: searchdata[page].title,
+                                tag: searchdata[page].tags[t]
+                            });
+                            break;
+                        }
+                    }
+
+                    if (results.length == 0) {
+                        for (let t = 0; t < searchdata[page].words.length; t++) {
+                            let s = compareTwoStrings(query, searchdata[page].words[t]);
+                            if (s > cut) {
+                                results.push({
+                                    similarity: Math.max(a, b),
+                                    page: page + ".html",
+                                    subtitle: searchdata[page].subtitle,
+                                    title: searchdata[page].title,
+                                    type: "header"
+                                });
+                                break;
+                            };
+                        }
+                    }
+                }
+
+                for (let t = 0; t < searchdata[page].sections.length; t++) {
+                    let s = Math.max(compareTwoStrings(query, searchdata[page].sections[t][0]), compareTwoStrings(query, searchdata[page].sections[t][1]));
+                    if (s > cut) {
+                        results.push({
+                            similarity: s,
+                            type: "section",
+                            page: page + ".html#" + searchdata[page].sections[t][1],
+                            title: searchdata[page].title,
+                            subtitle: searchdata[page].subtitle,
+                            section: searchdata[page].sections[t][0],
+                        });
+                    }
+                }
+            }
+
+
+            results.sort((a, b) => (a.similarity > b.similarity) ? -1 : 1);
+
+            //Display search results
+            let content = '';
+            for (let i = 0; i < results.length; i++) {
+                content += '<div class="search_item" onclick="window.location.href=\'../../' + results[i].page + '\'"><div class="search_item_title">' + results[i].title + (results[i].section != null ? "/" + results[i].section : "") + '</div><div class="search_item_subtitle">' + results[i].subtitle + '</div></div>'
+            }
+
+            if (content.length == 0) {
+                content += '<div class="search_item none"><div class="search_item_title none">Nenhum Resultado Encontrado</div></div>';
+            }
+            $("#searchcontent").html(content);
+
+        }
+
         function scrollToElement(id) {
             let yOffset = -80;
             let element = document.getElementById(id);
@@ -478,6 +608,81 @@
                 top: y,
                 behavior: 'smooth'
             });
+        }
+
+        //Extract from: https://cdn.jsdelivr.net/npm/string-similarity@4.0.3/src/index.js
+        function compareTwoStrings(first, second) {
+            first = first.toLowerCase().replace(/\s+/g, '')
+            second = second.toLowerCase().replace(/\s+/g, '')
+
+            if (!first.length && !second.length) return 1; // if both are empty strings
+            if (!first.length || !second.length) return 0; // if only one is empty string
+            if (first === second) return 1; // identical
+            if (first.length === 1 && second.length === 1) return 0; // both are 1-letter strings
+            if (first.length < 2 || second.length < 2) return 0; // if either is a 1-letter string
+
+            let firstBigrams = new Map();
+            for (let i = 0; i < first.length - 1; i++) {
+                const bigram = first.substring(i, i + 2);
+                const count = firstBigrams.has(bigram) ?
+                    firstBigrams.get(bigram) + 1 :
+                    1;
+
+                firstBigrams.set(bigram, count);
+            };
+
+            let intersectionSize = 0;
+            for (let i = 0; i < second.length - 1; i++) {
+                const bigram = second.substring(i, i + 2);
+                const count = firstBigrams.has(bigram) ?
+                    firstBigrams.get(bigram) :
+                    0;
+
+                if (count > 0) {
+                    firstBigrams.set(bigram, count - 1);
+                    intersectionSize++;
+                }
+            }
+
+            return (2.0 * intersectionSize) / (first.length + second.length - 2);
+        }
+
+        function findBestMatch(mainString, targetStrings) {
+            if (!areArgsValid(mainString, targetStrings)) throw new Error('Bad arguments: First argument should be a string, second should be an array of strings');
+
+            const ratings = [];
+            let bestMatchIndex = 0;
+
+            for (let i = 0; i < targetStrings.length; i++) {
+                const currentTargetString = targetStrings[i];
+                const currentRating = compareTwoStrings(mainString, currentTargetString)
+                ratings.push({
+                    target: currentTargetString,
+                    rating: currentRating
+                })
+                if (currentRating > ratings[bestMatchIndex].rating) {
+                    bestMatchIndex = i
+                }
+            }
+
+
+            const bestMatch = ratings[bestMatchIndex]
+
+            return {
+                ratings: ratings,
+                bestMatch: bestMatch,
+                bestMatchIndex: bestMatchIndex
+            };
+        }
+
+        function areArgsValid(mainString, targetStrings) {
+            if (typeof mainString !== 'string') return false;
+            if (!Array.isArray(targetStrings)) return false;
+            if (!targetStrings.length) return false;
+            if (targetStrings.find(function(s) {
+                    return typeof s !== 'string'
+                })) return false;
+            return true;
         }
     </script>
 </body>

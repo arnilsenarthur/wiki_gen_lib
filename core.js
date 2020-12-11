@@ -4,6 +4,7 @@ const showdownHighlight = require("showdown-highlight");
 const cheerio = require('cheerio')
 const fs = require('fs');
 
+let search_data = {};
 
 //Create conversor
 const converter = new showdown.Converter({
@@ -17,8 +18,9 @@ const converter = new showdown.Converter({
 
 
 //Aplly style to tags and return list of the sections
-function applyStyle($, sections) {
+function applyStyle($, sections, simplesections) {
     $("h1,h2").each(function(i, elm) {
+        simplesections.push([$(elm).text(), $(elm).attr("id")])
         sections.push({ text: $(elm).text(), level: $(elm).prop("tagName") == "H1" ? 0 : 1, color: $(elm).prop("tagName") == "H1" ? "black" : "gray", target: $(elm).attr("id") });
     });
 
@@ -85,6 +87,13 @@ function applyStyle($, sections) {
 
 //Create a page
 function createPage(page, template, nav, home, header, footer, returnlink, versions, version, lang, labels, languages, language_index, page_path) {
+
+    if (search_data[lang] == null)
+        search_data[lang] = {};
+
+    if (search_data[lang][version] == null)
+        search_data[lang][version] = {};
+
     //Generate path breadcrumb
     let path = [];
     let sp = page_path.split("/");
@@ -102,11 +111,43 @@ function createPage(page, template, nav, home, header, footer, returnlink, versi
     let source = JSON.stringify(compressString(mds));
     const $ = cheerio.load(content);
 
+    //Count words in content
+    let counts = {},
+        mr, mc;
+    mds.match(/\w+/g).forEach(function(w) {
+        if (w.length <= 2) return;
+        counts[w] = (counts[w] || 0) + 1
+    });
+
+    let counts_keys = Object.keys(counts);
+    let word_counts = [];
+
+    for (let i = 0; i < counts_keys.length; i++)
+        word_counts.push({ "word": counts_keys[i], "count": counts[counts_keys[i]] });
+
+    word_counts.sort((a, b) => (a.count > b.count) ? -1 : 1)
+
+    word_counts = word_counts.slice(0, Math.min(word_counts.length, 10));
+
+    let words = [];
+
+    for (let i = 0; i < word_counts.length; i++)
+        words.push(word_counts[i].word);
+
     //Sections info
     let sections = [];
+    let simplesections = [];
 
     //Format and get sections
-    applyStyle($, sections);
+    applyStyle($, sections, simplesections);
+
+    search_data[lang][version][page_path] = {
+        "title": page.title,
+        "subtitle": page.subtitle,
+        "tags": page.tags,
+        "sections": simplesections,
+        "words": words
+    };
 
     //Check if is the lastest version
     let comp_version = parseFloat(version);
@@ -148,7 +189,7 @@ function createPage(page, template, nav, home, header, footer, returnlink, versi
             author: page.created[0],
             date: page.created[1]
         }))
-        .replace("$$tags$$", JSON.stringify(page.tags))
+        .replace("$$tags$$", JSON.stringify(page.tagsb))
         .replace("$$versionlabel$$", page.version)
         .replace("$$navigation$$", JSON.stringify(nav))
         .replace("$$path$$", JSON.stringify(path))
@@ -171,6 +212,11 @@ function createPage(page, template, nav, home, header, footer, returnlink, versi
         .replace("$$languagetitle$$", labels.language_title)
         .replace("$$languagetext$$", labels.language_text)
         .replace("$$languageclose$$", labels.language_close)
+        .replace("$$search$$", labels.search)
+        .replace("$$noresults_pre$$", labels.search_no_results)
+        .replace("$$noresults$$", labels.search_no_results)
+        .replace("$$searchfirst$$", lang)
+        .replace("$$searchsecond$$", version)
     );
 }
 
@@ -306,7 +352,7 @@ function exportFiles() {
                                 color: tags[page.tags[n]].color
                             });
 
-                        page.tags = formatted_tags;
+                        page.tagsb = formatted_tags;
 
                         pages.push(page);
 
@@ -385,8 +431,14 @@ function exportFiles() {
         console.log("Generated " + pages.length + " files!");
     }
 
+    console.log("\nGenerating 'search.json' ...");
+    fs.writeFileSync("output/search.json", JSON.stringify(search_data, null, 2));
+    //search_data
+
     console.log("\n>>> Final Results: ");
     console.log(">>> Versions: " + versions_structure.length);
     console.log(">>> Languages: " + Object.keys(langs).length);
     console.log(">>> Pages: " + pages.length * (Object.keys(langs).length));
+
+
 }

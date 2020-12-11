@@ -1,0 +1,242 @@
+{
+  "en-us": {
+    "1.0": {
+      "1.0/start/main": {
+        "title": "Main",
+        "subtitle": "Test Description",
+        "tags": [
+          "main tag",
+          "another tag"
+        ],
+        "sections": [
+          [
+            "Test Title",
+            "testtitle"
+          ]
+        ],
+        "words": [
+          "meanings",
+          "internal",
+          "full",
+          "text",
+          "beautiful",
+          "Title",
+          "Test"
+        ]
+      },
+      "1.0/start/second": {
+        "title": "Second",
+        "subtitle": "Second Description :D",
+        "tags": [
+          "another tag"
+        ],
+        "sections": [
+          [
+            "Testing Sections",
+            "testingsections"
+          ],
+          [
+            "And Subsections",
+            "andsubsections"
+          ],
+          [
+            "Code highilight",
+            "codehighilight"
+          ],
+          [
+            "Blockquotes",
+            "blockquotes"
+          ],
+          [
+            "List of Links",
+            "listoflinks"
+          ],
+          [
+            "List",
+            "list"
+          ],
+          [
+            "Task List",
+            "tasklist"
+          ],
+          [
+            "Links",
+            "links"
+          ],
+          [
+            "Images",
+            "images"
+          ],
+          [
+            "Tables",
+            "tables"
+          ],
+          [
+            "Mentions",
+            "mentions"
+          ],
+          [
+            "Emojis 😄",
+            "emojissmile"
+          ]
+        ],
+        "words": [
+          "eget",
+          "non",
+          "auctor",
+          "risus",
+          "leo",
+          "install",
+          "turpis",
+          "vel",
+          "accumsan",
+          "lectus"
+        ]
+      }
+    },
+    "2.0": {
+      "2.0/another/brick": {
+        "title": "Brick",
+        "subtitle": "In the Wall",
+        "tags": [
+          "main tag",
+          "another tag"
+        ],
+        "sections": [
+          [
+            "Test Title",
+            "testtitle"
+          ]
+        ],
+        "words": [
+          "meanings",
+          "internal",
+          "full",
+          "text",
+          "beautiful",
+          "Title",
+          "Test"
+        ]
+      }
+    }
+  },
+  "pt-br": {
+    "1.0": {
+      "1.0/start/main": {
+        "title": "Main",
+        "subtitle": "Test Description",
+        "tags": [
+          "main tag",
+          "another tag"
+        ],
+        "sections": [
+          [
+            "Título de Teste",
+            "ttulodeteste"
+          ]
+        ],
+        "words": [
+          "significados",
+          "cheio",
+          "texto",
+          "timo",
+          "Teste",
+          "tulo"
+        ]
+      },
+      "1.0/start/second": {
+        "title": "Second",
+        "subtitle": "Second Description :D",
+        "tags": [
+          "another tag"
+        ],
+        "sections": [
+          [
+            "Testando Seções",
+            "testandosees"
+          ],
+          [
+            "E Subseções",
+            "esubsees"
+          ],
+          [
+            "Realçamento de Código",
+            "realamentodecdigo"
+          ],
+          [
+            "Seção de Texto (Alerta)",
+            "seodetextoalerta"
+          ],
+          [
+            "Lista de Links",
+            "listadelinks"
+          ],
+          [
+            "Lista",
+            "lista"
+          ],
+          [
+            "Lista de tarefas",
+            "listadetarefas"
+          ],
+          [
+            "Links",
+            "links"
+          ],
+          [
+            "Imagens",
+            "imagens"
+          ],
+          [
+            "Tabela",
+            "tabela"
+          ],
+          [
+            "Menções",
+            "menes"
+          ],
+          [
+            "Emojis 😄",
+            "emojissmile"
+          ]
+        ],
+        "words": [
+          "eget",
+          "non",
+          "auctor",
+          "leo",
+          "install",
+          "turpis",
+          "vel",
+          "risus",
+          "lectus",
+          "urna"
+        ]
+      }
+    },
+    "2.0": {
+      "2.0/another/brick": {
+        "title": "Tijolo",
+        "subtitle": "Teste 2",
+        "tags": [
+          "main tag",
+          "another tag"
+        ],
+        "sections": [
+          [
+            "Título de Teste",
+            "ttulodeteste"
+          ]
+        ],
+        "words": [
+          "significados",
+          "cheio",
+          "texto",
+          "timo",
+          "Teste",
+          "tulo"
+        ]
+      }
+    }
+  }
+}

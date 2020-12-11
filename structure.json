@@ -14,7 +14,6 @@
             "structure": {
                 "start": {
                     "main": {
-                        "subtitle": "Just a fast description",
                         "source": "main.md",
                         "icon": "alien-outline",
                         "tags": ["main tag", "another tag"],
@@ -23,7 +22,6 @@
                         "last_modified": ["Admin", "10/12/2020"]
                     },
                     "second": {
-                        "subtitle": "A second page",
                         "source": "test.md",
                         "icon": "numeric-2",
                         "tags": ["another tag"],
@@ -48,7 +46,6 @@
             "structure": {
                 "another": {
                     "brick": {
-                        "subtitle": "Hi Dude",
                         "source": "main.md",
                         "icon": "table",
                         "tags": ["main tag", "another tag"],
