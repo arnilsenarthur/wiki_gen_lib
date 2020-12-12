@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>v2.0 - Brick</title>
+    <title>v1.0 - Exemplo</title>
     <link href="../../../css/style.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
@@ -22,7 +22,7 @@
                 <!--Search Screen-->
                 <v-overlay absolute :value="search_overlay" style="z-index: 1504;" :opacity="0.9">
                     <v-toolbar dark style="height: 64px;width: 100%; z-index: 4;" class="noprint black">
-                        <v-text-field solo color="primary" light label="Search" prepend-inner-icon="mdi-magnify" style="
+                        <v-text-field solo color="primary" light label="Buscar" prepend-inner-icon="mdi-magnify" style="
                         margin-left: 40px; margin-right: 10px; transform: translate(0px,15px); 
                         border-radius: 50px;" @input="searchUpdate($event)"></v-text-field>
                         <v-btn icon onclick="vue.search_overlay = false; $('body').removeClass('hideScroll')">
@@ -32,7 +32,7 @@
                     <div style="height: calc(100% - 64px); width: calc(100% - 2px); overflow: auto;" id="searchcontent" class="searchscroll">
                         <div class="search_item none">
                             <div class="search_item_title none">
-                                No Results Found
+                                Nenhum Resultado Encontrado
                             </div>
                         </div>
                     </div>
@@ -62,17 +62,17 @@
                 <v-navigation-drawer class="no-printme" absolute bottom permanent dark id="sbar" style='background-color: #1976d2 !important;position: fixed;'>
                     <div class="pa-3 d-flex blue darken-3" style="padding: 12px;">
                         <button type="button" class="v-btn v-btn--depressed theme--dark v-size--default blue darken-2" aria-label="Home" style="min-width: 0px;" onclick="
-                            window.location.href = '../another/brick.html'
+                            window.location.href = '../test/example.html'
                         "><span class="v-btn__content"><i aria-hidden="true"
                                     class="v-icon notranslate mdi mdi-home theme--dark"
                                     style="font-size: 20px;"></i></span></button>
                         <button onclick="showVersions()" id="versionbtn" type="button" class="ml-3 v-btn v-btn--depressed theme--dark v-size--default blue darken-2" style="flex: 1 1 100%;overflow: hidden;">
                             <div class="text-none"
                                 style="float: left; height: 100%; background-color: dodgerblue; margin-left: -16px; width: 46px; line-height: 36px;">
-                                v2.0
+                                v1.0
                             </div>
                             <span class="v-btn__content">
-                                <div class="body-2 text-none">Change</div>
+                                <div class="body-2 text-none">Mudar</div>
                             </span>
                         </button>
                     </div>
@@ -117,7 +117,7 @@
                         </div>
                         <!--Language display-->
                         <v-chip class="ma-2" color="red" @click.stop="langdialog = true" label style="position: absolute; right: 0px; transform: translate(0px,-6px)" dark>
-                            <b>en-us</b>
+                            <b>pt-br</b>
                         </v-chip>
                     </v-toolbar>
                     <v-divider></v-divider>
@@ -138,7 +138,7 @@
                             </v-chip>
 
                             <v-chip class="ma-2" color="orange" label style="float: right" dark>
-                                <b>2.0</b>
+                                <b>1.0</b>
                             </v-chip>
                         </div>
                     </div>
@@ -148,7 +148,7 @@
                         <div class="layout row">
                             <div flex page-col-sd lg3 style=" position: sticky !important; overflow-y: scroll; max-height: calc(100vh - 64px); top: 64px !important; margin-top: -140px; width: 25% !important; padding: 12px; padding-top: 16px;" id="second_sidebar">
                                 <div class="mb-5 v-card v-sheet theme--light">
-                                    <div class="overline cpadding pb-0 light-green--text">Sections
+                                    <div class="overline cpadding pb-0 light-green--text">Seções
                                     </div>
                                     <v-list nav dense>
                                         <v-list-item-group>
@@ -170,7 +170,7 @@
                                 </div>
                                 <div class="mb-5 v-card v-sheet theme--light">
                                     <div class="cpadding">
-                                        <div class="overline pb-0 teal--text">Tags
+                                        <div class="overline pb-0 teal--text">Etiquetas
                                         </div>
                                         <v-chip small class="ma-2" :color="item.color" dark label v-for="(item, i) in cur_tags" :key="i">
                                             <v-icon small left>
@@ -182,12 +182,12 @@
                                 </div>
                                 <div class="mb-5 v-card v-sheet theme--light">
                                     <div class="cpadding">
-                                        <div class="overline indigo--text d-flex"><span>Created By</span>
+                                        <div class="overline indigo--text d-flex"><span>Criado por</span>
                                             <div class="spacer"></div>
                                         </div>
                                         <div class="body-2 grey--text text--darken-3">{{cur_last_change.author}}</div>
                                         <div class="caption grey--text text--darken-1">{{cur_last_change.date}}</div>
-                                        <div class="overline indigo--text d-flex"><span>Last Edited By</span>
+                                        <div class="overline indigo--text d-flex"><span>Editado por</span>
                                             <div class="spacer"></div>
                                         </div>
                                         <div class="body-2 grey--text text--darken-3">{{cur_creation.author}}</div>
@@ -244,8 +244,96 @@
 
                             <!--Content-->
                             <div class="flex maincontent page-col-content lg9">
-                                <h1 id="testtitle">Test Title</h1>
-<p>A beautiful text full of internal meanings</p>
+                                <v-alert dense type="error" text>Esta documentação é para a <b>versão 1.0 (Ultrapassada)</b>. Nos recomendamos atualizar para a <b>versão 2.0</b> (Mais Recente)</b></v-alert><h1 id="testandosees">Testando Se&#xE7;&#xF5;es</h1>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ullamcorper vulputate neque, in maximus risus finibus a. Nam condimentum leo ut urna ultricies, non congue turpis sollicitudin. Maecenas id porttitor lectus, vel gravida quam. Morbi turpis nisi, commodo at vehicula lacinia, tincidunt et metus. Fusce eget rhoncus est. Praesent accumsan, eros vel porta varius, dui neque lacinia nisl, auctor interdum eros magna at lectus. Donec vel efficitur tortor. Pellentesque non nibh eget ligula pulvinar blandit. Nam suscipit rutrum placerat. Duis sodales non ante eget pretium. Pellentesque semper, leo ac hendrerit tempor, risus magna porta risus, ac pharetra quam sem tempus leo. In auctor turpis enim, eget cursus urna ultrices non. Nullam et tellus ut nisi imperdiet accumsan eget a arcu. Integer &#x1F604; rhoncus in mauris ac auctor.</p>
+<h2 id="esubsees">E Subse&#xE7;&#xF5;es</h2>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ullamcorper vulputate neque, in maximus risus finibus a. Nam condimentum leo ut urna ultricies, non congue turpis sollicitudin. Maecenas id porttitor lectus, vel gravida quam. Morbi turpis nisi, commodo at vehicula lacinia, tincidunt et metus. Fusce eget rhoncus est. Praesent accumsan, eros vel porta varius, dui neque lacinia nisl, auctor interdum eros magna at lectus. Donec vel efficitur tortor. Pellentesque non nibh eget ligula pulvinar blandit. Nam suscipit rutrum placerat. Duis sodales non ante eget pretium. Pellentesque semper, leo ac hendrerit tempor, risus magna porta risus, ac pharetra quam sem tempus leo. In auctor turpis enim, eget cursus urna ultrices non. Nullam et tellus ut nisi imperdiet accumsan eget a arcu. Integer rhoncus in mauris ac auctor. <strong>bold</strong> hehe <strong>bold</strong></p>
+<h1 id="realamentodecdigo">Real&#xE7;amento de C&#xF3;digo</h1>
+<pre class="hljs hljspre"><code class="hljs hljscontent" style="background-color: transparent;"><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;Block code&apos;</span>);
+<span class="hljs-keyword">while</span> <span class="hljs-literal">true</span>
+</code></pre>
+<pre class="hljs hljspre"><code class="hljs java language-java hljscontent" style="background-color: transparent;"><span class="hljs-comment">/**
+ * <span class="hljs-doctag">@author</span> John Smith &lt;john.smith@example.com&gt;
+*/</span>
+<span class="hljs-keyword">package</span> l2f.gameserver.model;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">strictfp</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">L2Char</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">L2Object</span> </span>{
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> Short ERROR = <span class="hljs-number">0x0001</span>;
+
+  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">moveTo</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> y, <span class="hljs-keyword">int</span> z)</span> </span>{
+    _ai = <span class="hljs-keyword">null</span>;
+    log(<span class="hljs-string">&quot;Should not be called&quot;</span>);
+    <span class="hljs-keyword">if</span> (<span class="hljs-number">1</span> &gt; <span class="hljs-number">5</span>) { <span class="hljs-comment">// wtf!?</span>
+      <span class="hljs-keyword">return</span>;
+    }
+  }
+}
+</code></pre>
+<h1 id="seodetextoalerta">Se&#xE7;&#xE3;o de Texto (Alerta)</h1>
+<v-alert dense type="info" text>Sou apenas um bloco de informa&#xE7;&#xE3;o</v-alert>
+<!-- -->
+<v-alert dense type="success" text> E eu sou um de sucesso</v-alert>
+<!-- -->
+<v-alert dense type="error" text> E eu sou um erro<br>  Um erro de varias linhas</v-alert>
+<h1 id="listadelinks">Lista de Links</h1>
+<ul>
+<div class="list_item linkholder" onclick="window.location.href = &apos;/install/docker&apos;"><b><a href="/install/docker">Docker</a></b></div>
+<div class="list_item linkholder" onclick="window.location.href = &apos;/install/heroku&apos;"><b><a href="/install/heroku">Heroku</a></b></div>
+<div class="list_item linkholder" onclick="window.location.href = &apos;/install/kubernetes&apos;"><b><a href="/install/kubernetes">Kubernetes</a></b></div>
+<div class="list_item linkholder" onclick="window.location.href = &apos;/install/linux&apos;"><b><a href="/install/linux">Linux</a></b></div>
+<div class="list_item linkholder" onclick="window.location.href = &apos;/install/macos&apos;"><b><a href="/install/macos">macOS</a></b></div>
+<div class="list_item linkholder" onclick="window.location.href = &apos;/install/windows&apos;"><b><a href="/install/windows">Windows</a></b></div>
+</ul>
+<h1 id="lista">Lista</h1>
+<ul>
+<li class="list_item">A</li>
+<li class="list_item">Sou um item aleat&#xF3;rio<ul>
+<li class="list_item">b</li>
+<li class="list_item">d</li></ul></li>
+<li class="list_item">C</li>
+</ul>
+<h1 id="listadetarefas">Lista de tarefas</h1>
+<ul>
+<div class="list_item tasks" style="height:30px"><v-checkbox value disabled style="transform: translate(0px,-4px); float: left;height: 20px;margin-top: 0px; margin-bottom: 0px"></v-checkbox> Desmarcado<br></div>
+<div class="list_item tasks" style="height:30px"><v-checkbox input-value="true" value disabled style="transform: translate(0px,-4px); float: left;height: 20px;margin-top: 0px; margin-bottom: 0px"></v-checkbox> Marcado<br></div>
+<div class="list_item tasks" style="height:30px"><v-checkbox value disabled style="transform: translate(0px,-4px); float: left;height: 20px;margin-top: 0px; margin-bottom: 0px"></v-checkbox> Desmarcado 2<br></div>
+</ul>
+<h1 id="links">Links</h1>
+<p>Link para <a href="http://www.google.com/">http://www.google.com/</a></p>
+<h1 id="imagens">Imagens</h1>
+<p><img src="https://octodex.github.com/images/yaktocat.png" alt="showdown logo"></p>
+<h1 id="tabela">Tabela</h1>
+<v-simple-table><template v-slot:default>
+<thead>
+<tr>
+<th>Tabelas</th>
+<th style="text-align:center;">s&#xE3;o</th>
+<th style="text-align:right;">legais</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>col 3</strong></td>
+<td style="text-align:center;">para-a-direita</td>
+<td style="text-align:right;">$1600</td>
+</tr>
+<tr>
+<td>col 2</td>
+<td style="text-align:center;"><em>centralizado</em></td>
+<td style="text-align:right;">$12</td>
+</tr>
+<tr>
+<td>cortado</td>
+<td style="text-align:center;"><del>u.U</del></td>
+<td style="text-align:right;">$1</td>
+</tr>
+</tbody>
+</template></v-simple-table>
+<h1 id="menes">Men&#xE7;&#xF5;es</h1>
+<p>Link para o perfil <a href="https://github.com/arnilsenarthur">@arnilsenarthur</a></p>
+<h1 id="emojissmile">Emojis &#x1F604;</h1>
+<p>&#x1F604; 
+&#x1F606;</p>
                                 <v-fab-transition>
                                     <v-btn class="primary" dark fixed bottom right fab @click.stop="langdialog = true">
                                         <v-icon>mdi-book-open-page-variant</v-icon>
@@ -255,7 +343,7 @@
                                 <v-footer padless class="grey lighten-2" light style="border-radius: 4px;">
                                     <v-col class="text-center" cols="12" style="padding: 11px;">
                                         {{ new Date().getFullYear() }} — <strong>Cool Language Project</strong> —
-                                        <b class="caption">Based on Wiki.js , created using Vuetify</b>
+                                        <b class="caption">Baseado em Wiki.js , criado usando Vuetify</b>
                                     </v-col>
                                 </v-footer>
                                 <div style="height: 8px;">
@@ -266,11 +354,11 @@
                             <v-dialog v-model="langdialog" max-width="290">
                                 <v-card>
                                     <v-card-title class="headline">
-                                        Language
+                                        Idioma
                                     </v-card-title>
 
                                     <v-card-text>
-                                        Choose your language
+                                        Escolha um idioma abaixo
 
                                         <v-list dense>
                                             <v-list-item-group v-model="langselected" color="primary">
@@ -294,7 +382,7 @@
                                         <v-spacer></v-spacer>
 
                                         <v-btn color="green darken-1" text @click="langdialog = false">
-                                            Close
+                                            Fechar
                                         </v-btn>
                                     </v-card-actions>
                                 </v-card>
@@ -325,18 +413,18 @@
                 versionmenu_y: 0,
 
                 //Current page info
-                cur_path: [{"text":"2.0","disabled":true,"normal":true,"href":""},{"text":"another","disabled":true,"normal":true,"href":""},{"text":"brick","disabled":true,"normal":true,"href":""}],
-                cur_sections: [{"text":"Test Title","level":0,"color":"black","target":"testtitle"}],
-                cur_tags: [{"text":"main tag","color":"blue"},{"text":"another tag","color":"yellow"}],
+                cur_path: [{"text":"1.0","disabled":true,"normal":true,"href":""},{"text":"test","disabled":true,"normal":true,"href":""},{"text":"example","disabled":true,"normal":true,"href":""}],
+                cur_sections: [{"text":"Testando Seções","level":0,"color":"black","target":"testandosees"},{"text":"E Subseções","level":1,"color":"gray","target":"esubsees"},{"text":"Realçamento de Código","level":0,"color":"black","target":"realamentodecdigo"},{"text":"Seção de Texto (Alerta)","level":0,"color":"black","target":"seodetextoalerta"},{"text":"Lista de Links","level":0,"color":"black","target":"listadelinks"},{"text":"Lista","level":0,"color":"black","target":"lista"},{"text":"Lista de tarefas","level":0,"color":"black","target":"listadetarefas"},{"text":"Links","level":0,"color":"black","target":"links"},{"text":"Imagens","level":0,"color":"black","target":"imagens"},{"text":"Tabela","level":0,"color":"black","target":"tabela"},{"text":"Menções","level":0,"color":"black","target":"menes"},{"text":"Emojis 😄","level":0,"color":"black","target":"emojissmile"}],
+                cur_tags: [{"text":"main tag","color":"red"},{"text":"another tag","color":"green"}],
                 cur_last_change: {"author":"Admin","date":"10/12/2020"},
                 cur_creation: {"author":"Admin","date":"09/12/2020"},
-                cur_title: "Brick",
-                cur_subtitle: "In the Wall, obviously",
+                cur_title: "Exemplo",
+                cur_subtitle: "Exemplo de suporte de MarkDown",
                 search_overlay: false,
 
                 //Cross-page info
-                navigation: [{"text":"Another","isheader":true},{"text":"Brick","icon":"mdi-table","isheader":false,"href":"../another/brick"}],
-                langselected: 0,
+                navigation: [{"text":"Teste","isheader":true},{"text":"Exemplo","icon":"mdi-home-variant","isheader":false,"href":"../test/example"},{"text":"Outra","icon":"mdi-file-document","isheader":false,"href":"../test/another"}],
+                langselected: 1,
                 langitems: [{"text":"English","href":"en-us"},{"text":"Português","href":"pt-br"}],
                 versionmenu_items: [{"title":"1.0","home":"../../1.0/test/example"},{"title":"2.0","home":"../../2.0/another/brick"}]
             },
@@ -383,7 +471,7 @@
             });
 
             //Parse source code
-            $("#source_card_code").text(stDecomp("# Testāitle\r\nċA beautiful texąĖlĘof inĚrnaĘmđnĤgs"));
+            $("#source_card_code").text(stDecomp("\r\nĀ# Testando SeçõĆĀ ĔĀLorem ipsuěċlĘ sit amet, consectĬurĩdĝiscing elħ. Nunc ullĪİrpeĹvŎpuĈĶ nequeĮŀ maximus rĽū fŀibŰaŇNĪįıĻīntĠ leČŚōrnaōltŮĿĆĮnıŻŁš ƀœĽĥoŏiĿƀĻnŇMaĴeƉŬid pĘttħĤƃĵūĮvń gravƪƊŠĪƣĘbiƗĸpƚnĽiĮİmmoċĩĨƷhƞŎƊŐĿǊaĮưŋƪŊĨĬťķsŇFūceŃgǤrhıcŰĆtŇPƻĆƧĨacǳmsĉĮŕoŬƷlƬƮƊvaŮƵ duǅŞŠǬǚųƊǊslĮauĵĤŀĶrȑěȄŬŦgƉǓƂĴƀǧ DıĴ ȇŃfŲƟĸƗƮĘǷńƃſĆȕŝƓǊbhǭǤŅgǘƬŎƽƉĹbŐĊņňźğľļĨrŚɞěpǚŕaǶȱȒŬsǑaƃŬƒnĩɂɊĨpęưĠȿŏǻɃƖĳmŔrĮƃČǽ hƧdęŮĨĶɿĘĮŮɚťaȪƊƭrĈŭůsȝŌphȍĬƻ ǀěɾƗĚřŬʃŇIɰȞȠĹƘǈŬƧũȃǮĨǳrʒĸȫŎƍƞĆɅƢňŎŐȦʌɀŰƆȚǅũʀĻǤǽǿȁɰeʹĩĩrǳʭɂǮĹ:smiƃ:ŭǱŋŰŤŦĸƚʅʰtȾĀĂăEčubĳĐĒā\nėęěĝğġƜĤĦǼīĭƔĳĵķĹaĻʴǛłńɗŉŋƋˈŒʀȵŘŚɥǬȔšţɰŦŨŪŬʑŰŲɇŶŸźİɖžƀěʃōĨʾƊˀƎiƐ˄ƔɍǬʳƚɪƝȺơƣƥǫƨĜƫʗƯƱĹƳȯƶƸƺƼƾʤuǁ Mǃǅ̈́ɮǋǍoǏǑʄǔeǖǳŐƂǽȘǞŀĿȑſŃĨ̊ūǨǪǬ˘ǯ˩ǳʵćǷǹĳͶ˔Ġ˖ȃrȅȵƸ͐ȋȍiȏȑȓşƖȗǜŝĽȜĩȟ˲ĹȢŕȥŃΌȨʔȫɥȭƴȰȲŞŌȶeȸƞħȻΠΠɹɁĶsɄɯΛɈɳƂiɍͮřlɑȍ ɔĉĻɦŹʦǪɜŭɟƁɢǽɤɦDɨƛdɬ˃ξĉŜ;ɴɶΓmιɻμɽʩŕʂƄĩŌʇĊʊħʨʎʁʚʒȩȫΐϹȏʅʟʡƍƿ͜ʦĚ϶ʪȭo˞ΞʱǆƙʵǊmʸǤʻʽƈ̻ƌƎϟıŸˇźǤĶŏˌĨˎĜɿΣ̾ǼǾΉĉρƊȍ˝ ʮĶˠ˨ǲ˫̦ȞʑϰЍθ **bƜdсʆͫǬ__уldъ˴\năReɬçĪǻČdǬCóĻgoĀ`ѢĀ̲͆e.ģg('BģckŻњ');ĀwǖƃƗɞeѡѣ˾Ѣ`jƼaĀ/сē* @ȞtǱĹJohɰSˤҍ <jґƢˣħh@exĪɢѧǎ>Ā*/ĀpǽkʔȖ2f.gїĳrƷr.ǐњlѵ˾řɔƞĩ˺ЃĵĥˁĵfpįŐsŬL2CʠĹҠĶĊӎ2ObjȮ {ēɏӀŌćɥӁ̭ɬčҎĨERROR = 0x0ӵ1ҽӟҿŅΰoƪťoƷTo(Ȣ x̥ĨyԈ z)ӝӟĔ_aǅӱnˇҽĔĔѩ(\"SǱŎƫƒĨbǬcɬƃd\"ѴԐĜf (1 > 5Ԏ{ // wtf!?ԬĔɶʾԘԙ}ӟՇ\nՉҀѐăĎçãљǬąx˲ԯAƃʘa)ĀԳSouĩŔ͍ƁɔoİȐǬŀfĘŦՐѠ˾<!-- մҦ\nԳ{ğǾĆs} ˷eաɪաƁњĥȟվհĀղմն-ոպŕΌrրւքՠōȦrΌ՝ U֜ΌթȵΒaʫŀʠsՍ LĽʙֈ֮nk֫\nյ[Ȳѯŕ](/ŀӣŏ/ċֺr՜ֶ [HȄkuּ־ĲĈׁʇΌ׌׆ַK˹ŕŞλ׎ֿבl/׌ԤƈĬĆז׈ֲuxםאԧ/ŅԖxק[ŦcOS׬׀נ׵ȅ׳Wŀċws׹ן/w؀o؂׆Ăׇ֭֯҄AĀյ՟ֆ̂ʍĩƃɥóŮհԙնϊԬյdؒ C֮֬ӣ֤Ĉęf֧ؤ[ ]ȱĆŦ˜̑հַ׫͞бطدرسˣؼǒ2اŀִĖنƬȍƊ<hƯp:ԹwٓҲoogƃ.ǎ/ո،IȩƧֵ![sǱw؁ɰѩoּَtĞّ/է˲њxҲҝ˹ٚͦ־٠s/yak˲ԦǶpŁ؋ёĄaԤŐĀ|ډڋ֧؞؞ڎsՑڒڗ ڎƃҳƚ|ڍ֐մڡڢ֏|:ڣڧڡ:ڎڧڪڟсİȈ3цԙڎҫƻ-a-ĻęħƊڎ$16ӵĔڞ\nڎڰ 2ژۄр͌ЃŅzط҉ڎĔۀۊڙڟŒĈǒڗڎ~~u.U۟ۋ۔ەԱۘ˾ăMƧ˼ֲֵѰڶƊČʀŲȈҋƈ˥Άȍҍĸ֬Eǐjƚˢˤ˦ Ā܄˥e˧܈ŐugǖŁ:Ā"));
             hljs.highlightBlock(document.getElementById("source_card_code"));
             hljs.lineNumbersBlock(document.getElementById("source_card_code"));
             vue.sourcedialog = false;
@@ -421,7 +509,7 @@
                 return;
             }
             $.get("../../../search.json", function(data) {
-                searchdata = data["en-us"]["2.0"];
+                searchdata = data["pt-br"]["1.0"];
                 doSearchEnd(query);
             });
         }
@@ -505,7 +593,7 @@
             }
 
             if (content.length == 0) {
-                content += '<div class="search_item none"><div class="search_item_title none">No Results Found</div></div>';
+                content += '<div class="search_item none"><div class="search_item_title none">Nenhum Resultado Encontrado</div></div>';
             }
             $("#searchcontent").html(content);
 

@@ -16,12 +16,12 @@
         "search_no_results": "Nenhum Resultado Encontrado"
     },
     "1.0": {
-        "start": "Start",
-        "start/main": ["Main", "Test Description"],
-        "start/second": ["Second", "Second Description :D"]
+        "test": "Teste",
+        "test/example": ["Exemplo", "Exemplo de suporte de MarkDown"],
+        "test/another": ["Outra", "Outra página aleatória"]
     },
     "2.0": {
         "another": "Outro",
-        "another/brick": ["Tijolo", "Teste 2"]
+        "another/brick": ["Tijolo", "No muro, obviamente"]
     }
 }

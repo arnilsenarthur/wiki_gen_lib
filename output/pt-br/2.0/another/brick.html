@@ -275,7 +275,7 @@
                                         <v-list dense>
                                             <v-list-item-group v-model="langselected" color="primary">
                                                 <v-list-item v-for="(item, i) in langitems" :key="i" :ithref="item.href" onclick="
-                                                    let sp = window.location.href.split('/');
+                                                    let sp = window.location.href.split('?')[0].split('/');
                                                     sp[sp.length - 4] = $(this).attr('ithref');
                                                     window.location.href = sp.join('/');
                                                     ">
@@ -331,14 +331,14 @@
                 cur_last_change: {"author":"Admin","date":"10/12/2020"},
                 cur_creation: {"author":"Admin","date":"09/12/2020"},
                 cur_title: "Tijolo",
-                cur_subtitle: "Teste 2",
+                cur_subtitle: "No muro, obviamente",
                 search_overlay: false,
 
                 //Cross-page info
                 navigation: [{"text":"Outro","isheader":true},{"text":"Tijolo","icon":"mdi-table","isheader":false,"href":"../another/brick"}],
                 langselected: 1,
                 langitems: [{"text":"English","href":"en-us"},{"text":"Português","href":"pt-br"}],
-                versionmenu_items: [{"title":"1.0","home":"../../1.0/start/main"},{"title":"2.0","home":"../../2.0/another/brick"}]
+                versionmenu_items: [{"title":"1.0","home":"../../1.0/test/example"},{"title":"2.0","home":"../../2.0/another/brick"}]
             },
             methods: {
                 searchUpdate: function(e) {
@@ -398,7 +398,7 @@
             //Alert Icon color
             $('.v-alert__icon').attr('style', 'color: rgba(255,255,255,0.75) !important');
 
-            var scrollelm = window.location.hash.substr(1);
+            var scrollelm = window.location.href.split("?")[1];
             if (scrollelm != null && ("" + scrollelm).length > 0)
                 scrollToElement(scrollelm);
         };
@@ -486,7 +486,7 @@
                         results.push({
                             similarity: s,
                             type: "section",
-                            page: page + ".html#" + searchdata[page].sections[t][1],
+                            page: page + ".html?" + searchdata[page].sections[t][1],
                             title: searchdata[page].title,
                             subtitle: searchdata[page].subtitle,
                             section: searchdata[page].sections[t][0],

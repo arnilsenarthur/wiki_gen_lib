@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>v2.0 - Brick</title>
+    <title>v1.0 - Outra</title>
     <link href="../../../css/style.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
@@ -62,14 +62,14 @@
                 <v-navigation-drawer class="no-printme" absolute bottom permanent dark id="sbar" style='background-color: #1976d2 !important;position: fixed;'>
                     <div class="pa-3 d-flex blue darken-3" style="padding: 12px;">
                         <button type="button" class="v-btn v-btn--depressed theme--dark v-size--default blue darken-2" aria-label="Home" style="min-width: 0px;" onclick="
-                            window.location.href = '../another/brick.html'
+                            window.location.href = '../test/example.html'
                         "><span class="v-btn__content"><i aria-hidden="true"
                                     class="v-icon notranslate mdi mdi-home theme--dark"
                                     style="font-size: 20px;"></i></span></button>
                         <button onclick="showVersions()" id="versionbtn" type="button" class="ml-3 v-btn v-btn--depressed theme--dark v-size--default blue darken-2" style="flex: 1 1 100%;overflow: hidden;">
                             <div class="text-none"
                                 style="float: left; height: 100%; background-color: dodgerblue; margin-left: -16px; width: 46px; line-height: 36px;">
-                                v2.0
+                                v1.0
                             </div>
                             <span class="v-btn__content">
                                 <div class="body-2 text-none">Change</div>
@@ -138,7 +138,7 @@
                             </v-chip>
 
                             <v-chip class="ma-2" color="orange" label style="float: right" dark>
-                                <b>2.0</b>
+                                <b>1.0</b>
                             </v-chip>
                         </div>
                     </div>
@@ -244,7 +244,7 @@
 
                             <!--Content-->
                             <div class="flex maincontent page-col-content lg9">
-                                <h1 id="testtitle">Test Title</h1>
+                                <v-alert dense type="error" text>This documentation is for <b>version 1.0 (Outdated)</b>. We recomend to upgrade to <b>version 2.0</b> (latest)</b></v-alert><h1 id="testtitle">Test Title</h1>
 <p>A beautiful text full of internal meanings</p>
                                 <v-fab-transition>
                                     <v-btn class="primary" dark fixed bottom right fab @click.stop="langdialog = true">
@@ -325,17 +325,17 @@
                 versionmenu_y: 0,
 
                 //Current page info
-                cur_path: [{"text":"2.0","disabled":true,"normal":true,"href":""},{"text":"another","disabled":true,"normal":true,"href":""},{"text":"brick","disabled":true,"normal":true,"href":""}],
+                cur_path: [{"text":"1.0","disabled":true,"normal":true,"href":""},{"text":"test","disabled":true,"normal":true,"href":""},{"text":"another","disabled":true,"normal":true,"href":""}],
                 cur_sections: [{"text":"Test Title","level":0,"color":"black","target":"testtitle"}],
-                cur_tags: [{"text":"main tag","color":"blue"},{"text":"another tag","color":"yellow"}],
+                cur_tags: [{"text":"another tag","color":"green"}],
                 cur_last_change: {"author":"Admin","date":"10/12/2020"},
                 cur_creation: {"author":"Admin","date":"09/12/2020"},
-                cur_title: "Brick",
-                cur_subtitle: "In the Wall, obviously",
+                cur_title: "Outra",
+                cur_subtitle: "Another random page",
                 search_overlay: false,
 
                 //Cross-page info
-                navigation: [{"text":"Another","isheader":true},{"text":"Brick","icon":"mdi-table","isheader":false,"href":"../another/brick"}],
+                navigation: [{"text":"Test","isheader":true},{"text":"Main","icon":"mdi-home-variant","isheader":false,"href":"../test/example"},{"text":"Outra","icon":"mdi-file-document","isheader":false,"href":"../test/another"}],
                 langselected: 0,
                 langitems: [{"text":"English","href":"en-us"},{"text":"Português","href":"pt-br"}],
                 versionmenu_items: [{"title":"1.0","home":"../../1.0/test/example"},{"title":"2.0","home":"../../2.0/another/brick"}]
@@ -421,7 +421,7 @@
                 return;
             }
             $.get("../../../search.json", function(data) {
-                searchdata = data["en-us"]["2.0"];
+                searchdata = data["en-us"]["1.0"];
                 doSearchEnd(query);
             });
         }

@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>v2.0 - Brick</title>
+    <title>v1.0 - Main</title>
     <link href="../../../css/style.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
@@ -62,14 +62,14 @@
                 <v-navigation-drawer class="no-printme" absolute bottom permanent dark id="sbar" style='background-color: #1976d2 !important;position: fixed;'>
                     <div class="pa-3 d-flex blue darken-3" style="padding: 12px;">
                         <button type="button" class="v-btn v-btn--depressed theme--dark v-size--default blue darken-2" aria-label="Home" style="min-width: 0px;" onclick="
-                            window.location.href = '../another/brick.html'
+                            window.location.href = '../test/example.html'
                         "><span class="v-btn__content"><i aria-hidden="true"
                                     class="v-icon notranslate mdi mdi-home theme--dark"
                                     style="font-size: 20px;"></i></span></button>
                         <button onclick="showVersions()" id="versionbtn" type="button" class="ml-3 v-btn v-btn--depressed theme--dark v-size--default blue darken-2" style="flex: 1 1 100%;overflow: hidden;">
                             <div class="text-none"
                                 style="float: left; height: 100%; background-color: dodgerblue; margin-left: -16px; width: 46px; line-height: 36px;">
-                                v2.0
+                                v1.0
                             </div>
                             <span class="v-btn__content">
                                 <div class="body-2 text-none">Change</div>
@@ -138,7 +138,7 @@
                             </v-chip>
 
                             <v-chip class="ma-2" color="orange" label style="float: right" dark>
-                                <b>2.0</b>
+                                <b>1.0</b>
                             </v-chip>
                         </div>
                     </div>
@@ -244,8 +244,96 @@
 
                             <!--Content-->
                             <div class="flex maincontent page-col-content lg9">
-                                <h1 id="testtitle">Test Title</h1>
-<p>A beautiful text full of internal meanings</p>
+                                <v-alert dense type="error" text>This documentation is for <b>version 1.0 (Outdated)</b>. We recomend to upgrade to <b>version 2.0</b> (latest)</b></v-alert><h1 id="testingsections">Testing Sections</h1>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ullamcorper vulputate neque, in maximus risus finibus a. Nam condimentum leo ut urna ultricies, non congue turpis sollicitudin. Maecenas id porttitor lectus, vel gravida quam. Morbi turpis nisi, commodo at vehicula lacinia, tincidunt et metus. Fusce eget rhoncus est. Praesent accumsan, eros vel porta varius, dui neque lacinia nisl, auctor interdum eros magna at lectus. Donec vel efficitur tortor. Pellentesque non nibh eget ligula pulvinar blandit. Nam suscipit rutrum placerat. Duis sodales non ante eget pretium. Pellentesque semper, leo ac hendrerit tempor, risus magna porta risus, ac pharetra quam sem tempus leo. In auctor turpis enim, eget cursus urna ultrices non. Nullam et tellus ut nisi imperdiet accumsan eget a arcu. Integer &#x1F604; rhoncus in mauris ac auctor.</p>
+<h2 id="andsubsections">And Subsections</h2>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ullamcorper vulputate neque, in maximus risus finibus a. Nam condimentum leo ut urna ultricies, non congue turpis sollicitudin. Maecenas id porttitor lectus, vel gravida quam. Morbi turpis nisi, commodo at vehicula lacinia, tincidunt et metus. Fusce eget rhoncus est. Praesent accumsan, eros vel porta varius, dui neque lacinia nisl, auctor interdum eros magna at lectus. Donec vel efficitur tortor. Pellentesque non nibh eget ligula pulvinar blandit. Nam suscipit rutrum placerat. Duis sodales non ante eget pretium. Pellentesque semper, leo ac hendrerit tempor, risus magna porta risus, ac pharetra quam sem tempus leo. In auctor turpis enim, eget cursus urna ultrices non. Nullam et tellus ut nisi imperdiet accumsan eget a arcu. Integer rhoncus in mauris ac auctor. <strong>bold</strong> hehe <strong>bold</strong></p>
+<h1 id="codehighilight">Code highilight</h1>
+<pre class="hljs hljspre"><code class="hljs hljscontent" style="background-color: transparent;"><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;Block code&apos;</span>);
+<span class="hljs-keyword">while</span> <span class="hljs-literal">true</span>
+</code></pre>
+<pre class="hljs hljspre"><code class="hljs java language-java hljscontent" style="background-color: transparent;"><span class="hljs-comment">/**
+ * <span class="hljs-doctag">@author</span> John Smith &lt;john.smith@example.com&gt;
+*/</span>
+<span class="hljs-keyword">package</span> l2f.gameserver.model;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">strictfp</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">L2Char</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">L2Object</span> </span>{
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> Short ERROR = <span class="hljs-number">0x0001</span>;
+
+  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">moveTo</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> y, <span class="hljs-keyword">int</span> z)</span> </span>{
+    _ai = <span class="hljs-keyword">null</span>;
+    log(<span class="hljs-string">&quot;Should not be called&quot;</span>);
+    <span class="hljs-keyword">if</span> (<span class="hljs-number">1</span> &gt; <span class="hljs-number">5</span>) { <span class="hljs-comment">// wtf!?</span>
+      <span class="hljs-keyword">return</span>;
+    }
+  }
+}
+</code></pre>
+<h1 id="blockquotes">Blockquotes</h1>
+<v-alert dense type="info" text>I&apos;m just a info block!</v-alert>
+<!-- -->
+<v-alert dense type="success" text> And i&apos;m a sucess!</v-alert>
+<!-- -->
+<v-alert dense type="error" text> I&apos;m a error!<br>  A multiline error</v-alert>
+<h1 id="listoflinks">List of Links</h1>
+<ul>
+<div class="list_item linkholder" onclick="window.location.href = &apos;/install/docker&apos;"><b><a href="/install/docker">Docker</a></b></div>
+<div class="list_item linkholder" onclick="window.location.href = &apos;/install/heroku&apos;"><b><a href="/install/heroku">Heroku</a></b></div>
+<div class="list_item linkholder" onclick="window.location.href = &apos;/install/kubernetes&apos;"><b><a href="/install/kubernetes">Kubernetes</a></b></div>
+<div class="list_item linkholder" onclick="window.location.href = &apos;/install/linux&apos;"><b><a href="/install/linux">Linux</a></b></div>
+<div class="list_item linkholder" onclick="window.location.href = &apos;/install/macos&apos;"><b><a href="/install/macos">macOS</a></b></div>
+<div class="list_item linkholder" onclick="window.location.href = &apos;/install/windows&apos;"><b><a href="/install/windows">Windows</a></b></div>
+</ul>
+<h1 id="list">List</h1>
+<ul>
+<li class="list_item">A</li>
+<li class="list_item">I&apos;m just a random item<ul>
+<li class="list_item">b</li>
+<li class="list_item">d</li></ul></li>
+<li class="list_item">C</li>
+</ul>
+<h1 id="tasklist">Task List</h1>
+<ul>
+<div class="list_item tasks" style="height:30px"><v-checkbox value disabled style="transform: translate(0px,-4px); float: left;height: 20px;margin-top: 0px; margin-bottom: 0px"></v-checkbox> Unchecked<br></div>
+<div class="list_item tasks" style="height:30px"><v-checkbox input-value="true" value disabled style="transform: translate(0px,-4px); float: left;height: 20px;margin-top: 0px; margin-bottom: 0px"></v-checkbox> Checked<br></div>
+<div class="list_item tasks" style="height:30px"><v-checkbox value disabled style="transform: translate(0px,-4px); float: left;height: 20px;margin-top: 0px; margin-bottom: 0px"></v-checkbox> Unchecked 2<br></div>
+</ul>
+<h1 id="links">Links</h1>
+<p>link to <a href="http://www.google.com/">http://www.google.com/</a></p>
+<h1 id="images">Images</h1>
+<p><img src="https://octodex.github.com/images/yaktocat.png" alt="showdown logo"></p>
+<h1 id="tables">Tables</h1>
+<v-simple-table><template v-slot:default>
+<thead>
+<tr>
+<th>Tables</th>
+<th style="text-align:center;">Are</th>
+<th style="text-align:right;">Cool</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>col 3 is</strong></td>
+<td style="text-align:center;">right-aligned</td>
+<td style="text-align:right;">$1600</td>
+</tr>
+<tr>
+<td>col 2 is</td>
+<td style="text-align:center;"><em>centered</em></td>
+<td style="text-align:right;">$12</td>
+</tr>
+<tr>
+<td>zebra stripes</td>
+<td style="text-align:center;"><del>are neat</del></td>
+<td style="text-align:right;">$1</td>
+</tr>
+</tbody>
+</template></v-simple-table>
+<h1 id="mentions">Mentions</h1>
+<p>Link to <a href="https://github.com/arnilsenarthur">@arnilsenarthur</a> profile</p>
+<h1 id="emojissmile">Emojis &#x1F604;</h1>
+<p>&#x1F604; 
+&#x1F606;</p>
                                 <v-fab-transition>
                                     <v-btn class="primary" dark fixed bottom right fab @click.stop="langdialog = true">
                                         <v-icon>mdi-book-open-page-variant</v-icon>
@@ -325,17 +413,17 @@
                 versionmenu_y: 0,
 
                 //Current page info
-                cur_path: [{"text":"2.0","disabled":true,"normal":true,"href":""},{"text":"another","disabled":true,"normal":true,"href":""},{"text":"brick","disabled":true,"normal":true,"href":""}],
-                cur_sections: [{"text":"Test Title","level":0,"color":"black","target":"testtitle"}],
-                cur_tags: [{"text":"main tag","color":"blue"},{"text":"another tag","color":"yellow"}],
+                cur_path: [{"text":"1.0","disabled":true,"normal":true,"href":""},{"text":"test","disabled":true,"normal":true,"href":""},{"text":"example","disabled":true,"normal":true,"href":""}],
+                cur_sections: [{"text":"Testing Sections","level":0,"color":"black","target":"testingsections"},{"text":"And Subsections","level":1,"color":"gray","target":"andsubsections"},{"text":"Code highilight","level":0,"color":"black","target":"codehighilight"},{"text":"Blockquotes","level":0,"color":"black","target":"blockquotes"},{"text":"List of Links","level":0,"color":"black","target":"listoflinks"},{"text":"List","level":0,"color":"black","target":"list"},{"text":"Task List","level":0,"color":"black","target":"tasklist"},{"text":"Links","level":0,"color":"black","target":"links"},{"text":"Images","level":0,"color":"black","target":"images"},{"text":"Tables","level":0,"color":"black","target":"tables"},{"text":"Mentions","level":0,"color":"black","target":"mentions"},{"text":"Emojis 😄","level":0,"color":"black","target":"emojissmile"}],
+                cur_tags: [{"text":"main tag","color":"red"},{"text":"another tag","color":"green"}],
                 cur_last_change: {"author":"Admin","date":"10/12/2020"},
                 cur_creation: {"author":"Admin","date":"09/12/2020"},
-                cur_title: "Brick",
-                cur_subtitle: "In the Wall, obviously",
+                cur_title: "Main",
+                cur_subtitle: "MarkDown support example",
                 search_overlay: false,
 
                 //Cross-page info
-                navigation: [{"text":"Another","isheader":true},{"text":"Brick","icon":"mdi-table","isheader":false,"href":"../another/brick"}],
+                navigation: [{"text":"Test","isheader":true},{"text":"Main","icon":"mdi-home-variant","isheader":false,"href":"../test/example"},{"text":"Outra","icon":"mdi-file-document","isheader":false,"href":"../test/another"}],
                 langselected: 0,
                 langitems: [{"text":"English","href":"en-us"},{"text":"Português","href":"pt-br"}],
                 versionmenu_items: [{"title":"1.0","home":"../../1.0/test/example"},{"title":"2.0","home":"../../2.0/another/brick"}]
@@ -383,7 +471,7 @@
             });
 
             //Parse source code
-            $("#source_card_code").text(stDecomp("# Testāitle\r\nċA beautiful texąĖlĘof inĚrnaĘmđnĤgs"));
+            $("#source_card_code").text(stDecomp("\r\nĀ# Testing SecĈonsĀ ĕĀLorem ipsuĜdolę sit amet, cđsĎtĮurīdĞiscĉċelĩ. Nunc ullĬĲrpeĹvŌputaĶ nequeİĉ maximus rĽŪ fĉibůaŅNĬıđĻĭntġ leoŋĪĸnaŋltŭĿĆİnđźĊŠ ſőĽħĤŃĿſĻnŅMaĎeƈūid pętĈtĦƂďŪİvł gravƨƉşĬơębiƖĸpƙnĽiİĲmmoģīĪƵhicŌƉŎĿǈaİĈŉƨňĪĮŤķsŅFŪce egǣrhđǖūĆtŅPƹĆƥĪacǖmsanİœoūƵlƪƬƉvaŭƳ duǃŝşǫǙŲƉǈslİauďĦĉĶrȒĜȅūťgƈǑƁĵŪŅDđĎ ȈǬfűƝĸƖƬęǷłƂžĆȖŜƒǈbhǬǮĪŃgǗƪŌƻƈĹbŎnĻǶņŹĠľļĪrŘɠĜpǙœŚȱȓūsǏaƂūƑnīɂɊǣpĚĈġȿōǻɃƕĴmŒrİƂƄǽ hƥdĚŭĪĶʀęİŭɜŤaȫƉƫrřŬŮsȞŊphȎĮƹ ƾĜɿƖěŗūʄŅIɱȟȡĹƗǆǴǈmȄɋıĸʓƇƉŌƌǕĆɅƠņŌŎȧʍɀůŘŜǉĝʀœĻǣǽǿȁɱǭ˔īrǖʮɂǮĹ:smiƂ:ŬǱŉůţťĸƙʆʱƯr.ĀĂăAɗČubĴďiĳ˵\nĘĚĜĞĠĢĤĦĨǼĭįƓ˽ĶƗĺļɝĊǬŃəŇŉƊˈŐʁȵŖŘŚǫȕŠŢɱťŧũūʒůűɇŵŷŹĲɗŨǻƀʄƅŋrȬˀƍiƏ˄ƓɎǫʴƙɫōǕĩuƟơƣǪƦĝƩʘƭĩưȯʝȵƶƸƺƼʥuƿ Mǁǃ͆ɯǉǋoǍǏʅǒeǔǖŎƁǽșǝĉĿȒžǬĪ̍Ȱ Ǩľǫ˙ɟ˩ǳǬćǷǹĴͺ˕ġ˗ȄrȆ͚ȉ͔ȌȎiȐȒȔŞƕȘǛˎȜȞȠ˲ĝɂȥƀȨʔʖȭƱſǦ ȲŝŊȶeȸ͊̒˲˲ɺɁĶsɄɰˎɈɴɌiɎͲŗlɒȎ ɕȂɘ̲ʧǩɞŬɡƀɤǽɦəDɩƚdɭ˃πȂś΃ƪɷΘmλɼξɾʪœʃƃīŊʈɗʋĩʩʏʂʛʓȪȬΕϺȐʆʠʢƌƽ͠ʧěϷʫȮo˞īΣĦͦǬʷʹǣǖrʽ̼ʿƋƍϠđŷˇŹǣĶōˌĪțǃŨʁ˓ǼǾΎȂσī˛˝ ʯĶˠ˨ǲ˫̨ȟʒϱЎʲŅ**bĤdтʇͯǫ__фldы́ăCǏǫǔgǔɍhtĀ`ѝĀ̴͈e.ĥg('Bĥckźde');Āwјͅɠeќўā\nѝ`jƺaĀ/тĔ* @ȟtǱĹJohɱSˤ҉ <jҍƠˣĩh@exĬɤѢǌ>Ā*/Āpǽkʕȗ2f.gĬǺrƵ˳ǎѭlѱѺŗɕǕī˼ЄďħˁďfpıŎsūL2CʡĹҜĶɗӉ2Objĵ {ĔɐһŊćŚҼ̯ɭČҊĪERROR = 0x0Ӱ1ҸӚҺƜȵoƨŤoƵTo(ȣ x̧Īyԃ z)ӘӚĕ_aǃӬnˇҸĕĕѤ(\"SǱŌƩƑĪbǫcɭƂd\"Ѱԋĝf (1 > 5ԉ{ // wtf!?ԧĕɷƇԓԔ}ӚՂ\nՄѼё ѨoѪşoνĀԮI'ĜjŪǼΥfƄɕՋk!́<!-- բҢ\nԮ{ĠǾĆs} ˸ƩiՓбժլ՞Ѻՠբդ-զըœΑrծՒĜƉտęշԮAŤˀ˥ĉ΂rրՈLĽĪoԩ֓nkē\nգ[ȲѪœ](/ĉӞō/ģ֠r)Ā֝Hȅku֢֤Ēř֧ʈΑֱ֬֜ [K˻œŝνֳֶ֥l/ֱԟ̼ĮĆֻ֝֘uxֵׄԢ/Ńԑx׎ֽťcOSדׇ֦לȆך[Wĉģwsנ׆/wרoתֻĂ ֓ć֭կ׸փ Օćбƹɗͪĝʎԧգb؅ȑ׸CՈTasѫ׶ћּ[ ] Uŉʈ֠d׸[ג ӌĎke؜ؙؓؕؗآؤ 2֒ĉ֚ĀחѫƯғњtp:ԴwػҮoogƂ.ǌ/զ״IȪĆĀ![sǱwשɱѤo֢ضğع/ՋƯѭxҮҙ˻ق֤ͪوs/yakƯԡǶpĊ׳\nă؍ɕى\n|ĄaٲūԔٺٵAĚٺٿĕٵѓĤځĀٵբڈډډ |:ڊڏբ:ڇډڒچ тĲȉ3ĝsчڌʛїt-ɭυŝƩٵ$16Ӱڌږڙجڜڀٵ*͐Ȥؤ҅Ԕٵĕک2ڭٴԇebʤćŭŒūٵ~~ʢŜeŚۉځٺکھ״Mǻ˿Ēėدȼ҆Ȏǈl΋Ȏ҉Ȼɶ֖˥ѷѺăEǎjƙˢˤ˦ Āۮۦ˧۲Ŏuїŀ:Ā"));
             hljs.highlightBlock(document.getElementById("source_card_code"));
             hljs.lineNumbersBlock(document.getElementById("source_card_code"));
             vue.sourcedialog = false;
@@ -421,7 +509,7 @@
                 return;
             }
             $.get("../../../search.json", function(data) {
-                searchdata = data["en-us"]["2.0"];
+                searchdata = data["en-us"]["1.0"];
                 doSearchEnd(query);
             });
         }

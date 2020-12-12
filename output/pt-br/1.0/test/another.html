@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>v2.0 - Brick</title>
+    <title>v1.0 - Outra</title>
     <link href="../../../css/style.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
@@ -22,7 +22,7 @@
                 <!--Search Screen-->
                 <v-overlay absolute :value="search_overlay" style="z-index: 1504;" :opacity="0.9">
                     <v-toolbar dark style="height: 64px;width: 100%; z-index: 4;" class="noprint black">
-                        <v-text-field solo color="primary" light label="Search" prepend-inner-icon="mdi-magnify" style="
+                        <v-text-field solo color="primary" light label="Buscar" prepend-inner-icon="mdi-magnify" style="
                         margin-left: 40px; margin-right: 10px; transform: translate(0px,15px); 
                         border-radius: 50px;" @input="searchUpdate($event)"></v-text-field>
                         <v-btn icon onclick="vue.search_overlay = false; $('body').removeClass('hideScroll')">
@@ -32,7 +32,7 @@
                     <div style="height: calc(100% - 64px); width: calc(100% - 2px); overflow: auto;" id="searchcontent" class="searchscroll">
                         <div class="search_item none">
                             <div class="search_item_title none">
-                                No Results Found
+                                Nenhum Resultado Encontrado
                             </div>
                         </div>
                     </div>
@@ -62,17 +62,17 @@
                 <v-navigation-drawer class="no-printme" absolute bottom permanent dark id="sbar" style='background-color: #1976d2 !important;position: fixed;'>
                     <div class="pa-3 d-flex blue darken-3" style="padding: 12px;">
                         <button type="button" class="v-btn v-btn--depressed theme--dark v-size--default blue darken-2" aria-label="Home" style="min-width: 0px;" onclick="
-                            window.location.href = '../another/brick.html'
+                            window.location.href = '../test/example.html'
                         "><span class="v-btn__content"><i aria-hidden="true"
                                     class="v-icon notranslate mdi mdi-home theme--dark"
                                     style="font-size: 20px;"></i></span></button>
                         <button onclick="showVersions()" id="versionbtn" type="button" class="ml-3 v-btn v-btn--depressed theme--dark v-size--default blue darken-2" style="flex: 1 1 100%;overflow: hidden;">
                             <div class="text-none"
                                 style="float: left; height: 100%; background-color: dodgerblue; margin-left: -16px; width: 46px; line-height: 36px;">
-                                v2.0
+                                v1.0
                             </div>
                             <span class="v-btn__content">
-                                <div class="body-2 text-none">Change</div>
+                                <div class="body-2 text-none">Mudar</div>
                             </span>
                         </button>
                     </div>
@@ -117,7 +117,7 @@
                         </div>
                         <!--Language display-->
                         <v-chip class="ma-2" color="red" @click.stop="langdialog = true" label style="position: absolute; right: 0px; transform: translate(0px,-6px)" dark>
-                            <b>en-us</b>
+                            <b>pt-br</b>
                         </v-chip>
                     </v-toolbar>
                     <v-divider></v-divider>
@@ -138,7 +138,7 @@
                             </v-chip>
 
                             <v-chip class="ma-2" color="orange" label style="float: right" dark>
-                                <b>2.0</b>
+                                <b>1.0</b>
                             </v-chip>
                         </div>
                     </div>
@@ -148,7 +148,7 @@
                         <div class="layout row">
                             <div flex page-col-sd lg3 style=" position: sticky !important; overflow-y: scroll; max-height: calc(100vh - 64px); top: 64px !important; margin-top: -140px; width: 25% !important; padding: 12px; padding-top: 16px;" id="second_sidebar">
                                 <div class="mb-5 v-card v-sheet theme--light">
-                                    <div class="overline cpadding pb-0 light-green--text">Sections
+                                    <div class="overline cpadding pb-0 light-green--text">Seções
                                     </div>
                                     <v-list nav dense>
                                         <v-list-item-group>
@@ -170,7 +170,7 @@
                                 </div>
                                 <div class="mb-5 v-card v-sheet theme--light">
                                     <div class="cpadding">
-                                        <div class="overline pb-0 teal--text">Tags
+                                        <div class="overline pb-0 teal--text">Etiquetas
                                         </div>
                                         <v-chip small class="ma-2" :color="item.color" dark label v-for="(item, i) in cur_tags" :key="i">
                                             <v-icon small left>
@@ -182,12 +182,12 @@
                                 </div>
                                 <div class="mb-5 v-card v-sheet theme--light">
                                     <div class="cpadding">
-                                        <div class="overline indigo--text d-flex"><span>Created By</span>
+                                        <div class="overline indigo--text d-flex"><span>Criado por</span>
                                             <div class="spacer"></div>
                                         </div>
                                         <div class="body-2 grey--text text--darken-3">{{cur_last_change.author}}</div>
                                         <div class="caption grey--text text--darken-1">{{cur_last_change.date}}</div>
-                                        <div class="overline indigo--text d-flex"><span>Last Edited By</span>
+                                        <div class="overline indigo--text d-flex"><span>Editado por</span>
                                             <div class="spacer"></div>
                                         </div>
                                         <div class="body-2 grey--text text--darken-3">{{cur_creation.author}}</div>
@@ -244,8 +244,8 @@
 
                             <!--Content-->
                             <div class="flex maincontent page-col-content lg9">
-                                <h1 id="testtitle">Test Title</h1>
-<p>A beautiful text full of internal meanings</p>
+                                <v-alert dense type="error" text>Esta documentação é para a <b>versão 1.0 (Ultrapassada)</b>. Nos recomendamos atualizar para a <b>versão 2.0</b> (Mais Recente)</b></v-alert><h1 id="ttulodeteste">T&#xED;tulo de Teste</h1>
+<p>Um &#xF3;timo texto cheio de significados</p>
                                 <v-fab-transition>
                                     <v-btn class="primary" dark fixed bottom right fab @click.stop="langdialog = true">
                                         <v-icon>mdi-book-open-page-variant</v-icon>
@@ -255,7 +255,7 @@
                                 <v-footer padless class="grey lighten-2" light style="border-radius: 4px;">
                                     <v-col class="text-center" cols="12" style="padding: 11px;">
                                         {{ new Date().getFullYear() }} — <strong>Cool Language Project</strong> —
-                                        <b class="caption">Based on Wiki.js , created using Vuetify</b>
+                                        <b class="caption">Baseado em Wiki.js , criado usando Vuetify</b>
                                     </v-col>
                                 </v-footer>
                                 <div style="height: 8px;">
@@ -266,11 +266,11 @@
                             <v-dialog v-model="langdialog" max-width="290">
                                 <v-card>
                                     <v-card-title class="headline">
-                                        Language
+                                        Idioma
                                     </v-card-title>
 
                                     <v-card-text>
-                                        Choose your language
+                                        Escolha um idioma abaixo
 
                                         <v-list dense>
                                             <v-list-item-group v-model="langselected" color="primary">
@@ -294,7 +294,7 @@
                                         <v-spacer></v-spacer>
 
                                         <v-btn color="green darken-1" text @click="langdialog = false">
-                                            Close
+                                            Fechar
                                         </v-btn>
                                     </v-card-actions>
                                 </v-card>
@@ -325,18 +325,18 @@
                 versionmenu_y: 0,
 
                 //Current page info
-                cur_path: [{"text":"2.0","disabled":true,"normal":true,"href":""},{"text":"another","disabled":true,"normal":true,"href":""},{"text":"brick","disabled":true,"normal":true,"href":""}],
-                cur_sections: [{"text":"Test Title","level":0,"color":"black","target":"testtitle"}],
-                cur_tags: [{"text":"main tag","color":"blue"},{"text":"another tag","color":"yellow"}],
+                cur_path: [{"text":"1.0","disabled":true,"normal":true,"href":""},{"text":"test","disabled":true,"normal":true,"href":""},{"text":"another","disabled":true,"normal":true,"href":""}],
+                cur_sections: [{"text":"Título de Teste","level":0,"color":"black","target":"ttulodeteste"}],
+                cur_tags: [{"text":"another tag","color":"green"}],
                 cur_last_change: {"author":"Admin","date":"10/12/2020"},
                 cur_creation: {"author":"Admin","date":"09/12/2020"},
-                cur_title: "Brick",
-                cur_subtitle: "In the Wall, obviously",
+                cur_title: "Outra",
+                cur_subtitle: "Outra página aleatória",
                 search_overlay: false,
 
                 //Cross-page info
-                navigation: [{"text":"Another","isheader":true},{"text":"Brick","icon":"mdi-table","isheader":false,"href":"../another/brick"}],
-                langselected: 0,
+                navigation: [{"text":"Teste","isheader":true},{"text":"Exemplo","icon":"mdi-home-variant","isheader":false,"href":"../test/example"},{"text":"Outra","icon":"mdi-file-document","isheader":false,"href":"../test/another"}],
+                langselected: 1,
                 langitems: [{"text":"English","href":"en-us"},{"text":"Português","href":"pt-br"}],
                 versionmenu_items: [{"title":"1.0","home":"../../1.0/test/example"},{"title":"2.0","home":"../../2.0/another/brick"}]
             },
@@ -383,7 +383,7 @@
             });
 
             //Parse source code
-            $("#source_card_code").text(stDecomp("# Testāitle\r\nċA beautiful texąĖlĘof inĚrnaĘmđnĤgs"));
+            $("#source_card_code").text(stDecomp("# Título deāeste\r\nĐUm ótimćĎxtćcheićĉ significados"));
             hljs.highlightBlock(document.getElementById("source_card_code"));
             hljs.lineNumbersBlock(document.getElementById("source_card_code"));
             vue.sourcedialog = false;
@@ -421,7 +421,7 @@
                 return;
             }
             $.get("../../../search.json", function(data) {
-                searchdata = data["en-us"]["2.0"];
+                searchdata = data["pt-br"]["1.0"];
                 doSearchEnd(query);
             });
         }
@@ -505,7 +505,7 @@
             }
 
             if (content.length == 0) {
-                content += '<div class="search_item none"><div class="search_item_title none">No Results Found</div></div>';
+                content += '<div class="search_item none"><div class="search_item_title none">Nenhum Resultado Encontrado</div></div>';
             }
             $("#searchcontent").html(content);
 

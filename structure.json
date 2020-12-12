@@ -2,7 +2,7 @@
     "return": "http://www.google.com",
     "docs": {
         "1.0": {
-            "home": "start/main",
+            "home": "test/example",
             "tags": {
                 "main tag": {
                     "color": "red"
@@ -12,18 +12,18 @@
                 }
             },
             "structure": {
-                "start": {
-                    "main": {
-                        "source": "main.md",
-                        "icon": "alien-outline",
+                "test": {
+                    "example": {
+                        "source": "markdown.md",
+                        "icon": "home-variant",
                         "tags": ["main tag", "another tag"],
                         "version": "v1.0",
                         "created": ["Admin", "09/12/2020"],
                         "last_modified": ["Admin", "10/12/2020"]
                     },
-                    "second": {
-                        "source": "test.md",
-                        "icon": "numeric-2",
+                    "another": {
+                        "source": "another.md",
+                        "icon": "file-document",
                         "tags": ["another tag"],
                         "version": "v1.12",
                         "created": ["Admin", "09/12/2020"],
@@ -46,7 +46,7 @@
             "structure": {
                 "another": {
                     "brick": {
-                        "source": "main.md",
+                        "source": "another.md",
                         "icon": "table",
                         "tags": ["main tag", "another tag"],
                         "version": "v1.0",

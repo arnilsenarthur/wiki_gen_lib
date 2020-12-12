@@ -1,33 +1,11 @@
 {
   "en-us": {
     "1.0": {
-      "1.0/start/main": {
+      "1.0/test/example": {
         "title": "Main",
-        "subtitle": "Test Description",
+        "subtitle": "MarkDown support example",
         "tags": [
           "main tag",
-          "another tag"
-        ],
-        "sections": [
-          [
-            "Test Title",
-            "testtitle"
-          ]
-        ],
-        "words": [
-          "meanings",
-          "internal",
-          "full",
-          "text",
-          "beautiful",
-          "Title",
-          "Test"
-        ]
-      },
-      "1.0/start/second": {
-        "title": "Second",
-        "subtitle": "Second Description :D",
-        "tags": [
           "another tag"
         ],
         "sections": [
@@ -92,12 +70,34 @@
           "accumsan",
           "lectus"
         ]
+      },
+      "1.0/test/another": {
+        "title": "Outra",
+        "subtitle": "Another random page",
+        "tags": [
+          "another tag"
+        ],
+        "sections": [
+          [
+            "Test Title",
+            "testtitle"
+          ]
+        ],
+        "words": [
+          "meanings",
+          "internal",
+          "full",
+          "text",
+          "beautiful",
+          "Title",
+          "Test"
+        ]
       }
     },
     "2.0": {
       "2.0/another/brick": {
         "title": "Brick",
-        "subtitle": "In the Wall",
+        "subtitle": "In the Wall, obviously",
         "tags": [
           "main tag",
           "another tag"
@@ -122,32 +122,11 @@
   },
   "pt-br": {
     "1.0": {
-      "1.0/start/main": {
-        "title": "Main",
-        "subtitle": "Test Description",
+      "1.0/test/example": {
+        "title": "Exemplo",
+        "subtitle": "Exemplo de suporte de MarkDown",
         "tags": [
           "main tag",
-          "another tag"
-        ],
-        "sections": [
-          [
-            "Título de Teste",
-            "ttulodeteste"
-          ]
-        ],
-        "words": [
-          "significados",
-          "cheio",
-          "texto",
-          "timo",
-          "Teste",
-          "tulo"
-        ]
-      },
-      "1.0/start/second": {
-        "title": "Second",
-        "subtitle": "Second Description :D",
-        "tags": [
           "another tag"
         ],
         "sections": [
@@ -212,12 +191,33 @@
           "lectus",
           "urna"
         ]
+      },
+      "1.0/test/another": {
+        "title": "Outra",
+        "subtitle": "Outra página aleatória",
+        "tags": [
+          "another tag"
+        ],
+        "sections": [
+          [
+            "Título de Teste",
+            "ttulodeteste"
+          ]
+        ],
+        "words": [
+          "significados",
+          "cheio",
+          "texto",
+          "timo",
+          "Teste",
+          "tulo"
+        ]
       }
     },
     "2.0": {
       "2.0/another/brick": {
         "title": "Tijolo",
-        "subtitle": "Teste 2",
+        "subtitle": "No muro, obviamente",
         "tags": [
           "main tag",
           "another tag"

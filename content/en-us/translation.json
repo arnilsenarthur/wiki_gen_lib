@@ -16,13 +16,13 @@
         "search_no_results": "No Results Found"
     },
     "1.0": {
-        "start": "Start",
-        "start/main": ["Main", "Test Description"],
-        "start/second": ["Second", "Second Description :D"]
+        "test": "Test",
+        "test/example": ["Main", "MarkDown support example"],
+        "test/another": ["Outra", "Another random page"]
     },
     "2.0": {
         "another": "Another",
-        "another/brick": ["Brick", "In the Wall"]
+        "another/brick": ["Brick", "In the Wall, obviously"]
 
     }
 }
