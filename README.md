@@ -23,7 +23,7 @@
 ### 3 - To add a language, edit 'languages.json'
 ### 4 - To add pages and tags, or change return path, edit 'structure.json'
 
-![Example](screenshots/example.png)
-![Messages](screenshots/messages.png)
+![Example](screenshots/first.png)
+![Messages](screenshots/quotes.png)
 ![Highlight](screenshots/highlight.png)
 ![Emojis](screenshots/emojis.png)
